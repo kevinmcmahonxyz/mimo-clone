@@ -198,6 +198,37 @@ body {
   margin-top: 2px;
 }
 
+.project-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-item-name {
+  flex: 1;
+  cursor: pointer;
+}
+
+.btn-delete-project {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.project-item:hover .btn-delete-project {
+  opacity: 1;
+}
+
+.btn-delete-project:hover {
+  color: var(--error);
+}
+
 /* Main content */
 .main-content {
   display: grid;

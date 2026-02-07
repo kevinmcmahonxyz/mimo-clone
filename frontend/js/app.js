@@ -122,10 +122,17 @@ function renderProjectList() {
     const isComplete = isProjectComplete(p.id);
     item.className = 'project-item' + (isActive ? ' active' : '');
     item.innerHTML = `
-      ${isComplete ? '<span style="color: var(--success)">✓</span> ' : ''}${p.name}
+      <div class="project-item-row">
+        <span class="project-item-name">${isComplete ? '<span style="color: var(--success)">✓</span> ' : ''}${p.name}</span>
+        <button class="btn-delete-project" title="Delete project" data-id="${p.id}">&times;</button>
+      </div>
       <div class="project-meta">${p.total_lines} lines · ~${p.estimated_minutes}min</div>
     `;
-    item.addEventListener('click', () => loadProject(p.id));
+    item.querySelector('.project-item-name').addEventListener('click', () => loadProject(p.id));
+    item.querySelector('.btn-delete-project').addEventListener('click', (e) => {
+      e.stopPropagation();
+      deleteProject(p.id, p.name);
+    });
     container.appendChild(item);
   });
 
@@ -526,10 +533,19 @@ async function doGenerate() {
   btn.classList.add('loading');
   btn.textContent = 'Generating...';
   status.style.display = 'block';
-  status.textContent = 'Asking Claude to create a project... this may take a moment.';
+  status.style.color = 'var(--text-dim)';
+  status.textContent = 'Starting generation...';
+
+  const repairStatuses = new Set(['repairing', 'claude_repair']);
 
   try {
-    const project = await api.generateProject(state.currentLevel, tier, theme);
+    const project = await api.generateProject(state.currentLevel, tier, theme, (event) => {
+      status.style.color = repairStatuses.has(event.status)
+        ? 'var(--warning)'
+        : 'var(--text-dim)';
+      status.textContent = event.message;
+    });
+
     status.style.color = 'var(--success)';
     status.textContent = `Created: ${project.name}`;
 
@@ -543,20 +559,35 @@ async function doGenerate() {
       loadProject(project.id);
     }, 800);
   } catch (e) {
-    // Try to get detail from response body
-    let msg = e.message;
-    try {
-      const errData = await e.response?.json?.();
-      if (errData?.detail) msg = errData.detail;
-    } catch (_) {}
-
-    const isCodeError = msg.includes('invalid code');
     status.style.color = 'var(--error)';
-    status.textContent = isCodeError
-      ? 'Generated code had syntax errors. Click Generate to try again.'
-      : `Failed: ${msg}`;
+    status.textContent = e.message || 'Generation failed. Click Retry.';
     btn.classList.remove('loading');
-    btn.textContent = isCodeError ? 'Retry' : 'Generate';
+    btn.textContent = 'Retry';
+  }
+}
+
+// --- Delete Project ---
+async function deleteProject(projectId, projectName) {
+  if (!confirm(`Delete "${projectName}"?`)) return;
+
+  try {
+    await api.deleteProject(projectId);
+
+    // Clear from local progress
+    delete state.progress[projectId];
+    saveProgressToStorage();
+
+    // If we're viewing the deleted project, clear the main view
+    if (state.currentProject && state.currentProject.id === projectId) {
+      state.currentProject = null;
+      showWelcome();
+    }
+
+    // Refresh sidebar
+    await loadProjects(state.currentLevel, null);
+    renderProjectList();
+  } catch (e) {
+    console.error('Failed to delete project:', e);
   }
 }
 

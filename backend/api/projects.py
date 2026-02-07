@@ -59,6 +59,24 @@ def get_project(project_id: str, session: Session = Depends(get_session)):
     }
 
 
+@router.delete("/projects/{project_id}")
+def delete_project(project_id: str, session: Session = Depends(get_session)):
+    project = session.get(Project, project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    # Delete associated progress records
+    progress_records = session.exec(
+        select(Progress).where(Progress.project_id == project_id)
+    ).all()
+    for p in progress_records:
+        session.delete(p)
+
+    session.delete(project)
+    session.commit()
+    return {"status": "ok"}
+
+
 @router.get("/progress")
 def get_progress(
     user_id: str = "default", session: Session = Depends(get_session)

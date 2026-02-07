@@ -36,7 +36,9 @@ def execute_code(code: str, mock_inputs: list[str] | None = None) -> dict:
     if mock_inputs is None:
         mock_inputs = []
 
-    wrapped_code = build_code_with_mocked_inputs(code, mock_inputs)
+    # Seed random for deterministic output (projects using random module)
+    seeded_code = "import random; random.seed(42)\n" + code
+    wrapped_code = build_code_with_mocked_inputs(seeded_code, mock_inputs)
 
     # Try Docker sandbox first, fall back to local execution
     try:
