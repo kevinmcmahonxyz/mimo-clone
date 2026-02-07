@@ -283,6 +283,22 @@ body {
   display: block;
 }
 
+.hint-text pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  color: inherit;
+}
+
+.hint-text pre code {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 /* Editor area */
 .editor-area {
   display: flex;

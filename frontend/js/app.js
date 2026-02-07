@@ -180,7 +180,7 @@ function renderProject() {
       <button class="hint-toggle" onclick="toggleHint()">▸ Show hint</button>
       <div class="hint-text" id="hint-text">${step.hint}</div>
       <button class="hint-toggle" onclick="toggleSolution()">▸ Show solution</button>
-      <div class="hint-text" id="solution-text"><code>${escapeHtml(step.solution)}</code></div>
+      <div class="hint-text" id="solution-text"><pre><code>${escapeHtml(step.solution)}</code></pre></div>
     </div>
     <div class="editor-area">
       <div class="accumulated-code" id="accumulated-code">${state.accumulatedCode ? `<span class="accumulated-label">completed code ↓</span>\n${escapeHtml(state.accumulatedCode)}` : ''}</div>
