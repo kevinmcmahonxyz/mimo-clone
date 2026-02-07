@@ -26,7 +26,7 @@
       "instruction": "Let's start by collecting product reviews. Use print() to display the text 'Product Review Analyzer'. Then use print() to display 'Enter reviews (type done to finish):'. Create an empty list called reviews to store the reviews.",
       "hint": "Use print() twice for the messages, then create reviews = []",
       "expected_lines": 3,
-      "expected_output": "Product Review Analyzer\nEnter reviews (type done to finish):",
+      "expected_output": "Product Review Analyzer\nEnter reviews (type done to finish):\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print(\"Product Review Analyzer\")\nprint(\"Enter reviews (type done to finish):\")\nreviews = []"
@@ -36,7 +36,7 @@
       "instruction": "Now collect the reviews in a loop. Create a while True loop. Inside it, use input() with the prompt 'Review: ' and store the result in a variable called review. If the review equals 'done', break out of the loop. Otherwise, append the review to the reviews list.",
       "hint": "Use while True, then check if review == 'done' to break, else append to reviews",
       "expected_lines": 5,
-      "expected_output": "Product Review Analyzer\nEnter reviews (type done to finish):\nReview: Review: Review: Review: ",
+      "expected_output": "Product Review Analyzer\nEnter reviews (type done to finish):\nReview: Review: Review: ",
       "mock_inputs": [
         "Great product! Really loved it.",
         "Not bad, but could be better.",
@@ -103,7 +103,7 @@
     },
     {
       "step_num": 7,
-      "instruction": "Find the longest words in the reviews. Use a list comprehension to create a variable called long_words containing only words from all_words that have a length greater than 6. Then use sorted() with the key parameter set to len and reverse set to True to sort long_words by length in descending order. Store the result back in long_words.",
+      "instruction": "Find the longest words in the reviews. Use a list comprehension to create a variable called long_words containing only words from all_words that have a length greater than 6. Then use sorted() with the key parameter set to len and reverse set to True to sort long_words by length in descending order. Store the sorted result in the variable long_words.",
       "hint": "First filter with [word for word in all_words if len(word) > 6], then use sorted(long_words, key=len, reverse=True)",
       "expected_lines": 2,
       "expected_output": "Product Review Analyzer\nEnter reviews (type done to finish):\nReview: Review: Review: \n",
@@ -120,7 +120,7 @@
       "instruction": "Display the analysis results. Use print() to display 'Analysis Results:'. Use an f-string with print() to display 'Total reviews: ' followed by the length of the reviews list. Use an f-string with print() to display 'Positive reviews: ' followed by positive_count. Use an f-string with print() to display 'Longest words: ' followed by long_words joined with commas using join().",
       "hint": "Use f\"Total reviews: {len(reviews)}\" and f\"Longest words: {', '.join(long_words)}\"",
       "expected_lines": 4,
-      "expected_output": "Product Review Analyzer\nEnter reviews (type done to finish):\nReview: Review: Review: \nAnalysis Results:\nTotal reviews: 2\nPositive reviews: 1\nLongest words: product!",
+      "expected_output": "Product Review Analyzer\nEnter reviews (type done to finish):\nReview: Review: Review: \nAnalysis Results:\nTotal reviews: 2\nPositive reviews: 1\nLongest words: product!, better.\n",
       "mock_inputs": [
         "Great product! Really loved it.",
         "Not bad, but could be better.",

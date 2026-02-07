@@ -3,14 +3,20 @@
   "level_id": 1,
   "tier": 1,
   "name": "Personal Greeter",
-  "description": "Build a simple program that asks for a user's name and age, then creates a personalized greeting. This project teaches you the fundamentals of output, input, and variables — the three building blocks you'll use in every Python program.",
+  "description": "Build a simple program that asks for a user's name and age, then creates a personalized greeting. This project teaches you the fundamentals of output, input, and variables \u2014 the three building blocks you'll use in every Python program.",
   "learning_goals": [
     "Use print() to display messages",
     "Use input() to get user information",
     "Store values in variables",
     "Combine strings and variables with +"
   ],
-  "concepts_used": ["print", "input", "variables", "strings", "string concatenation"],
+  "concepts_used": [
+    "print",
+    "input",
+    "variables",
+    "strings",
+    "string concatenation"
+  ],
   "total_lines": 5,
   "difficulty_rating": 1,
   "estimated_minutes": 10,
@@ -32,27 +38,35 @@
       "hint": "The pattern is: variable = input('prompt text')",
       "expected_lines": 1,
       "expected_output": "Welcome to the Personal Greeter!\nWhat is your name? ",
-      "mock_inputs": ["Alice"],
+      "mock_inputs": [
+        "Alice"
+      ],
       "starter_code": "",
       "solution": "name = input('What is your name? ')"
     },
     {
       "step_num": 3,
       "instruction": "Ask for the user's age. Use input() with the prompt 'How old are you? ' and store it in a variable called age.",
-      "hint": "Same pattern as name — age = input('prompt')",
+      "hint": "Same pattern as name \u2014 age = input('prompt')",
       "expected_lines": 1,
       "expected_output": "Welcome to the Personal Greeter!\nWhat is your name? How old are you? ",
-      "mock_inputs": ["Alice", "25"],
+      "mock_inputs": [
+        "Alice",
+        "25"
+      ],
       "starter_code": "",
       "solution": "age = input('How old are you? ')"
     },
     {
       "step_num": 4,
-      "instruction": "Create the greeting! Print a message that says 'Hello, Alice! You are 25 years old.' using the + operator to combine strings and variables.",
+      "instruction": "Create the greeting! Use print() to display 'Hello, ' + name + '! You are ' + age + ' years old.' (using the + operator to combine the strings and variables).",
       "hint": "print('Hello, ' + name + '! You are ' + age + ' years old.')",
       "expected_lines": 1,
       "expected_output": "Welcome to the Personal Greeter!\nWhat is your name? How old are you? Hello, Alice! You are 25 years old.\n",
-      "mock_inputs": ["Alice", "25"],
+      "mock_inputs": [
+        "Alice",
+        "25"
+      ],
       "starter_code": "",
       "solution": "print('Hello, ' + name + '! You are ' + age + ' years old.')"
     },
@@ -62,7 +76,10 @@
       "hint": "One more print() statement with the farewell text",
       "expected_lines": 1,
       "expected_output": "Welcome to the Personal Greeter!\nWhat is your name? How old are you? Hello, Alice! You are 25 years old.\nThanks for using Personal Greeter. Goodbye!\n",
-      "mock_inputs": ["Alice", "25"],
+      "mock_inputs": [
+        "Alice",
+        "25"
+      ],
       "starter_code": "",
       "solution": "print('Thanks for using Personal Greeter. Goodbye!')"
     }

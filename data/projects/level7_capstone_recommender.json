@@ -49,14 +49,14 @@
       "instruction": "Use print() to display exactly: Movie Recommendation System. Then on the next line print exactly: ===========================",
       "hint": "Use two print() statements to create a header with a decorative line.",
       "expected_lines": 2,
-      "expected_output": "Movie Recommendation System\n===========================",
+      "expected_output": "Movie Recommendation System\n===========================\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print('Movie Recommendation System')\nprint('===========================')"
     },
     {
       "step_num": 4,
-      "instruction": "Print exactly: Available genres: Sci-Fi, Drama, Animation. Then on the next line print an empty line using print(). Then use input() with the prompt 'Enter a genre: ' and store the result in a variable called user_genre",
+      "instruction": "Print exactly: Available genres: Sci-Fi, Drama, Animation. Then print an empty line using print(). Then use input() with the exact prompt 'Enter a genre: ' and store the return value in a variable called user_genre.",
       "hint": "Use three statements: two print() calls and one input() call.",
       "expected_lines": 3,
       "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: ",
@@ -68,7 +68,7 @@
     },
     {
       "step_num": 5,
-      "instruction": "Normalize the user input by using the strip() method to remove whitespace and the title() method to capitalize properly. Store the result back in the user_genre variable (reassign it).",
+      "instruction": "Normalize the user input by chaining the strip() method and the title() method on user_genre, and reassign the result back to user_genre. This removes extra whitespace and capitalizes properly.",
       "hint": "Chain the methods: user_genre = user_genre.strip().title()",
       "expected_lines": 1,
       "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: ",
@@ -119,7 +119,7 @@
       "instruction": "Print an empty line using print(). Then use an f-string to print: Movies in {user_genre} genre: (using the user_genre variable).",
       "hint": "Use print() for blank line, then print(f'Movies in {user_genre} genre:')",
       "expected_lines": 2,
-      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:",
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n",
       "mock_inputs": [
         "Sci-Fi"
       ],
@@ -131,7 +131,7 @@
       "instruction": "Print exactly: -----------------------",
       "hint": "Use print() with the exact string of dashes.",
       "expected_lines": 1,
-      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------",
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n",
       "mock_inputs": [
         "Sci-Fi"
       ],
@@ -143,7 +143,7 @@
       "instruction": "Create a for loop that iterates through movie_titles. For each movie in the loop, use an f-string to print: - {movie} (with a dash, space, and the movie title).",
       "hint": "Use: for movie in movie_titles: then print(f'- {movie}')",
       "expected_lines": 2,
-      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix",
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n",
       "mock_inputs": [
         "Sci-Fi"
       ],
@@ -155,7 +155,7 @@
       "instruction": "Print an empty line using print(). Then create a variable called count that stores the length of movie_titles using the len() function.",
       "hint": "Use print() for blank line, then count = len(movie_titles)",
       "expected_lines": 2,
-      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n",
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\n",
       "mock_inputs": [
         "Sci-Fi"
       ],
@@ -167,7 +167,7 @@
       "instruction": "Use an f-string to print: Total recommendations: {count} (using the count variable).",
       "hint": "Use print(f'Total recommendations: {count}')",
       "expected_lines": 1,
-      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3",
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3\n",
       "mock_inputs": [
         "Sci-Fi"
       ],
@@ -179,7 +179,7 @@
       "instruction": "Create a variable called titles_joined that uses the join() method to combine all movie_titles with ', ' (comma and space) as the separator.",
       "hint": "Use: titles_joined = ', '.join(movie_titles)",
       "expected_lines": 1,
-      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3",
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3\n",
       "mock_inputs": [
         "Sci-Fi"
       ],
@@ -191,7 +191,7 @@
       "instruction": "Use an f-string to print: Quick list: {titles_joined} (using the titles_joined variable).",
       "hint": "Use print(f'Quick list: {titles_joined}')",
       "expected_lines": 1,
-      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3\nQuick list: Inception, Interstellar, The Matrix",
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3\nQuick list: Inception, Interstellar, The Matrix\n",
       "mock_inputs": [
         "Sci-Fi"
       ],

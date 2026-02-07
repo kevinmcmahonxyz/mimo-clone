@@ -40,17 +40,17 @@
       "instruction": "Print the welcome message. Use print() to display: Weather Travel Advisor",
       "hint": "Use double quotes for the string inside print().",
       "expected_lines": 1,
-      "expected_output": "Weather Travel Advisor",
+      "expected_output": "Weather Travel Advisor\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print(\"Weather Travel Advisor\")"
     },
     {
       "step_num": 3,
-      "instruction": "Ask the user for their destination. Use input() to prompt: Enter destination: and store the result in a variable called destination. Then ask for the number of days using input() with the prompt: Number of days: and store it in a variable called days (convert to integer using int()).",
+      "instruction": "Ask the user for their destination. Use input() with the prompt \"Enter destination: \" and assign the result to a variable called destination. Then ask for the number of days using input() with the prompt \"Number of days: \", convert it to an integer using int(), and assign it to a variable called days. The code should look like:\ndestination = input(\"Enter destination: \")\ndays = int(input(\"Number of days: \"))",
       "hint": "Use int(input(...)) to convert the input string to an integer for days.",
       "expected_lines": 2,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: ",
+      "expected_output": "Weather Travel Advisor\nEnter destination: Number of days: ",
       "mock_inputs": [
         "Paris",
         "5"
@@ -63,7 +63,7 @@
       "instruction": "Simulate weather data using random. Create a variable called temp and use random.randint(10, 35) to generate a random temperature. Then create a variable called conditions and assign it a random choice from this list: [\"Sunny\", \"Cloudy\", \"Rainy\", \"Windy\"] using random.choice().",
       "hint": "Use random.randint(min, max) for temperature and random.choice(list) for conditions.",
       "expected_lines": 2,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: ",
+      "expected_output": "Weather Travel Advisor\nEnter destination: Number of days: ",
       "mock_inputs": [
         "Paris",
         "5"
@@ -73,10 +73,10 @@
     },
     {
       "step_num": 5,
-      "instruction": "Display the weather forecast. Use print() to display an empty line (just print() with no arguments). Then print: Forecast for [destination]: where [destination] is replaced with the destination variable using an f-string. Then print: Temperature: [temp]C where [temp] is the temperature variable. Finally print: Conditions: [conditions] where [conditions] is the conditions variable.",
+      "instruction": "Display the weather forecast. First call print() with no arguments to display an empty line. Then print the text \"Forecast for \" followed by the destination variable and a colon using an f-string. Then print \"Temperature: \" followed by the temp variable and the letter \"C\" using an f-string. Finally print \"Conditions: \" followed by the conditions variable using an f-string.",
       "hint": "Use f-strings like f\"Text {variable}\" to insert variable values into strings.",
       "expected_lines": 4,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -86,10 +86,10 @@
     },
     {
       "step_num": 6,
-      "instruction": "Create a packing list based on conditions. Start with an empty list called packing_list. Then write an if statement: if conditions equals \"Rainy\", append the string \"Umbrella\" to packing_list. Then write elif conditions equals \"Sunny\", append \"Sunglasses\" to packing_list. Finally write elif temp is less than 15, append \"Jacket\" to packing_list.",
+      "instruction": "Create a packing list based on conditions. Create an empty list called packing_list. Then write an if statement: if conditions equals \"Rainy\", append the string \"Umbrella\" to packing_list. Then write elif conditions equals \"Sunny\", append \"Sunglasses\" to packing_list. Finally write elif temp is less than 15, append \"Jacket\" to packing_list.",
       "hint": "Use packing_list.append(item) to add items. Use == for comparison.",
       "expected_lines": 6,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -99,10 +99,10 @@
     },
     {
       "step_num": 7,
-      "instruction": "Display packing recommendations. Print an empty line, then print: Packing recommendation: followed by the packing_list variable.",
+      "instruction": "Display packing recommendations. Call print() with no arguments to display an empty line, then print the text \"Packing recommendation: \" followed by the packing_list variable using an f-string.",
       "hint": "You can print a list directly and Python will display it with brackets.",
       "expected_lines": 2,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny\n\nPacking recommendation: ['Sunglasses']",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -115,7 +115,7 @@
       "instruction": "Create a trip dictionary to store all information. Create a variable called trip_data and assign it a dictionary with these keys and values: \"destination\" with value destination, \"days\" with value days, \"temperature\" with value temp, \"conditions\" with value conditions, and \"packing_list\" with value packing_list.",
       "hint": "Use curly braces {} and separate key-value pairs with commas: {\"key1\": value1, \"key2\": value2}",
       "expected_lines": 7,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny\n\nPacking recommendation: ['Sunglasses']",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -125,10 +125,10 @@
     },
     {
       "step_num": 9,
-      "instruction": "Save the trip data to a JSON file. Use a with statement to open a file called trip.json in write mode (\"w\") as a variable called file. Inside the with block, use json.dump() with trip_data as the first argument and file as the second argument.",
+      "instruction": "Save the trip data to a JSON file. Use a with statement to open a file called \"trip.json\" in write mode (\"w\") as a variable called file. Inside the with block, use json.dump() with trip_data as the first argument and file as the second argument.",
       "hint": "The syntax is: with open(filename, mode) as variable:\n    json.dump(data, variable)",
       "expected_lines": 2,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny\n\nPacking recommendation: ['Sunglasses']",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -138,10 +138,10 @@
     },
     {
       "step_num": 10,
-      "instruction": "Confirm the save and read the data back. Print: Trip saved to trip.json. Then use another with statement to open trip.json in read mode (\"r\") as a variable called file. Inside the with block, create a variable called loaded_data and assign it the result of json.load(file).",
+      "instruction": "Confirm the save and read the data back. Print the text: Trip saved to trip.json. Then use another with statement to open \"trip.json\" in read mode (\"r\") as a variable called file. Inside the with block, create a variable called loaded_data and assign it the result of json.load(file).",
       "hint": "Use json.load() to read JSON data from a file (not json.loads()).",
       "expected_lines": 3,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny\n\nPacking recommendation: ['Sunglasses']\nTrip saved to trip.json",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -151,10 +151,10 @@
     },
     {
       "step_num": 11,
-      "instruction": "Display the loaded trip summary. Print an empty line, then print: Loaded trip summary:. Then print: Destination: followed by the value of the \"destination\" key from loaded_data. Then print: Duration: followed by the value of the \"days\" key from loaded_data, followed by the text: days (all in one print statement).",
+      "instruction": "Display the loaded trip summary. Call print() with no arguments to display an empty line. Then print the text: Loaded trip summary:. Then print \"Destination: \" followed by the value of loaded_data[\"destination\"] using an f-string. Then print \"Duration: \" followed by loaded_data[\"days\"], followed by \" days\" using an f-string.",
       "hint": "Access dictionary values using square brackets: loaded_data[\"key\"]",
       "expected_lines": 4,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny\n\nPacking recommendation: ['Sunglasses']\nTrip saved to trip.json\n\nLoaded trip summary:\nDestination: Paris\nDuration: 5 days",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -164,10 +164,10 @@
     },
     {
       "step_num": 12,
-      "instruction": "Calculate and display an estimated budget. Create a variable called budget_per_day and assign it a random integer between 50 and 150 using random.randint(). Then create a variable called total_budget and calculate it by multiplying budget_per_day by the \"days\" value from loaded_data. Print: Estimated budget: $ followed by total_budget.",
+      "instruction": "Calculate and display an estimated budget. Create a variable called budget_per_day and assign it a random integer between 50 and 150 using random.randint(50, 150). Then create a variable called total_budget and calculate it by multiplying budget_per_day by loaded_data[\"days\"]. Print \"Estimated budget: $\" followed by total_budget using an f-string.",
       "hint": "Multiply the daily budget by the number of days to get the total.",
       "expected_lines": 3,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny\n\nPacking recommendation: ['Sunglasses']\nTrip saved to trip.json\n\nLoaded trip summary:\nDestination: Paris\nDuration: 5 days\nEstimated budget: $550",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"
@@ -177,10 +177,10 @@
     },
     {
       "step_num": 13,
-      "instruction": "Add a final motivational message. Print: Have a great trip! to complete the application.",
+      "instruction": "Add a final motivational message. Print the text: Have a great trip!",
       "hint": "This is a simple print statement to end the program on a positive note.",
       "expected_lines": 1,
-      "expected_output": "Weather Travel Advisor\nEnter destination: \nNumber of days: \n\nForecast for Paris:\nTemperature: 23C\nConditions: Sunny\n\nPacking recommendation: ['Sunglasses']\nTrip saved to trip.json\n\nLoaded trip summary:\nDestination: Paris\nDuration: 5 days\nEstimated budget: $550\nHave a great trip!",
+      "expected_output": "",
       "mock_inputs": [
         "Paris",
         "5"

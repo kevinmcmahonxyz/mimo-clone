@@ -34,10 +34,10 @@
     },
     {
       "step_num": 2,
-      "instruction": "Now let's test our function. Call calculate_tip with a bill of 50.00 and tip_percent of 20, and store the result in a variable called my_tip. Then use print() to display the exact text: Tip amount: $ followed by my_tip.",
+      "instruction": "Now let's test our function. Call calculate_tip with arguments 50.00 and 20, and store the returned value in a variable named my_tip. Then use print() to display the exact text: Tip amount: $ followed by my_tip.",
       "hint": "Call the function with arguments (50.00, 20) and save to my_tip, then print it with the specified text.",
       "expected_lines": 2,
-      "expected_output": "Tip amount: $ 10.0",
+      "expected_output": "Tip amount: $ 10.0\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "my_tip = calculate_tip(50.00, 20)\nprint(\"Tip amount: $\", my_tip)"
@@ -47,17 +47,17 @@
       "instruction": "Create a more advanced function called calculate_total that takes two parameters: bill and tip_percent. This function should call our calculate_tip function to get the tip, then return the sum of the bill and the tip.",
       "hint": "Inside the function, use tip = calculate_tip(bill, tip_percent), then return bill + tip.",
       "expected_lines": 3,
-      "expected_output": "Tip amount: $ 10.0",
+      "expected_output": "Tip amount: $ 10.0\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "def calculate_total(bill, tip_percent):\n    tip = calculate_tip(bill, tip_percent)\n    return bill + tip"
     },
     {
       "step_num": 4,
-      "instruction": "Test the calculate_total function. Call it with a bill of 50.00 and tip_percent of 20, store the result in a variable called total_cost, then use print() to display: Total cost: $ followed by total_cost.",
+      "instruction": "Test the calculate_total function. Call it with arguments 50.00 and 20, and store the returned value in a variable named total_cost. Then use print() to display the exact text: Total cost: $ followed by total_cost.",
       "hint": "Similar to step 2, but this time call calculate_total and store in total_cost.",
       "expected_lines": 2,
-      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0",
+      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "total_cost = calculate_total(50.00, 20)\nprint(\"Total cost: $\", total_cost)"
@@ -67,37 +67,37 @@
       "instruction": "Now create a function with a default argument. Define a function called split_bill that takes two parameters: total and people, where people has a default value of 2. Inside the function, return total divided by people.",
       "hint": "Use def split_bill(total, people=2): to set the default value, then return total / people.",
       "expected_lines": 2,
-      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0",
+      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "def split_bill(total, people=2):\n    return total / people"
     },
     {
       "step_num": 6,
-      "instruction": "Test the default argument by calling split_bill with only one argument: total_cost (which is 60.0 from step 4). Store the result in a variable called per_person, then use print() to display: Each person pays: $ followed by per_person.",
+      "instruction": "Test the default argument by calling split_bill with only one argument: total_cost. Store the returned value in a variable named per_person. Then use print() to display the exact text: Each person pays: $ followed by per_person.",
       "hint": "Call split_bill(total_cost) without specifying people, so it uses the default value of 2.",
       "expected_lines": 2,
-      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\nEach person pays: $ 30.0",
+      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\nEach person pays: $ 30.0\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "per_person = split_bill(total_cost)\nprint(\"Each person pays: $\", per_person)"
     },
     {
       "step_num": 7,
-      "instruction": "Now test with a custom number of people. Call split_bill with total_cost and 4 people, store the result in a variable called per_person_four, then use print() to display: Split 4 ways: $ followed by per_person_four.",
+      "instruction": "Now test with a custom number of people. Call split_bill with arguments total_cost and 4, and store the returned value in a variable named per_person_four. Then use print() to display the exact text: Split 4 ways: $ followed by per_person_four.",
       "hint": "Call split_bill(total_cost, 4) to override the default value.",
       "expected_lines": 2,
-      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\nEach person pays: $ 30.0\nSplit 4 ways: $ 15.0",
+      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\nEach person pays: $ 30.0\nSplit 4 ways: $ 15.0\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "per_person_four = split_bill(total_cost, 4)\nprint(\"Split 4 ways: $\", per_person_four)"
     },
     {
       "step_num": 8,
-      "instruction": "Finally, let's demonstrate scope by creating a global variable called service_rating and setting it to the string excellent. Then define a function called get_tip_percent that takes no parameters. Inside the function, create a local variable called tip_rate and set it to 20. Use print() to display: Service rating: followed by service_rating, then return tip_rate. After defining the function, call it and store the result in a variable called recommended_tip.",
+      "instruction": "Finally, let's demonstrate scope by creating a global variable called service_rating and setting it to the string excellent. Then define a function called get_tip_percent that takes no parameters. Inside the function, create a local variable named tip_rate and set it to 20. Use print() to display the exact text: Service rating: followed by service_rating. Then return tip_rate. After defining the function, call it and store the returned value in a variable named recommended_tip.",
       "hint": "The function can access the global service_rating variable but tip_rate only exists inside the function. Call the function after defining it.",
       "expected_lines": 6,
-      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\nEach person pays: $ 30.0\nSplit 4 ways: $ 15.0\nService rating: excellent",
+      "expected_output": "Tip amount: $ 10.0\nTotal cost: $ 60.0\nEach person pays: $ 30.0\nSplit 4 ways: $ 15.0\nService rating: excellent\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "service_rating = \"excellent\"\n\ndef get_tip_percent():\n    tip_rate = 20\n    print(\"Service rating:\", service_rating)\n    return tip_rate\n\nrecommended_tip = get_tip_percent()"

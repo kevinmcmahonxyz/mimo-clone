@@ -50,7 +50,7 @@
       "instruction": "Print exactly \"My Tasks:\" then use a for loop to print each task with its index number (starting from 1). Format as \"1. Buy groceries\".",
       "hint": "Use enumerate() or a counter variable to track position",
       "expected_lines": 3,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print(\"My Tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])"
@@ -60,7 +60,7 @@
       "instruction": "Insert a new urgent task \"Pay bills\" at the beginning of the list using insert(). Then print exactly \"Added urgent task!\".",
       "hint": "Use insert() with index 0 to add at the beginning",
       "expected_lines": 2,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "tasks.insert(0, \"Pay bills\")\nprint(\"Added urgent task!\")"
@@ -70,27 +70,27 @@
       "instruction": "Print exactly \"Updated Tasks:\" then use a for loop to print all tasks again with their numbers.",
       "hint": "Similar to step 3, iterate through the tasks list",
       "expected_lines": 3,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print(\"Updated Tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])"
     },
     {
       "step_num": 6,
-      "instruction": "Get the first task using indexing and store it in a variable named first_task. Print exactly \"Next up: \" followed by the first_task value.",
+      "instruction": "Use indexing with tasks[0] to get the first task and assign it to a variable named first_task. Then print exactly \"Next up: \" followed by the value of first_task, using string concatenation.",
       "hint": "Use index 0 to get the first element",
       "expected_lines": 2,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "first_task = tasks[0]\nprint(\"Next up: \" + first_task)"
     },
     {
       "step_num": 7,
-      "instruction": "Remove the first task using pop(0) and store it in a variable named completed. Print exactly \"Completed: \" followed by the completed value.",
+      "instruction": "Call tasks.pop(0) to remove the first task and assign the returned value to a variable named completed. Then print exactly \"Completed: \" followed by the value of completed, using string concatenation.",
       "hint": "pop(0) removes and returns the first element",
       "expected_lines": 2,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "completed = tasks.pop(0)\nprint(\"Completed: \" + completed)"
@@ -100,7 +100,7 @@
       "instruction": "Remove \"Finish homework\" from the list using remove(). Then print exactly \"Removed homework from list\".",
       "hint": "Use remove() with the exact task string",
       "expected_lines": 2,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "tasks.remove(\"Finish homework\")\nprint(\"Removed homework from list\")"
@@ -110,7 +110,7 @@
       "instruction": "Use slicing to get the first 2 tasks and store them in a variable named priority_tasks. Print exactly \"Priority: \" followed by the priority_tasks list.",
       "hint": "Use [:2] to slice the first two elements",
       "expected_lines": 2,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list\nPriority: ['Buy groceries', 'Call mom']",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list\nPriority: ['Buy groceries', 'Call mom']\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "priority_tasks = tasks[:2]\nprint(\"Priority: \" + str(priority_tasks))"
@@ -120,7 +120,7 @@
       "instruction": "Print exactly \"Remaining tasks: \" followed by the length of the tasks list. Then print exactly \"All tasks:\" and iterate through tasks one more time, printing each with its number.",
       "hint": "Use len() to get the count, then loop through the list",
       "expected_lines": 4,
-      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list\nPriority: ['Buy groceries', 'Call mom']\nRemaining tasks: 2\nAll tasks:\n1. Buy groceries\n2. Call mom",
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list\nPriority: ['Buy groceries', 'Call mom']\nRemaining tasks: 2\nAll tasks:\n1. Buy groceries\n2. Call mom\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print(\"Remaining tasks: \" + str(len(tasks)))\nprint(\"All tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])"

@@ -29,7 +29,7 @@
       "instruction": "Let's start our RSVP manager. Use print() to display the text: Event RSVP Manager",
       "hint": "Use print() with the exact text shown in the instruction.",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager",
+      "expected_output": "Event RSVP Manager\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print(\"Event RSVP Manager\")"
@@ -39,7 +39,7 @@
       "instruction": "Create an empty dictionary called guests to store all guest information.",
       "hint": "Use {} or dict() to create an empty dictionary.",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager",
+      "expected_output": "Event RSVP Manager\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "guests = {}"
@@ -49,7 +49,7 @@
       "instruction": "Create an empty set called all_dietary_restrictions to track unique dietary needs across all guests.",
       "hint": "Use set() to create an empty set (not {} which creates a dict).",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager",
+      "expected_output": "Event RSVP Manager\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "all_dietary_restrictions = set()"
@@ -59,7 +59,7 @@
       "instruction": "Add the first guest to the dictionary. Set the key \"Alice\" to a dictionary with keys \"status\" (value \"attending\"), \"meal\" (value \"vegetarian\"), and \"restrictions\" (value: a set containing \"gluten-free\" and \"dairy-free\").",
       "hint": "Use nested dictionary syntax: guests[\"Alice\"] = {\"status\": ..., \"meal\": ..., \"restrictions\": {...}}",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager",
+      "expected_output": "Event RSVP Manager\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "guests[\"Alice\"] = {\"status\": \"attending\", \"meal\": \"vegetarian\", \"restrictions\": {\"gluten-free\", \"dairy-free\"}}"
@@ -69,7 +69,7 @@
       "instruction": "Add a second guest \"Bob\" with status \"attending\", meal \"chicken\", and restrictions as a set containing only \"dairy-free\".",
       "hint": "Follow the same pattern as Alice, but with Bob's specific information.",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager",
+      "expected_output": "Event RSVP Manager\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "guests[\"Bob\"] = {\"status\": \"attending\", \"meal\": \"chicken\", \"restrictions\": {\"dairy-free\"}}"
@@ -79,7 +79,7 @@
       "instruction": "Add a third guest \"Charlie\" with status \"not attending\", meal \"none\", and restrictions as an empty set.",
       "hint": "Use set() for an empty set of restrictions.",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager",
+      "expected_output": "Event RSVP Manager\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "guests[\"Charlie\"] = {\"status\": \"not attending\", \"meal\": \"none\", \"restrictions\": set()}"
@@ -89,7 +89,7 @@
       "instruction": "Add a fourth guest \"Diana\" with status \"attending\", meal \"fish\", and restrictions containing \"gluten-free\" and \"shellfish\".",
       "hint": "Create a set with two restriction items for Diana.",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager",
+      "expected_output": "Event RSVP Manager\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "guests[\"Diana\"] = {\"status\": \"attending\", \"meal\": \"fish\", \"restrictions\": {\"gluten-free\", \"shellfish\"}}"
@@ -99,7 +99,7 @@
       "instruction": "Use print() to display an empty line, then print the text: Guest List:",
       "hint": "Call print() twice - once with no arguments for a blank line, then once with the text.",
       "expected_lines": 2,
-      "expected_output": "Event RSVP Manager\n\nGuest List:",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print()\nprint(\"Guest List:\")"
@@ -109,7 +109,7 @@
       "instruction": "Loop through guests.items() to print each guest and their status. For each guest, print the guest's name followed by \" - \" and their status. Use the variables name and info in your for loop.",
       "hint": "Use: for name, info in guests.items(): then print(name + \" - \" + info[\"status\"])",
       "expected_lines": 2,
-      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "for name, info in guests.items():\n    print(name + \" - \" + info[\"status\"])"
@@ -119,7 +119,7 @@
       "instruction": "Print an empty line, then print the text: Attending Guests Meals:. Then loop through guests.items() again using name and info variables. For guests with status \"attending\", print the name followed by \": \" and their meal choice.",
       "hint": "Add an if statement inside the loop to check if info[\"status\"] == \"attending\"",
       "expected_lines": 5,
-      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print()\nprint(\"Attending Guests Meals:\")\nfor name, info in guests.items():\n    if info[\"status\"] == \"attending\":\n        print(name + \": \" + info[\"meal\"])"
@@ -129,52 +129,52 @@
       "instruction": "Now let's collect all dietary restrictions. Loop through guests.values() (use guest_info as the loop variable) and for each guest, use the update() method to add their restrictions set to all_dietary_restrictions.",
       "hint": "Use: for guest_info in guests.values(): then all_dietary_restrictions.update(guest_info[\"restrictions\"])",
       "expected_lines": 2,
-      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "for guest_info in guests.values():\n    all_dietary_restrictions.update(guest_info[\"restrictions\"])"
     },
     {
       "step_num": 12,
-      "instruction": "Print an empty line, then print the text: All Dietary Restrictions:. Then print the all_dietary_restrictions set.",
-      "hint": "Call print() three times - empty line, the header text, and the set.",
+      "instruction": "Print an empty line, then print the text: All Dietary Restrictions:. Then print the sorted list of all_dietary_restrictions using sorted().",
+      "hint": "Call print() three times - empty line, the header text, and sorted(all_dietary_restrictions).",
       "expected_lines": 3,
-      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n{'gluten-free', 'dairy-free', 'shellfish'}",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n['dairy-free', 'gluten-free', 'shellfish']\n",
       "mock_inputs": [],
       "starter_code": "",
-      "solution": "print()\nprint(\"All Dietary Restrictions:\")\nprint(all_dietary_restrictions)"
+      "solution": "print()\nprint(\"All Dietary Restrictions:\")\nprint(sorted(all_dietary_restrictions))"
     },
     {
       "step_num": 13,
       "instruction": "Let's find common restrictions between Alice and Diana. Create a variable called common_restrictions and use the intersection operator (&) between guests[\"Alice\"][\"restrictions\"] and guests[\"Diana\"][\"restrictions\"].",
       "hint": "Use the & operator between two sets to find their intersection.",
       "expected_lines": 1,
-      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n{'gluten-free', 'dairy-free', 'shellfish'}",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n['dairy-free', 'gluten-free', 'shellfish']\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "common_restrictions = guests[\"Alice\"][\"restrictions\"] & guests[\"Diana\"][\"restrictions\"]"
     },
     {
       "step_num": 14,
-      "instruction": "Print an empty line, then print the text: Common restrictions (Alice & Diana):. Then print the common_restrictions variable.",
+      "instruction": "Print an empty line, then print the text: Common restrictions (Alice & Diana):. Then print the sorted list of common_restrictions using sorted().",
       "hint": "Use three print() statements.",
       "expected_lines": 3,
-      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n{'gluten-free', 'dairy-free', 'shellfish'}\n\nCommon restrictions (Alice & Diana):\n{'gluten-free'}",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n['dairy-free', 'gluten-free', 'shellfish']\n\nCommon restrictions (Alice & Diana):\n['gluten-free']\n",
       "mock_inputs": [],
       "starter_code": "",
-      "solution": "print()\nprint(\"Common restrictions (Alice & Diana):\")\nprint(common_restrictions)"
+      "solution": "print()\nprint(\"Common restrictions (Alice & Diana):\")\nprint(sorted(common_restrictions))"
     },
     {
       "step_num": 15,
       "instruction": "Finally, let's count attending guests. Create a variable called attending_count and set it to 0. Loop through guests.values() (use guest_info as the loop variable) and increment attending_count by 1 whenever the status is \"attending\". Then print an empty line, and print the text: Total attending: followed by attending_count.",
       "hint": "Use a counter variable, loop with if condition, and concatenate the count in the final print using str(attending_count).",
       "expected_lines": 6,
-      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n{'gluten-free', 'dairy-free', 'shellfish'}\n\nCommon restrictions (Alice & Diana):\n{'gluten-free'}\n\nTotal attending: 3",
+      "expected_output": "Event RSVP Manager\n\nGuest List:\nAlice - attending\nBob - attending\nCharlie - not attending\nDiana - attending\n\nAttending Guests Meals:\nAlice: vegetarian\nBob: chicken\nDiana: fish\n\nAll Dietary Restrictions:\n['dairy-free', 'gluten-free', 'shellfish']\n\nCommon restrictions (Alice & Diana):\n['gluten-free']\n\nTotal attending: 3\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "attending_count = 0\nfor guest_info in guests.values():\n    if guest_info[\"status\"] == \"attending\":\n        attending_count += 1\nprint()\nprint(\"Total attending: \" + str(attending_count))"
     }
   ],
-  "full_solution": "print(\"Event RSVP Manager\")\nguests = {}\nall_dietary_restrictions = set()\nguests[\"Alice\"] = {\"status\": \"attending\", \"meal\": \"vegetarian\", \"restrictions\": {\"gluten-free\", \"dairy-free\"}}\nguests[\"Bob\"] = {\"status\": \"attending\", \"meal\": \"chicken\", \"restrictions\": {\"dairy-free\"}}\nguests[\"Charlie\"] = {\"status\": \"not attending\", \"meal\": \"none\", \"restrictions\": set()}\nguests[\"Diana\"] = {\"status\": \"attending\", \"meal\": \"fish\", \"restrictions\": {\"gluten-free\", \"shellfish\"}}\nprint()\nprint(\"Guest List:\")\nfor name, info in guests.items():\n    print(name + \" - \" + info[\"status\"])\nprint()\nprint(\"Attending Guests Meals:\")\nfor name, info in guests.items():\n    if info[\"status\"] == \"attending\":\n        print(name + \": \" + info[\"meal\"])\nfor guest_info in guests.values():\n    all_dietary_restrictions.update(guest_info[\"restrictions\"])\nprint()\nprint(\"All Dietary Restrictions:\")\nprint(all_dietary_restrictions)\ncommon_restrictions = guests[\"Alice\"][\"restrictions\"] & guests[\"Diana\"][\"restrictions\"]\nprint()\nprint(\"Common restrictions (Alice & Diana):\")\nprint(common_restrictions)\nattending_count = 0\nfor guest_info in guests.values():\n    if guest_info[\"status\"] == \"attending\":\n        attending_count += 1\nprint()\nprint(\"Total attending: \" + str(attending_count))",
+  "full_solution": "print(\"Event RSVP Manager\")\nguests = {}\nall_dietary_restrictions = set()\nguests[\"Alice\"] = {\"status\": \"attending\", \"meal\": \"vegetarian\", \"restrictions\": {\"gluten-free\", \"dairy-free\"}}\nguests[\"Bob\"] = {\"status\": \"attending\", \"meal\": \"chicken\", \"restrictions\": {\"dairy-free\"}}\nguests[\"Charlie\"] = {\"status\": \"not attending\", \"meal\": \"none\", \"restrictions\": set()}\nguests[\"Diana\"] = {\"status\": \"attending\", \"meal\": \"fish\", \"restrictions\": {\"gluten-free\", \"shellfish\"}}\nprint()\nprint(\"Guest List:\")\nfor name, info in guests.items():\n    print(name + \" - \" + info[\"status\"])\nprint()\nprint(\"Attending Guests Meals:\")\nfor name, info in guests.items():\n    if info[\"status\"] == \"attending\":\n        print(name + \": \" + info[\"meal\"])\nfor guest_info in guests.values():\n    all_dietary_restrictions.update(guest_info[\"restrictions\"])\nprint()\nprint(\"All Dietary Restrictions:\")\nprint(sorted(all_dietary_restrictions))\ncommon_restrictions = guests[\"Alice\"][\"restrictions\"] & guests[\"Diana\"][\"restrictions\"]\nprint()\nprint(\"Common restrictions (Alice & Diana):\")\nprint(sorted(common_restrictions))\nattending_count = 0\nfor guest_info in guests.values():\n    if guest_info[\"status\"] == \"attending\":\n        attending_count += 1\nprint()\nprint(\"Total attending: \" + str(attending_count))",
   "is_generated": false
 }

@@ -27,7 +27,7 @@
       "instruction": "Let's start by setting up API authentication. Create a variable called api_key and use input() with the prompt 'Enter your API key: ' to get the API key from the user. Then create a variable called city and use input() with the prompt 'Enter city name: ' to get the city name.",
       "hint": "Store the user inputs in variables api_key and city.",
       "expected_lines": 2,
-      "expected_output": "Enter your API key: \nEnter city name: ",
+      "expected_output": "Enter your API key: Enter city name: ",
       "mock_inputs": [
         "abc123xyz",
         "London"
@@ -40,7 +40,7 @@
       "instruction": "Now simulate checking the authentication. Use an if statement to check if the length of api_key is less than 5. If it is, use print() to display exactly 'Error: Invalid API key'. Otherwise, use print() to display exactly 'Authentication successful'.",
       "hint": "Use len(api_key) to check the length and < 5 for the condition.",
       "expected_lines": 4,
-      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful",
+      "expected_output": "Enter your API key: Enter city name: Authentication successful\n",
       "mock_inputs": [
         "abc123xyz",
         "London"
@@ -53,7 +53,7 @@
       "instruction": "Now simulate an API response. Create a dictionary called response with these keys: 'status' with value 200, 'temp' with value 18, and 'requests_left' with value 95. Then use print() to display exactly 'Status code: ' followed by the status value from the dictionary (use concatenation or f-string).",
       "hint": "Access dictionary values using response['status']. You can use str() to convert the number to a string for concatenation.",
       "expected_lines": 2,
-      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200",
+      "expected_output": "Enter your API key: Enter city name: Authentication successful\nStatus code: 200\n",
       "mock_inputs": [
         "abc123xyz",
         "London"
@@ -66,7 +66,7 @@
       "instruction": "Add error handling for different HTTP status codes. Use an if statement to check if response['status'] equals 200. If true, print exactly 'Request successful'. Use elif to check if it equals 429, and print exactly 'Error: Rate limit exceeded'. Use else to print exactly 'Error: Request failed'.",
       "hint": "Use response['status'] == 200 for the first condition and == 429 for the second.",
       "expected_lines": 6,
-      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200\nRequest successful",
+      "expected_output": "Enter your API key: Enter city name: Authentication successful\nStatus code: 200\nRequest successful\n",
       "mock_inputs": [
         "abc123xyz",
         "London"
@@ -79,7 +79,7 @@
       "instruction": "Display the weather data. Use print() to display exactly 'Temperature in ' followed by the city variable, followed by ': ', followed by the temp value from the response dictionary, followed by '\u00b0C' (all as one line).",
       "hint": "Use f-strings or concatenation to combine city, response['temp'], and the \u00b0C symbol.",
       "expected_lines": 1,
-      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200\nRequest successful\nTemperature in London: 18\u00b0C",
+      "expected_output": "Enter your API key: Enter city name: Authentication successful\nStatus code: 200\nRequest successful\nTemperature in London: 18\u00b0C\n",
       "mock_inputs": [
         "abc123xyz",
         "London"
@@ -92,7 +92,7 @@
       "instruction": "Finally, show rate limiting information. Use an if statement to check if response['requests_left'] is less than 10. If true, print exactly 'Warning: Only ' followed by the requests_left value, followed by ' requests remaining'. Otherwise, print exactly 'API calls remaining: ' followed by the requests_left value.",
       "hint": "Access response['requests_left'] and compare it to 10. Convert numbers to strings for concatenation.",
       "expected_lines": 4,
-      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200\nRequest successful\nTemperature in London: 18\u00b0C\nAPI calls remaining: 95",
+      "expected_output": "Enter your API key: Enter city name: Authentication successful\nStatus code: 200\nRequest successful\nTemperature in London: 18\u00b0C\nAPI calls remaining: 95\n",
       "mock_inputs": [
         "abc123xyz",
         "London"

@@ -17,7 +17,7 @@ VAGUE_PATTERNS = [
     re.compile(r"\bprint a message\b", re.IGNORECASE),
     re.compile(r"\bprint a welcome\b", re.IGNORECASE),
     re.compile(r"\bprint a greeting\b", re.IGNORECASE),
-    re.compile(r"\bstore the result\b", re.IGNORECASE),
+    re.compile(r"\bstore the result\b(?!\s+in\s+a\s+variable\s+called)", re.IGNORECASE),
     re.compile(r"\bstore it in a variable\b(?!\s+called)", re.IGNORECASE),
     re.compile(r"\bcreate a variable\b(?!\s+called)", re.IGNORECASE),
     re.compile(r"\bsave (?:it |the \w+ )?(?:in|to) a variable\b(?!\s+called)", re.IGNORECASE),

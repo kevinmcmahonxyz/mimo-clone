@@ -31,7 +31,7 @@
       "instruction": "Let's start our movie ticket system! Use print() to display the exact text: Welcome to CineMax Ticket System",
       "hint": "Use print() with the exact welcome message in double quotes.",
       "expected_lines": 1,
-      "expected_output": "Welcome to CineMax Ticket System",
+      "expected_output": "Welcome to CineMax Ticket System\n",
       "mock_inputs": [],
       "starter_code": "",
       "solution": "print(\"Welcome to CineMax Ticket System\")"
@@ -65,7 +65,7 @@
       "instruction": "Add an else clause to handle weekdays. In the else block, print: Weekday pricing applies",
       "hint": "Add else: at the same indentation level as the if, then indent the print statement.",
       "expected_lines": 2,
-      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies",
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\n",
       "mock_inputs": [
         "Friday"
       ],
@@ -77,7 +77,7 @@
       "instruction": "Create a variable called total_cost and set it to 0. This will track the total cost of all tickets.",
       "hint": "Simply assign 0 to a new variable named total_cost.",
       "expected_lines": 1,
-      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies",
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\n",
       "mock_inputs": [
         "Friday"
       ],
@@ -86,7 +86,7 @@
     },
     {
       "step_num": 6,
-      "instruction": "Ask how many tickets they want to buy. Use input() with the prompt: How many tickets do you want? and store the result as an integer in a variable called num_tickets.",
+      "instruction": "Ask how many tickets they want to buy. Use input() with the exact prompt: How many tickets do you want? and convert the response to an integer using int(), then store it in a variable called num_tickets. Write this as: num_tickets = int(input(\"How many tickets do you want? \"))",
       "hint": "Use int(input()) to get the number and convert it to an integer in one line.",
       "expected_lines": 1,
       "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? ",
@@ -102,7 +102,7 @@
       "instruction": "Create a for loop that iterates from 1 to num_tickets (inclusive). Use range(1, num_tickets + 1) and name the loop variable ticket_num. Inside the loop, print the current ticket number using: print(\"\\nTicket\", ticket_num)",
       "hint": "Use for ticket_num in range(1, num_tickets + 1): and remember to indent the print statement.",
       "expected_lines": 2,
-      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\n\nTicket 2\n\nTicket 3",
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\n\nTicket 2\n\nTicket 3\n",
       "mock_inputs": [
         "Friday",
         "3"
@@ -195,7 +195,7 @@
       "instruction": "Still inside the for loop, print the ticket price using: print(\"Price: $\" + str(price)) to show the price for the current ticket.",
       "hint": "Convert price to a string using str() so you can concatenate it with the dollar sign.",
       "expected_lines": 1,
-      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8",
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8\n",
       "mock_inputs": [
         "Friday",
         "3",
@@ -211,7 +211,7 @@
       "instruction": "Inside the for loop (after printing the price), add the current ticket price to total_cost using: total_cost = total_cost + price",
       "hint": "This accumulates all ticket prices into the total_cost variable.",
       "expected_lines": 1,
-      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8",
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8\n",
       "mock_inputs": [
         "Friday",
         "3",
@@ -227,7 +227,7 @@
       "instruction": "After the for loop ends (at the original indentation level, not inside the loop), print a blank line using print(), then print the total cost using: print(\"Total cost: $\" + str(total_cost))",
       "hint": "These two print statements should be at the same indentation as the for loop, not inside it.",
       "expected_lines": 2,
-      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8\n\nTotal cost: $27",
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8\n\nTotal cost: $27\n",
       "mock_inputs": [
         "Friday",
         "3",
