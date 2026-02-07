@@ -76,10 +76,28 @@ Without Docker, code execution falls back to local `subprocess` (suitable for de
 8. **OOP** — classes, init, methods, inheritance
 9. **Working with APIs** — auth, REST, error handling
 
-## Regenerating Seed Projects
+## Generating Seed Projects
+
+Seed projects are generated via Claude API. You must have `MIMO_CLAUDE_API_KEY` set in your `.env` file.
 
 ```bash
-# Delete existing and regenerate (requires MIMO_CLAUDE_API_KEY in .env)
+# Generate all missing projects (9 levels × 3 tiers = 27 projects)
+python -m scripts.generate_seeds
+
+# Generate only specific level(s)
+python -m scripts.generate_seeds --level 1
+python -m scripts.generate_seeds --level 2 3
+
+# Generate only specific tier(s): 1=basic, 2=intermediate, 3=capstone
+python -m scripts.generate_seeds --tier 1
+python -m scripts.generate_seeds --level 1 --tier 2
+
+# Regenerate even if project files already exist
+python -m scripts.generate_seeds --force
+
+# Delete all existing and regenerate from scratch
 rm data/projects/level*
 python -m scripts.generate_seeds
 ```
+
+The generator validates each project by executing the full solution and running quality checks (output matching, instruction specificity, mock input coverage). Failed projects are automatically repaired before falling back to full regeneration.

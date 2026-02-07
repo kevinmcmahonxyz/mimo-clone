@@ -1,7 +1,6 @@
 import docker
 import tempfile
 import os
-from pathlib import Path
 
 from backend.config import settings
 

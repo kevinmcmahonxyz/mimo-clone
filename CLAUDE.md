@@ -28,9 +28,10 @@ uvicorn backend.main:app --reload --port 8000
 # Reset database (re-seeds from JSON files)
 rm -f data/db/mimo.db
 
-# Regenerate seed projects (requires MIMO_CLAUDE_API_KEY in .env)
-rm data/projects/level*
-python -m scripts.generate_seeds
+# Generate seed projects (requires MIMO_CLAUDE_API_KEY in .env)
+python -m scripts.generate_seeds                    # Generate all missing
+python -m scripts.generate_seeds --level 1 --tier 2 # Specific level/tier
+python -m scripts.generate_seeds --force             # Regenerate existing
 
 # Run with Docker
 docker-compose up --build
@@ -49,8 +50,13 @@ docker-compose up --build
 ### Backend Structure
 - `backend/main.py` - FastAPI entry point with lifespan (init_db, seed), static file serving
 - `backend/config.py` - Pydantic settings from env vars (prefix: `MIMO_`)
+- `backend/quality.py` - Shared quality-checking utilities (VAGUE_PATTERNS, normalize, fix_cumulative_solutions, validate_project_quality)
 - `backend/api/` - Route handlers (lessons, projects, execution, generation)
-- `backend/services/` - Business logic (execution_service, validation_service, claude_service, progress_service)
+- `backend/services/claude_service.py` - Claude API calls (generate_project, repair_project, generate_hint) with tier-based model routing
+- `backend/services/repair_service.py` - Two-phase repair: programmatic auto-fix + Claude-based repair for generated projects
+- `backend/services/validation_service.py` - Runtime output validation (exact, normalized, float-tolerant matching)
+- `backend/services/execution_service.py` - Code execution orchestration
+- `backend/services/progress_service.py` - User progress tracking
 - `backend/sandbox/executor.py` - Docker sandbox with local subprocess fallback, input() mocking
 - `backend/storage/database.py` - SQLModel models (Lesson, Project, Progress), SQLite setup, seed functions
 
@@ -118,12 +124,19 @@ Output matching: exact → whitespace-normalized → float-tolerant. Graduated f
 
 When generating projects dynamically via Claude API, these issues are handled in the codebase:
 
-1. **Cumulative solutions**: Claude returns the full program in each step's `solution` instead of just the new code. Fixed by `_fix_cumulative_solutions()` in `generation.py`.
+1. **Cumulative solutions**: Claude returns the full program in each step's `solution` instead of just the new code. Fixed by `fix_cumulative_solutions()` in `backend/quality.py`.
 2. **Broken full_solution**: Claude smashes all code onto one line. Fixed by rebuilding `full_solution` from `"\n".join(step solutions)`.
-3. **Apostrophe in single quotes**: `print('Let's go!')` → SyntaxError. Prompt instructs Claude to use double quotes. Validation catches failures.
-4. **Vague instructions**: "print a welcome message" without exact text. Prompt now requires exact text for every print/input and exact variable names.
+3. **Apostrophe in single quotes**: `print('Let's go!')` → SyntaxError. Prompt instructs Claude to use double quotes. Auto-repair swaps single→double quotes programmatically.
+4. **Vague instructions**: "print a welcome message" without exact text. Prompt now requires exact text for every print/input and exact variable names. Claude repair rewrites vague instructions when detected.
 5. **Malformed JSON on long projects**: Capstone projects (8-15 steps) frequently cause unterminated strings. Reducing step count and using `max_tokens=3000` helps. The generate script retries on failure.
-6. **Validation gate**: All generated projects are executed before saving. If the full_solution doesn't run cleanly, the project is rejected and the user is prompted to retry.
+6. **Validation & repair pipeline**: All generated projects go through quality checks (step execution, output matching, instruction specificity, mock_inputs coverage). On failure, a two-phase repair runs: (1) programmatic auto-fix for expected_output mismatches, apostrophe issues, and mock_inputs backfill, then (2) up to 2 Claude repair attempts for issues needing language understanding (vague instructions, code errors). Only if all repair passes fail does the user see a 422.
+
+### Model Routing
+
+- **Tier 1-2 (basic/intermediate)**: Uses Sonnet (`MIMO_CLAUDE_MODEL`) — faster, cheaper, sufficient for simpler projects
+- **Tier 3 (capstone)**: Uses Opus (`MIMO_CLAUDE_MODEL_HEAVY`) — better at complex multi-step projects with 8-15 steps
+- **Hints**: Always uses Sonnet — short responses where latency matters
+- Both models are configurable via `.env`
 
 ---
 

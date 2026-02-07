@@ -1,3 +1,5 @@
+import re
+
 from difflib import SequenceMatcher
 
 
@@ -65,8 +67,6 @@ def _float_tolerant_match(actual: str, expected: str, tolerance: float = 0.001) 
 
 def _lines_float_close(a: str, e: str, tolerance: float) -> bool:
     """Check if two lines are the same except for float precision."""
-    import re
-
     float_pattern = r"-?\d+\.\d+"
     a_floats = re.findall(float_pattern, a)
     e_floats = re.findall(float_pattern, e)
@@ -120,3 +120,44 @@ def _generate_feedback(actual: str, expected: str) -> str:
         hint = "The output doesn't match what's expected. Review the instructions and try again."
 
     return hint
+
+
+# ---------------------------------------------------------------------------
+# Generation-time quality validation
+# ---------------------------------------------------------------------------
+
+def validate_step_outputs(project_data: dict) -> list[str]:
+    """Run accumulated code at each step and verify output matches expected_output.
+
+    Returns a list of error messages (empty = all good).
+    """
+    from backend.sandbox.executor import execute_code
+
+    errors = []
+    accumulated_code = ""
+
+    for step in project_data.get("steps", []):
+        if accumulated_code:
+            accumulated_code += "\n" + step["solution"]
+        else:
+            accumulated_code = step["solution"]
+
+        mock_inputs = step.get("mock_inputs", [])
+        result = execute_code(accumulated_code, mock_inputs)
+
+        if not result["success"]:
+            errors.append(
+                f"Step {step['step_num']}: execution failed — {result.get('error', 'unknown error')}"
+            )
+            continue
+
+        expected = step.get("expected_output", "")
+        if expected:
+            actual = result.get("output", "")
+            if _normalize(actual) != _normalize(expected):
+                errors.append(
+                    f"Step {step['step_num']}: output mismatch. "
+                    f"Expected: {repr(expected[:100])} Got: {repr(actual[:100])}"
+                )
+
+    return errors

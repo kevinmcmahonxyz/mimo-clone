@@ -6,6 +6,8 @@ from typing import Optional
 
 from backend.storage.database import Lesson, Project, get_session
 from backend.services.claude_service import generate_project, generate_hint
+from backend.services.repair_service import auto_fix_project, claude_repair_project
+from backend.quality import fix_cumulative_solutions, validate_project_quality
 from backend.sandbox.executor import execute_code
 from backend.config import settings
 
@@ -48,7 +50,7 @@ def gen_project(req: GenerateProjectRequest, session: Session = Depends(get_sess
         raise HTTPException(status_code=500, detail="Failed to generate project")
 
     # Fix cumulative solutions: ensure each step's solution is only the NEW code
-    _fix_cumulative_solutions(project_data)
+    fix_cumulative_solutions(project_data)
 
     # Rebuild full_solution from step solutions (don't trust Claude's version)
     project_data["full_solution"] = "\n".join(
@@ -62,8 +64,30 @@ def gen_project(req: GenerateProjectRequest, session: Session = Depends(get_sess
     if not validation["success"]:
         raise HTTPException(
             status_code=422,
-            detail=f"Generated code had errors — click Retry to generate a new project.",
+            detail="Generated code had errors — click Retry to generate a new project.",
         )
+
+    # Quality validation: step-by-step execution, instruction specificity, etc.
+    quality_errors = validate_project_quality(project_data)
+    if quality_errors:
+        # Phase 1: programmatic fixes
+        project_data, remaining = auto_fix_project(project_data, quality_errors)
+
+        # Phase 2: up to 2 Claude repair attempts
+        for _repair_attempt in range(2):
+            if not remaining:
+                break
+            repaired = claude_repair_project(project_data, remaining)
+            if not repaired:
+                break  # Claude couldn't parse/respond — give up
+            project_data = repaired
+            remaining = validate_project_quality(project_data)
+
+        if remaining:
+            raise HTTPException(
+                status_code=422,
+                detail=f"Quality check failed: {'; '.join(remaining[:3])}. Click Retry.",
+            )
 
     # Save to database
     project = Project(
@@ -85,32 +109,6 @@ def gen_project(req: GenerateProjectRequest, session: Session = Depends(get_sess
     session.commit()
 
     return project_data
-
-
-def _fix_cumulative_solutions(project_data: dict):
-    """If Claude returned cumulative solutions, strip them down to incremental."""
-    steps = project_data.get("steps", [])
-    if len(steps) < 2:
-        return
-
-    prev_solution_lines = []
-    for step in steps:
-        solution = step.get("solution", "")
-        solution_lines = solution.split("\n")
-
-        # Check if this step's solution starts with all previous lines (cumulative)
-        if len(solution_lines) > len(prev_solution_lines) and prev_solution_lines:
-            is_cumulative = all(
-                solution_lines[i] == prev_solution_lines[i]
-                for i in range(len(prev_solution_lines))
-            )
-            if is_cumulative:
-                # Strip previous lines — keep only the new code
-                new_lines = solution_lines[len(prev_solution_lines):]
-                step["solution"] = "\n".join(new_lines)
-
-        # Track full code so far for next iteration
-        prev_solution_lines = solution_lines
 
 
 @router.post("/generate/hint")
