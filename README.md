@@ -59,7 +59,8 @@ Without Docker, code execution falls back to local `subprocess` (suitable for de
 | GET | `/api/v1/projects?level=X&tier=Y` | List projects (filtered) |
 | GET | `/api/v1/projects/{id}` | Get project with all steps |
 | POST | `/api/v1/execute` | Run code & validate output |
-| POST | `/api/v1/generate/project` | Generate project via Claude |
+| POST | `/api/v1/generate/project` | Generate project via Claude (SSE stream) |
+| DELETE | `/api/v1/projects/{id}` | Delete a project and its progress |
 | POST | `/api/v1/generate/hint` | Get AI hint for stuck user |
 | GET | `/api/v1/progress` | Get user progress |
 | POST | `/api/v1/progress/complete` | Mark step/project done |

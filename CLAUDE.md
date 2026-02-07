@@ -57,7 +57,7 @@ docker-compose up --build
 - `backend/services/validation_service.py` - Runtime output validation (exact, normalized, float-tolerant matching)
 - `backend/services/execution_service.py` - Code execution orchestration
 - `backend/services/progress_service.py` - User progress tracking
-- `backend/sandbox/executor.py` - Docker sandbox with local subprocess fallback, input() mocking
+- `backend/sandbox/executor.py` - Docker sandbox with local subprocess fallback, input() mocking, random.seed(42) for deterministic output
 - `backend/storage/database.py` - SQLModel models (Lesson, Project, Progress), SQLite setup, seed functions
 
 ### Frontend Structure
@@ -76,7 +76,10 @@ docker-compose up --build
 7. After all steps complete, project marked done
 
 ### Code Execution
-The sandbox (`Dockerfile.sandbox`) runs user Python code in isolation (no network, memory/CPU limits). For development without Docker, execution falls back to local `subprocess`. The `input()` function is mocked by wrapping user code with a shim that reads from a predefined list of values.
+The sandbox (`Dockerfile.sandbox`) runs user Python code in isolation (no network, memory/CPU limits). For development without Docker, execution falls back to local `subprocess`. The `input()` function is mocked by wrapping user code with a shim that reads from a predefined list of values. All code is executed with `random.seed(42)` prepended for deterministic output — this ensures projects using the `random` module produce consistent results during generation, validation, and user execution.
+
+### Project Generation Streaming
+The `POST /generate/project` endpoint returns a `StreamingResponse` with `text/event-stream` (SSE). The frontend reads the stream with `fetch()` + `ReadableStream` (not `EventSource`, since it's a POST). Status events are sent at each stage: generating → validating → quality_check → repairing → claude_repair → saving → done/error.
 
 ### Validation System
 Output matching: exact → whitespace-normalized → float-tolerant. Graduated feedback based on similarity ratio. No output gets a specific "use print()" message.
