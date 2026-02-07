@@ -1,0 +1,131 @@
+{
+  "id": "level3_capstone_tracker",
+  "level_id": 3,
+  "tier": 3,
+  "name": "Daily Task Tracker",
+  "description": "Build a task tracker that lets you add, view, and remove tasks from your daily to-do list",
+  "learning_goals": [
+    "Create and manipulate lists",
+    "Use indexing and slicing",
+    "Iterate through lists",
+    "Handle user input in a practical app"
+  ],
+  "concepts_used": [
+    "list creation",
+    "indexing",
+    "slicing",
+    "append",
+    "insert",
+    "remove",
+    "pop",
+    "list iteration",
+    "user input"
+  ],
+  "total_lines": 42,
+  "difficulty_rating": 3,
+  "estimated_minutes": 20,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Create an empty list named tasks to store your daily tasks.",
+      "hint": "Use square brackets to create an empty list",
+      "expected_lines": 1,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "tasks = []"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Add three starter tasks to the list using append(): \"Buy groceries\", \"Finish homework\", and \"Call mom\".",
+      "hint": "Use the append() method three times",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "tasks.append(\"Buy groceries\")\ntasks.append(\"Finish homework\")\ntasks.append(\"Call mom\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Print exactly \"My Tasks:\" then use a for loop to print each task with its index number (starting from 1). Format as \"1. Buy groceries\".",
+      "hint": "Use enumerate() or a counter variable to track position",
+      "expected_lines": 3,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"My Tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Insert a new urgent task \"Pay bills\" at the beginning of the list using insert(). Then print exactly \"Added urgent task!\".",
+      "hint": "Use insert() with index 0 to add at the beginning",
+      "expected_lines": 2,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "tasks.insert(0, \"Pay bills\")\nprint(\"Added urgent task!\")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Print exactly \"Updated Tasks:\" then use a for loop to print all tasks again with their numbers.",
+      "hint": "Similar to step 3, iterate through the tasks list",
+      "expected_lines": 3,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Updated Tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Get the first task using indexing and store it in a variable named first_task. Print exactly \"Next up: \" followed by the first_task value.",
+      "hint": "Use index 0 to get the first element",
+      "expected_lines": 2,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "first_task = tasks[0]\nprint(\"Next up: \" + first_task)"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Remove the first task using pop(0) and store it in a variable named completed. Print exactly \"Completed: \" followed by the completed value.",
+      "hint": "pop(0) removes and returns the first element",
+      "expected_lines": 2,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "completed = tasks.pop(0)\nprint(\"Completed: \" + completed)"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Remove \"Finish homework\" from the list using remove(). Then print exactly \"Removed homework from list\".",
+      "hint": "Use remove() with the exact task string",
+      "expected_lines": 2,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "tasks.remove(\"Finish homework\")\nprint(\"Removed homework from list\")"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Use slicing to get the first 2 tasks and store them in a variable named priority_tasks. Print exactly \"Priority: \" followed by the priority_tasks list.",
+      "hint": "Use [:2] to slice the first two elements",
+      "expected_lines": 2,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list\nPriority: ['Buy groceries', 'Call mom']",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "priority_tasks = tasks[:2]\nprint(\"Priority: \" + str(priority_tasks))"
+    },
+    {
+      "step_num": 10,
+      "instruction": "Print exactly \"Remaining tasks: \" followed by the length of the tasks list. Then print exactly \"All tasks:\" and iterate through tasks one more time, printing each with its number.",
+      "hint": "Use len() to get the count, then loop through the list",
+      "expected_lines": 4,
+      "expected_output": "My Tasks:\n1. Buy groceries\n2. Finish homework\n3. Call mom\nAdded urgent task!\nUpdated Tasks:\n1. Pay bills\n2. Buy groceries\n3. Finish homework\n4. Call mom\nNext up: Pay bills\nCompleted: Pay bills\nRemoved homework from list\nPriority: ['Buy groceries', 'Call mom']\nRemaining tasks: 2\nAll tasks:\n1. Buy groceries\n2. Call mom",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Remaining tasks: \" + str(len(tasks)))\nprint(\"All tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])"
+    }
+  ],
+  "full_solution": "tasks = []\ntasks.append(\"Buy groceries\")\ntasks.append(\"Finish homework\")\ntasks.append(\"Call mom\")\nprint(\"My Tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])\ntasks.insert(0, \"Pay bills\")\nprint(\"Added urgent task!\")\nprint(\"Updated Tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])\nfirst_task = tasks[0]\nprint(\"Next up: \" + first_task)\ncompleted = tasks.pop(0)\nprint(\"Completed: \" + completed)\ntasks.remove(\"Finish homework\")\nprint(\"Removed homework from list\")\npriority_tasks = tasks[:2]\nprint(\"Priority: \" + str(priority_tasks))\nprint(\"Remaining tasks: \" + str(len(tasks)))\nprint(\"All tasks:\")\nfor i in range(len(tasks)):\n    print(str(i + 1) + \". \" + tasks[i])",
+  "is_generated": false
+}

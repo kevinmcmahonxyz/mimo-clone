@@ -1,0 +1,107 @@
+{
+  "id": "level8_intermediate_character",
+  "level_id": 8,
+  "tier": 2,
+  "name": "Game Character Creator",
+  "description": "Build a role-playing game character system using classes and inheritance. Create a base Character class with health and attack methods, then create a Warrior subclass with special abilities. This project teaches how to organize code with classes, use __init__ to set up objects, and extend functionality with inheritance.",
+  "learning_goals": [
+    "Create classes with __init__ constructors",
+    "Use self to access instance attributes",
+    "Define methods that operate on object data",
+    "Implement inheritance to extend class functionality"
+  ],
+  "concepts_used": [
+    "classes",
+    "__init__",
+    "self",
+    "methods",
+    "inheritance"
+  ],
+  "total_lines": 25,
+  "difficulty_rating": 3,
+  "estimated_minutes": 15,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Create a class called Character. Define the __init__ method that takes three parameters: self, name, and health. Inside __init__, assign name to self.name and health to self.health.",
+      "hint": "Use def __init__(self, name, health): followed by self.name = name and self.health = health",
+      "expected_lines": 4,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "class Character:\n    def __init__(self, name, health):\n        self.name = name\n        self.health = health"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Add a method called display_stats to the Character class. It should take only self as a parameter. Use print() to display the exact text: \"Name: \" followed by self.name, then on a new line print \"Health: \" followed by self.health.",
+      "hint": "Define the method with def display_stats(self): and use two print() statements with f-strings or concatenation",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def display_stats(self):\n        print(f\"Name: {self.name}\")\n        print(f\"Health: {self.health}\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Add a method called attack to the Character class. It should take only self as a parameter. Use print() to display the exact text: the value of self.name followed by \" attacks for 10 damage!\"",
+      "hint": "Define the method with def attack(self): and use a print statement with an f-string",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def attack(self):\n        print(f\"{self.name} attacks for 10 damage!\")"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Create an instance of Character called hero with the name \"Aria\" and health 100. Store it in a variable called hero. Then call the display_stats method on hero.",
+      "hint": "Use hero = Character(\"Aria\", 100) then hero.display_stats()",
+      "expected_lines": 2,
+      "expected_output": "Name: Aria\nHealth: 100",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "hero = Character(\"Aria\", 100)\nhero.display_stats()"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Call the attack method on hero.",
+      "hint": "Use hero.attack()",
+      "expected_lines": 1,
+      "expected_output": "Name: Aria\nHealth: 100\nAria attacks for 10 damage!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "hero.attack()"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Create a new class called Warrior that inherits from Character. Use class Warrior(Character): and add pass on the next line for now.",
+      "hint": "Put the class name in parentheses after Warrior to inherit: class Warrior(Character):",
+      "expected_lines": 2,
+      "expected_output": "Name: Aria\nHealth: 100\nAria attacks for 10 damage!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "class Warrior(Character):\n    pass"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Replace the pass statement in the Warrior class with a method called special_attack. It should take only self as a parameter. Use print() to display the exact text: the value of self.name followed by \" uses Power Strike for 25 damage!\"",
+      "hint": "Remove pass and add def special_attack(self): with a print statement",
+      "expected_lines": 2,
+      "expected_output": "Name: Aria\nHealth: 100\nAria attacks for 10 damage!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def special_attack(self):\n        print(f\"{self.name} uses Power Strike for 25 damage!\")"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Create an instance of Warrior called fighter with the name \"Brutus\" and health 150. Store it in a variable called fighter. Call display_stats on fighter, then call attack on fighter, and finally call special_attack on fighter.",
+      "hint": "Use fighter = Warrior(\"Brutus\", 150) then call the three methods",
+      "expected_lines": 4,
+      "expected_output": "Name: Aria\nHealth: 100\nAria attacks for 10 damage!\nName: Brutus\nHealth: 150\nBrutus attacks for 10 damage!\nBrutus uses Power Strike for 25 damage!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "fighter = Warrior(\"Brutus\", 150)\nfighter.display_stats()\nfighter.attack()\nfighter.special_attack()"
+    }
+  ],
+  "full_solution": "class Character:\n    def __init__(self, name, health):\n        self.name = name\n        self.health = health\n    def display_stats(self):\n        print(f\"Name: {self.name}\")\n        print(f\"Health: {self.health}\")\n    def attack(self):\n        print(f\"{self.name} attacks for 10 damage!\")\nhero = Character(\"Aria\", 100)\nhero.display_stats()\nhero.attack()\nclass Warrior(Character):\n    pass\n    def special_attack(self):\n        print(f\"{self.name} uses Power Strike for 25 damage!\")\nfighter = Warrior(\"Brutus\", 150)\nfighter.display_stats()\nfighter.attack()\nfighter.special_attack()",
+  "is_generated": false
+}

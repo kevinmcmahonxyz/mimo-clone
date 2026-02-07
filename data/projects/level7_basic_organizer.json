@@ -1,0 +1,101 @@
+{
+  "id": "level7_basic_organizer",
+  "level_id": 7,
+  "tier": 1,
+  "name": "Playlist Organizer",
+  "description": "Build a music playlist organizer that cleans up song titles, sorts them alphabetically, and formats them nicely. You'll use string methods to clean data, list comprehensions to transform it, and f-strings to display formatted output. This simulates real-world data cleaning tasks that developers do constantly.",
+  "learning_goals": [
+    "Use string methods to clean and format text data",
+    "Apply list comprehensions to transform lists efficiently",
+    "Use f-strings for formatted output",
+    "Practice split and join methods on strings",
+    "Sort data alphabetically"
+  ],
+  "concepts_used": [
+    "string methods",
+    "f-strings",
+    "list comprehensions",
+    "join",
+    "split",
+    "sorting"
+  ],
+  "total_lines": 18,
+  "difficulty_rating": 3,
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start our playlist organizer. Print the exact text: Playlist Organizer\nThen print a line of 20 equals signs. Finally, use input() to ask the user \"Enter songs (separated by commas): \" and store the response in a variable called raw_input.",
+      "hint": "Use three separate print() statements for the title and separator, then use input() with the exact prompt text.",
+      "expected_lines": 3,
+      "expected_output": "Playlist Organizer\n====================\nEnter songs (separated by commas): ",
+      "mock_inputs": [
+        "  bohemian RHAPSODY  ,  imagine , HOTEL california  , let IT be  "
+      ],
+      "starter_code": "",
+      "solution": "print(\"Playlist Organizer\")\nprint(\"=\" * 20)\nraw_input = input(\"Enter songs (separated by commas): \")"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now split the raw_input by commas to create a list. Store this in a variable called song_list. Then print the result using an f-string that displays: Raw songs: followed by the song_list.",
+      "hint": "Use the split() method with a comma as the separator. Use an f-string with {song_list} to display it.",
+      "expected_lines": 2,
+      "expected_output": "Playlist Organizer\n====================\nEnter songs (separated by commas): Raw songs: ['  bohemian RHAPSODY  ', '  imagine ', ' HOTEL california  ', ' let IT be  ']",
+      "mock_inputs": [
+        "  bohemian RHAPSODY  ,  imagine , HOTEL california  , let IT be  "
+      ],
+      "starter_code": "",
+      "solution": "song_list = raw_input.split(\",\")\nprint(f\"Raw songs: {song_list}\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "The songs have messy spacing and mixed case. Use a list comprehension to clean each song by stripping whitespace and converting to title case. Store the result in a variable called cleaned_songs. The list comprehension should iterate through song_list, and for each song call strip() then title() on it.",
+      "hint": "List comprehension syntax: [song.strip().title() for song in song_list]",
+      "expected_lines": 1,
+      "expected_output": "Playlist Organizer\n====================\nEnter songs (separated by commas): Raw songs: ['  bohemian RHAPSODY  ', '  imagine ', ' HOTEL california  ', ' let IT be  ']\n",
+      "mock_inputs": [
+        "  bohemian RHAPSODY  ,  imagine , HOTEL california  , let IT be  "
+      ],
+      "starter_code": "",
+      "solution": "cleaned_songs = [song.strip().title() for song in song_list]"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Sort the cleaned_songs list alphabetically and store it in a variable called sorted_songs. Then print an empty line followed by the exact text: Cleaned & Sorted Playlist:",
+      "hint": "Use the sorted() function to create a new sorted list. Use print() twice - once with an empty string and once with the text.",
+      "expected_lines": 3,
+      "expected_output": "Playlist Organizer\n====================\nEnter songs (separated by commas): Raw songs: ['  bohemian RHAPSODY  ', '  imagine ', ' HOTEL california  ', ' let IT be  ']\n\nCleaned & Sorted Playlist:",
+      "mock_inputs": [
+        "  bohemian RHAPSODY  ,  imagine , HOTEL california  , let IT be  "
+      ],
+      "starter_code": "",
+      "solution": "sorted_songs = sorted(cleaned_songs)\nprint()\nprint(\"Cleaned & Sorted Playlist:\")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Now let's display each song with a number. Use a for loop with enumerate() to iterate through sorted_songs, starting the index at 1. For each song, print it using an f-string in this exact format: {index}. {song_name} where index is the number and song_name is the song title.",
+      "hint": "Use enumerate(sorted_songs, 1) to start counting from 1. In the loop body, use print(f\"{i}. {song}\") where i and song are your loop variables.",
+      "expected_lines": 2,
+      "expected_output": "Playlist Organizer\n====================\nEnter songs (separated by commas): Raw songs: ['  bohemian RHAPSODY  ', '  imagine ', ' HOTEL california  ', ' let IT be  ']\n\nCleaned & Sorted Playlist:\n1. Bohemian Rhapsody\n2. Hotel California\n3. Imagine\n4. Let It Be",
+      "mock_inputs": [
+        "  bohemian RHAPSODY  ,  imagine , HOTEL california  , let IT be  "
+      ],
+      "starter_code": "",
+      "solution": "for i, song in enumerate(sorted_songs, 1):\n    print(f\"{i}. {song}\")"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Finally, print an empty line, then create a summary. Use the join() method to combine all sorted_songs with \" | \" as the separator, and store this in a variable called playlist_string. Then print it using an f-string that displays: Playlist: followed by the playlist_string. On the next line, print another f-string showing: Total songs: followed by the length of sorted_songs.",
+      "hint": "Use \" | \".join(sorted_songs) to create the string. Use len(sorted_songs) to get the count.",
+      "expected_lines": 4,
+      "expected_output": "Playlist Organizer\n====================\nEnter songs (separated by commas): Raw songs: ['  bohemian RHAPSODY  ', '  imagine ', ' HOTEL california  ', ' let IT be  ']\n\nCleaned & Sorted Playlist:\n1. Bohemian Rhapsody\n2. Hotel California\n3. Imagine\n4. Let It Be\n\nPlaylist: Bohemian Rhapsody | Hotel California | Imagine | Let It Be\nTotal songs: 4",
+      "mock_inputs": [
+        "  bohemian RHAPSODY  ,  imagine , HOTEL california  , let IT be  "
+      ],
+      "starter_code": "",
+      "solution": "print()\nplaylist_string = \" | \".join(sorted_songs)\nprint(f\"Playlist: {playlist_string}\")\nprint(f\"Total songs: {len(sorted_songs)}\")"
+    }
+  ],
+  "full_solution": "print(\"Playlist Organizer\")\nprint(\"=\" * 20)\nraw_input = input(\"Enter songs (separated by commas): \")\nsong_list = raw_input.split(\",\")\nprint(f\"Raw songs: {song_list}\")\ncleaned_songs = [song.strip().title() for song in song_list]\nsorted_songs = sorted(cleaned_songs)\nprint()\nprint(\"Cleaned & Sorted Playlist:\")\nfor i, song in enumerate(sorted_songs, 1):\n    print(f\"{i}. {song}\")\nprint()\nplaylist_string = \" | \".join(sorted_songs)\nprint(f\"Playlist: {playlist_string}\")\nprint(f\"Total songs: {len(sorted_songs)}\")",
+  "is_generated": false
+}

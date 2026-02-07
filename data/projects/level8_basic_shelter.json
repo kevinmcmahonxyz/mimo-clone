@@ -1,0 +1,88 @@
+{
+  "id": "level8_basic_shelter",
+  "level_id": 8,
+  "tier": 1,
+  "name": "Pet Shelter System",
+  "description": "Build a pet shelter management system using classes! You'll create a Pet class to represent animals in a shelter, then extend it with inheritance to create a Dog class with special behaviors. This project demonstrates how classes help organize real-world data (like pet information) and how inheritance lets us create specialized versions of classes.",
+  "learning_goals": [
+    "Create a class with __init__ to initialize object properties",
+    "Define methods that use self to access object data",
+    "Use inheritance to extend a parent class",
+    "Override parent methods in child classes",
+    "Create and interact with multiple objects"
+  ],
+  "concepts_used": [
+    "classes",
+    "__init__",
+    "self",
+    "methods",
+    "inheritance"
+  ],
+  "total_lines": 18,
+  "difficulty_rating": 3,
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Create a class called Pet with an __init__ method that takes three parameters: self, name, and age. Inside __init__, assign name to self.name and age to self.age.",
+      "hint": "Use def __init__(self, name, age): and then set self.name = name and self.age = age",
+      "expected_lines": 4,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "class Pet:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Add a method called info to the Pet class. It should take self as a parameter and use print() to display the pet's name and age in this exact format: \"Name: [name], Age: [age]\". Make sure to use the exact format shown.",
+      "hint": "Define the method inside the Pet class with proper indentation. Use self.name and self.age to access the attributes.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def info(self):\n        print(f\"Name: {self.name}, Age: {self.age}\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Create a Dog class that inherits from Pet. Use pass as the body for now (we'll add more in the next step).",
+      "hint": "Use class Dog(Pet): to create a child class that inherits from Pet.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "class Dog(Pet):\n    pass"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Remove the pass statement from the Dog class and add a method called bark. It should take self as a parameter and use print() to display exactly: \"Woof! I am [name]!\" (use self.name for the name).",
+      "hint": "The bark method should use self.name to access the dog's name that was set by the parent Pet class.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def bark(self):\n        print(f\"Woof! I am {self.name}!\")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Create a Dog object with the name \"Buddy\" and age 3, and store it in a variable called my_dog. Then call the info method on my_dog.",
+      "hint": "Use my_dog = Dog(\"Buddy\", 3) to create the object, then call my_dog.info()",
+      "expected_lines": 2,
+      "expected_output": "Name: Buddy, Age: 3\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "my_dog = Dog(\"Buddy\", 3)\nmy_dog.info()"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Call the bark method on my_dog. Then create another Pet object (not Dog) with the name \"Whiskers\" and age 2, store it in a variable called my_cat, and call the info method on my_cat.",
+      "hint": "Call my_dog.bark() first. Then create a Pet object with my_cat = Pet(\"Whiskers\", 2) and call my_cat.info()",
+      "expected_lines": 3,
+      "expected_output": "Name: Buddy, Age: 3\nWoof! I am Buddy!\nName: Whiskers, Age: 2\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "my_dog.bark()\nmy_cat = Pet(\"Whiskers\", 2)\nmy_cat.info()"
+    }
+  ],
+  "full_solution": "class Pet:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n    def info(self):\n        print(f\"Name: {self.name}, Age: {self.age}\")\nclass Dog(Pet):\n    pass\n    def bark(self):\n        print(f\"Woof! I am {self.name}!\")\nmy_dog = Dog(\"Buddy\", 3)\nmy_dog.info()\nmy_dog.bark()\nmy_cat = Pet(\"Whiskers\", 2)\nmy_cat.info()",
+  "is_generated": false
+}

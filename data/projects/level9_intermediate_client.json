@@ -1,0 +1,110 @@
+{
+  "id": "level9_intermediate_client",
+  "level_id": 9,
+  "tier": 2,
+  "name": "Weather API Client",
+  "description": "Build a weather API client that handles authentication, pagination, and rate limiting. You'll create a system that fetches weather data with proper error handling, simulates API rate limits, and processes paginated results. This project demonstrates real-world API integration patterns used in production applications.",
+  "learning_goals": [
+    "Implement API authentication with tokens",
+    "Handle pagination for large datasets",
+    "Implement rate limiting and retry logic",
+    "Practice comprehensive error handling"
+  ],
+  "concepts_used": [
+    "API authentication",
+    "REST concepts",
+    "error handling",
+    "pagination",
+    "rate limiting",
+    "dictionaries",
+    "functions",
+    "conditionals"
+  ],
+  "total_lines": 28,
+  "difficulty_rating": 4,
+  "estimated_minutes": 25,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by setting up our API configuration. Create a dictionary called api_config with three keys: 'base_url' set to 'https://api.weather.io', 'api_key' set to 'abc123token', and 'rate_limit' set to the integer 3. Then use print() to display exactly: API Configuration loaded",
+      "hint": "Create a dictionary with string keys and assign it to api_config, then print the message.",
+      "expected_lines": 2,
+      "expected_output": "API Configuration loaded",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "api_config = {'base_url': 'https://api.weather.io', 'api_key': 'abc123token', 'rate_limit': 3}\nprint(\"API Configuration loaded\")"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now create a variable called request_count and set it to 0 to track our API calls. Then define a function called check_rate_limit() that takes no parameters. Inside the function, use the global keyword for request_count, then check if request_count is less than api_config['rate_limit']. If true, increment request_count by 1 and return True. Otherwise, return False.",
+      "hint": "Use 'global request_count' at the start of the function to modify the global variable. Use an if-else statement to check the rate limit.",
+      "expected_lines": 5,
+      "expected_output": "API Configuration loaded",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "request_count = 0\ndef check_rate_limit():\n    global request_count\n    if request_count < api_config['rate_limit']:\n        request_count += 1\n        return True\n    else:\n        return False"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Create a function called authenticate() that takes one parameter called endpoint. Inside the function, create a dictionary called headers with one key 'Authorization' set to the value f\"Bearer {api_config['api_key']}\". Then return the headers dictionary.",
+      "hint": "Use an f-string to include the API key from api_config in the Authorization header value.",
+      "expected_lines": 3,
+      "expected_output": "API Configuration loaded",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def authenticate(endpoint):\n    headers = {'Authorization': f\"Bearer {api_config['api_key']}\"}\n    return headers"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Now let's create a function called fetch_weather() that takes two parameters: city and page (with page defaulting to 1). Inside the function, first check if check_rate_limit() returns False. If so, return the dictionary {'error': 'Rate limit exceeded'}. Otherwise, call authenticate() with the argument 'weather' and store the result in a variable called headers. Then return a dictionary with keys 'city' (set to the city parameter), 'page' (set to the page parameter), 'temp' (set to 22), and 'auth' (set to headers['Authorization']).",
+      "hint": "Use an if statement to check the rate limit first. The function signature should be: def fetch_weather(city, page=1):",
+      "expected_lines": 5,
+      "expected_output": "API Configuration loaded",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def fetch_weather(city, page=1):\n    if not check_rate_limit():\n        return {'error': 'Rate limit exceeded'}\n    headers = authenticate('weather')\n    return {'city': city, 'page': page, 'temp': 22, 'auth': headers['Authorization']}"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Create a function called handle_response() that takes one parameter called response. Inside the function, check if 'error' is in response (use the 'in' keyword). If true, use print() to display exactly: Error: followed by response['error']. Otherwise, use print() to display exactly: Weather in followed by response['city'], then on a new line display: Temperature: followed by response['temp'] and the string C, then on a new line display: Page: followed by response['page'].",
+      "hint": "Use 'in' to check if a key exists in a dictionary. Use multiple print() statements with f-strings for the success case.",
+      "expected_lines": 5,
+      "expected_output": "API Configuration loaded",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def handle_response(response):\n    if 'error' in response:\n        print(f\"Error: {response['error']}\")\n    else:\n        print(f\"Weather in {response['city']}\")\n        print(f\"Temperature: {response['temp']}C\")\n        print(f\"Page: {response['page']}\")"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Use print() to display exactly: --- Fetching Weather Data ---. Then call fetch_weather() with the argument 'London' and store the result in a variable called result1. Call handle_response() with result1 as the argument.",
+      "hint": "Make three function calls in total: one print and two function calls with the results passed between them.",
+      "expected_lines": 3,
+      "expected_output": "API Configuration loaded\n--- Fetching Weather Data ---\nWeather in London\nTemperature: 22C\nPage: 1",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"--- Fetching Weather Data ---\")\nresult1 = fetch_weather('London')\nhandle_response(result1)"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Call fetch_weather() with the arguments 'Paris' and 2, store the result in a variable called result2, and call handle_response() with result2. Do this again: call fetch_weather() with 'Tokyo' and 3, store in result3, and call handle_response() with result3.",
+      "hint": "You're making two more weather requests with different cities and page numbers.",
+      "expected_lines": 4,
+      "expected_output": "API Configuration loaded\n--- Fetching Weather Data ---\nWeather in London\nTemperature: 22C\nPage: 1\nWeather in Paris\nTemperature: 22C\nPage: 2\nWeather in Tokyo\nTemperature: 22C\nPage: 3",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "result2 = fetch_weather('Paris', 2)\nhandle_response(result2)\nresult3 = fetch_weather('Tokyo', 3)\nhandle_response(result3)"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Finally, let's test the rate limiting. Use print() to display exactly: --- Testing Rate Limit ---. Then call fetch_weather() with 'Berlin' and store the result in a variable called result4. Call handle_response() with result4 to see the rate limit error.",
+      "hint": "This fourth request should trigger the rate limit since we set it to 3.",
+      "expected_lines": 3,
+      "expected_output": "API Configuration loaded\n--- Fetching Weather Data ---\nWeather in London\nTemperature: 22C\nPage: 1\nWeather in Paris\nTemperature: 22C\nPage: 2\nWeather in Tokyo\nTemperature: 22C\nPage: 3\n--- Testing Rate Limit ---\nError: Rate limit exceeded",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"--- Testing Rate Limit ---\")\nresult4 = fetch_weather('Berlin')\nhandle_response(result4)"
+    }
+  ],
+  "full_solution": "api_config = {'base_url': 'https://api.weather.io', 'api_key': 'abc123token', 'rate_limit': 3}\nprint(\"API Configuration loaded\")\nrequest_count = 0\ndef check_rate_limit():\n    global request_count\n    if request_count < api_config['rate_limit']:\n        request_count += 1\n        return True\n    else:\n        return False\ndef authenticate(endpoint):\n    headers = {'Authorization': f\"Bearer {api_config['api_key']}\"}\n    return headers\ndef fetch_weather(city, page=1):\n    if not check_rate_limit():\n        return {'error': 'Rate limit exceeded'}\n    headers = authenticate('weather')\n    return {'city': city, 'page': page, 'temp': 22, 'auth': headers['Authorization']}\ndef handle_response(response):\n    if 'error' in response:\n        print(f\"Error: {response['error']}\")\n    else:\n        print(f\"Weather in {response['city']}\")\n        print(f\"Temperature: {response['temp']}C\")\n        print(f\"Page: {response['page']}\")\nprint(\"--- Fetching Weather Data ---\")\nresult1 = fetch_weather('London')\nhandle_response(result1)\nresult2 = fetch_weather('Paris', 2)\nhandle_response(result2)\nresult3 = fetch_weather('Tokyo', 3)\nhandle_response(result3)\nprint(\"--- Testing Rate Limit ---\")\nresult4 = fetch_weather('Berlin')\nhandle_response(result4)",
+  "is_generated": false
+}

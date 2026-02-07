@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Intro to Python",
+    "description": "Your first steps into Python programming",
+    "concepts": ["print", "variables", "input", "strings", "integers", "basic math"],
+    "examples": ["print('Hello!')", "name = 'Alice'", "name = input('Name: ')", "'Hello, World!'", "age = 25", "total = 5 + 3"],
+    "prerequisite_id": null
+  },
+  {
+    "id": 2,
+    "name": "Flow Control",
+    "description": "Make decisions and repeat actions in your code",
+    "concepts": ["if statements", "else/elif", "comparison operators", "logical operators", "while loops", "for loops"],
+    "examples": ["if age >= 18:", "else: print('no')", "==, !=, <, >, <=, >=", "and, or, not", "while count < 10:", "for i in range(5):"],
+    "prerequisite_id": 1
+  },
+  {
+    "id": 3,
+    "name": "Lists",
+    "description": "Work with collections of data",
+    "concepts": ["list creation", "indexing", "slicing", "append/insert", "remove/pop", "list iteration"],
+    "examples": ["fruits = ['apple', 'banana']", "first = fruits[0]", "some = fruits[1:3]", "fruits.append('cherry')", "fruits.pop()", "for fruit in fruits:"],
+    "prerequisite_id": 2
+  },
+  {
+    "id": 4,
+    "name": "Functions",
+    "description": "Create reusable blocks of code",
+    "concepts": ["def keyword", "parameters", "return values", "default arguments", "scope"],
+    "examples": ["def greet():", "def greet(name):", "return result", "def greet(name='World'):", "local vs global"],
+    "prerequisite_id": 3
+  },
+  {
+    "id": 5,
+    "name": "Tuples, Dicts & Sets",
+    "description": "More ways to organize data",
+    "concepts": ["tuples", "dictionaries", "dict methods", "sets", "set operations"],
+    "examples": ["point = (3, 4)", "person = {'name': 'Alice'}", ".keys(), .values(), .items()", "unique = {1, 2, 3}", "a | b, a & b"],
+    "prerequisite_id": 4
+  },
+  {
+    "id": 6,
+    "name": "Modules & APIs",
+    "description": "Use external code and connect to the world",
+    "concepts": ["import", "from import", "random module", "json module", "requests basics"],
+    "examples": ["import math", "from math import sqrt", "random.randint(1, 10)", "json.loads(data)", "requests.get(url)"],
+    "prerequisite_id": 5
+  },
+  {
+    "id": 7,
+    "name": "Strings & List Operations",
+    "description": "Advanced text and list manipulation",
+    "concepts": ["string methods", "f-strings", "list comprehensions", "join/split", "sorting"],
+    "examples": [".upper(), .split(), .strip()", "f'Hello, {name}!'", "[x*2 for x in range(5)]", "', '.join(items)", "sorted(items, key=len)"],
+    "prerequisite_id": 6
+  },
+  {
+    "id": 8,
+    "name": "Object-Oriented Programming",
+    "description": "Create your own data types with classes",
+    "concepts": ["classes", "__init__", "self", "methods", "inheritance"],
+    "examples": ["class Dog:", "def __init__(self, name):", "self.name = name", "def bark(self):", "class Puppy(Dog):"],
+    "prerequisite_id": 7
+  },
+  {
+    "id": 9,
+    "name": "Working with Private APIs",
+    "description": "Build real integrations with web services",
+    "concepts": ["API authentication", "REST concepts", "error handling", "pagination", "rate limiting"],
+    "examples": ["headers = {'Authorization': key}", "GET, POST, PUT, DELETE", "try/except, status codes", "while next_page:", "time.sleep(1)"],
+    "prerequisite_id": 8
+  }
+]

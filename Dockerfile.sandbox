@@ -1,0 +1,7 @@
+FROM python:3.12-slim
+
+RUN useradd -m -s /bin/false sandbox
+USER sandbox
+WORKDIR /code
+
+ENTRYPOINT ["python"]

@@ -1,0 +1,107 @@
+{
+  "id": "level5_intermediate_tracker",
+  "level_id": 5,
+  "tier": 2,
+  "name": "Recipe Ingredient Tracker",
+  "description": "Build a recipe ingredient tracking system that helps you manage multiple recipes and find common ingredients. You'll create recipes using dictionaries, track ingredient quantities, and use set operations to compare ingredients across recipes. This project simulates a real cooking app feature where you can see which ingredients you need for multiple dishes.",
+  "learning_goals": [
+    "Use dictionaries to store structured recipe data with ingredients and quantities",
+    "Work with tuples to represent ingredient information",
+    "Apply set operations to find common and unique ingredients across recipes",
+    "Use dictionary methods to access and manipulate recipe data"
+  ],
+  "concepts_used": [
+    "dictionaries",
+    "tuples",
+    "sets",
+    "set operations",
+    "dict methods"
+  ],
+  "total_lines": 24,
+  "difficulty_rating": 3,
+  "estimated_minutes": 18,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by creating our first recipe! Create a dictionary called recipe1 with the key 'name' set to 'Pasta Carbonara'. Then print exactly: Recipe Tracker Started",
+      "hint": "Use curly braces to create a dictionary with one key-value pair, then use print() on the next line.",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "recipe1 = {\"name\": \"Pasta Carbonara\"}\nprint(\"Recipe Tracker Started\")"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Add an 'ingredients' key to recipe1 with a set containing three strings: 'pasta', 'eggs', and 'bacon'. Then print the recipe name using: Recipe 1: followed by the name from the dictionary.",
+      "hint": "Use recipe1['ingredients'] = {...} to add the key. Access the name with recipe1['name'].",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started\nRecipe 1: Pasta Carbonara",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "recipe1[\"ingredients\"] = {\"pasta\", \"eggs\", \"bacon\"}\nprint(\"Recipe 1:\", recipe1[\"name\"])"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Create a second recipe dictionary called recipe2 with 'name' set to 'Caesar Salad' and 'ingredients' set to a set containing: 'lettuce', 'eggs', 'cheese', and 'croutons'. Then print exactly: Recipe 2: Caesar Salad",
+      "hint": "Create the entire dictionary in one go with both keys. Remember to use curly braces for both the dict and the set.",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started\nRecipe 1: Pasta Carbonara\nRecipe 2: Caesar Salad",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "recipe2 = {\"name\": \"Caesar Salad\", \"ingredients\": {\"lettuce\", \"eggs\", \"cheese\", \"croutons\"}}\nprint(\"Recipe 2:\", recipe2[\"name\"])"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Find common ingredients between both recipes using set intersection. Store the result in a variable called common_ingredients. Then print exactly: Common ingredients: followed by the common_ingredients set.",
+      "hint": "Use the & operator or .intersection() method between recipe1['ingredients'] and recipe2['ingredients'].",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started\nRecipe 1: Pasta Carbonara\nRecipe 2: Caesar Salad\nCommon ingredients: {'eggs'}",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "common_ingredients = recipe1[\"ingredients\"] & recipe2[\"ingredients\"]\nprint(\"Common ingredients:\", common_ingredients)"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Find all unique ingredients (ingredients in recipe1 but not in recipe2) using set difference. Store the result in a variable called unique_to_recipe1. Then print exactly: Only in Pasta Carbonara: followed by the unique_to_recipe1 set.",
+      "hint": "Use the - operator or .difference() method. Order matters: recipe1['ingredients'] - recipe2['ingredients'].",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started\nRecipe 1: Pasta Carbonara\nRecipe 2: Caesar Salad\nCommon ingredients: {'eggs'}\nOnly in Pasta Carbonara: {'pasta', 'bacon'}",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "unique_to_recipe1 = recipe1[\"ingredients\"] - recipe2[\"ingredients\"]\nprint(\"Only in Pasta Carbonara:\", unique_to_recipe1)"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Create a combined shopping list of all ingredients from both recipes using set union. Store it in a variable called all_ingredients. Then print exactly: Total shopping list: followed by the all_ingredients set.",
+      "hint": "Use the | operator or .union() method to combine both ingredient sets.",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started\nRecipe 1: Pasta Carbonara\nRecipe 2: Caesar Salad\nCommon ingredients: {'eggs'}\nOnly in Pasta Carbonara: {'pasta', 'bacon'}\nTotal shopping list: {'bacon', 'cheese', 'croutons', 'lettuce', 'pasta', 'eggs'}",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "all_ingredients = recipe1[\"ingredients\"] | recipe2[\"ingredients\"]\nprint(\"Total shopping list:\", all_ingredients)"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Create a tuple called ingredient_counts containing two values: the number of ingredients in recipe1 and the number of ingredients in recipe2 (in that order). Then print exactly: Ingredient counts: followed by the ingredient_counts tuple.",
+      "hint": "Use len() on each recipe's 'ingredients' set. Create a tuple with parentheses or just comma-separated values.",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started\nRecipe 1: Pasta Carbonara\nRecipe 2: Caesar Salad\nCommon ingredients: {'eggs'}\nOnly in Pasta Carbonara: {'pasta', 'bacon'}\nTotal shopping list: {'bacon', 'cheese', 'croutons', 'lettuce', 'pasta', 'eggs'}\nIngredient counts: (3, 4)",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "ingredient_counts = (len(recipe1[\"ingredients\"]), len(recipe2[\"ingredients\"]))\nprint(\"Ingredient counts:\", ingredient_counts)"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Create a dictionary called recipe_book with keys being the recipe names from recipe1 and recipe2, and values being their ingredient sets. Use the .keys() method to get all recipe names, then print exactly: Recipe book contains: followed by the list of keys converted to a list.",
+      "hint": "Use recipe1['name'] and recipe2['name'] as keys. Use list(recipe_book.keys()) to display the names.",
+      "expected_lines": 2,
+      "expected_output": "Recipe Tracker Started\nRecipe 1: Pasta Carbonara\nRecipe 2: Caesar Salad\nCommon ingredients: {'eggs'}\nOnly in Pasta Carbonara: {'pasta', 'bacon'}\nTotal shopping list: {'bacon', 'cheese', 'croutons', 'lettuce', 'pasta', 'eggs'}\nIngredient counts: (3, 4)\nRecipe book contains: ['Pasta Carbonara', 'Caesar Salad']",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "recipe_book = {recipe1[\"name\"]: recipe1[\"ingredients\"], recipe2[\"name\"]: recipe2[\"ingredients\"]}\nprint(\"Recipe book contains:\", list(recipe_book.keys()))"
+    }
+  ],
+  "full_solution": "recipe1 = {\"name\": \"Pasta Carbonara\"}\nprint(\"Recipe Tracker Started\")\nrecipe1[\"ingredients\"] = {\"pasta\", \"eggs\", \"bacon\"}\nprint(\"Recipe 1:\", recipe1[\"name\"])\nrecipe2 = {\"name\": \"Caesar Salad\", \"ingredients\": {\"lettuce\", \"eggs\", \"cheese\", \"croutons\"}}\nprint(\"Recipe 2:\", recipe2[\"name\"])\ncommon_ingredients = recipe1[\"ingredients\"] & recipe2[\"ingredients\"]\nprint(\"Common ingredients:\", common_ingredients)\nunique_to_recipe1 = recipe1[\"ingredients\"] - recipe2[\"ingredients\"]\nprint(\"Only in Pasta Carbonara:\", unique_to_recipe1)\nall_ingredients = recipe1[\"ingredients\"] | recipe2[\"ingredients\"]\nprint(\"Total shopping list:\", all_ingredients)\ningredient_counts = (len(recipe1[\"ingredients\"]), len(recipe2[\"ingredients\"]))\nprint(\"Ingredient counts:\", ingredient_counts)\nrecipe_book = {recipe1[\"name\"]: recipe1[\"ingredients\"], recipe2[\"name\"]: recipe2[\"ingredients\"]}\nprint(\"Recipe book contains:\", list(recipe_book.keys()))",
+  "is_generated": false
+}

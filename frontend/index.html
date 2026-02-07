@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mimo Clone — Python Learning Companion</title>
+  <link rel="stylesheet" href="/static/css/terminal.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-title">
+        MIMO <span>// Python Learning Companion</span>
+      </div>
+      <div class="header-status">
+        <span id="status-text">Ready</span>
+        <span class="cursor-blink"></span>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Learning Levels</div>
+      </div>
+      <div id="sidebar-levels"></div>
+
+      <div class="sidebar-section" style="margin-top: 12px">
+        <div class="sidebar-label">Projects</div>
+      </div>
+      <div id="project-list" class="project-list"></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+      <div class="welcome-screen">
+        <div class="ascii-art">
+ _____ _____ _____ _____
+|     |     |     |     |
+| M   | I   | M   | O   |
+|_____|_____|_____|_____|
+        </div>
+        <p>Python Learning Companion</p>
+        <p style="color: var(--text-dim); font-size: 11px;">
+          Select a level from the sidebar to begin your journey.<br>
+          Work through projects step by step, building real programs.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

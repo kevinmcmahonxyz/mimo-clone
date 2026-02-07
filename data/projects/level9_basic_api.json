@@ -1,0 +1,106 @@
+{
+  "id": "level9_basic_api",
+  "level_id": 9,
+  "tier": 1,
+  "name": "Weather API Client",
+  "description": "Build a simple weather API client that handles authentication, makes REST requests, and gracefully handles common API issues like rate limiting and errors. You'll learn how real apps communicate with web services by simulating a weather data request with proper error handling.",
+  "learning_goals": [
+    "Understand API authentication with tokens",
+    "Handle HTTP status codes and API errors",
+    "Implement basic rate limiting checks",
+    "Parse and display API response data"
+  ],
+  "concepts_used": [
+    "API authentication",
+    "REST concepts",
+    "error handling",
+    "rate limiting",
+    "dictionaries",
+    "conditionals"
+  ],
+  "total_lines": 18,
+  "difficulty_rating": 3,
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by setting up API authentication. Create a variable called api_key and use input() with the prompt 'Enter your API key: ' to get the API key from the user. Then create a variable called city and use input() with the prompt 'Enter city name: ' to get the city name.",
+      "hint": "Store the user inputs in variables api_key and city.",
+      "expected_lines": 2,
+      "expected_output": "Enter your API key: \nEnter city name: ",
+      "mock_inputs": [
+        "abc123xyz",
+        "London"
+      ],
+      "starter_code": "",
+      "solution": "api_key = input(\"Enter your API key: \")\ncity = input(\"Enter city name: \")"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now simulate checking the authentication. Use an if statement to check if the length of api_key is less than 5. If it is, use print() to display exactly 'Error: Invalid API key'. Otherwise, use print() to display exactly 'Authentication successful'.",
+      "hint": "Use len(api_key) to check the length and < 5 for the condition.",
+      "expected_lines": 4,
+      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful",
+      "mock_inputs": [
+        "abc123xyz",
+        "London"
+      ],
+      "starter_code": "",
+      "solution": "if len(api_key) < 5:\n    print(\"Error: Invalid API key\")\nelse:\n    print(\"Authentication successful\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Now simulate an API response. Create a dictionary called response with these keys: 'status' with value 200, 'temp' with value 18, and 'requests_left' with value 95. Then use print() to display exactly 'Status code: ' followed by the status value from the dictionary (use concatenation or f-string).",
+      "hint": "Access dictionary values using response['status']. You can use str() to convert the number to a string for concatenation.",
+      "expected_lines": 2,
+      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200",
+      "mock_inputs": [
+        "abc123xyz",
+        "London"
+      ],
+      "starter_code": "",
+      "solution": "response = {\"status\": 200, \"temp\": 18, \"requests_left\": 95}\nprint(\"Status code: \" + str(response[\"status\"]))"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Add error handling for different HTTP status codes. Use an if statement to check if response['status'] equals 200. If true, print exactly 'Request successful'. Use elif to check if it equals 429, and print exactly 'Error: Rate limit exceeded'. Use else to print exactly 'Error: Request failed'.",
+      "hint": "Use response['status'] == 200 for the first condition and == 429 for the second.",
+      "expected_lines": 6,
+      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200\nRequest successful",
+      "mock_inputs": [
+        "abc123xyz",
+        "London"
+      ],
+      "starter_code": "",
+      "solution": "if response[\"status\"] == 200:\n    print(\"Request successful\")\nelif response[\"status\"] == 429:\n    print(\"Error: Rate limit exceeded\")\nelse:\n    print(\"Error: Request failed\")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Display the weather data. Use print() to display exactly 'Temperature in ' followed by the city variable, followed by ': ', followed by the temp value from the response dictionary, followed by '\u00b0C' (all as one line).",
+      "hint": "Use f-strings or concatenation to combine city, response['temp'], and the \u00b0C symbol.",
+      "expected_lines": 1,
+      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200\nRequest successful\nTemperature in London: 18\u00b0C",
+      "mock_inputs": [
+        "abc123xyz",
+        "London"
+      ],
+      "starter_code": "",
+      "solution": "print(\"Temperature in \" + city + \": \" + str(response[\"temp\"]) + \"\u00b0C\")"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Finally, show rate limiting information. Use an if statement to check if response['requests_left'] is less than 10. If true, print exactly 'Warning: Only ' followed by the requests_left value, followed by ' requests remaining'. Otherwise, print exactly 'API calls remaining: ' followed by the requests_left value.",
+      "hint": "Access response['requests_left'] and compare it to 10. Convert numbers to strings for concatenation.",
+      "expected_lines": 4,
+      "expected_output": "Enter your API key: \nEnter city name: \nAuthentication successful\nStatus code: 200\nRequest successful\nTemperature in London: 18\u00b0C\nAPI calls remaining: 95",
+      "mock_inputs": [
+        "abc123xyz",
+        "London"
+      ],
+      "starter_code": "",
+      "solution": "if response[\"requests_left\"] < 10:\n    print(\"Warning: Only \" + str(response[\"requests_left\"]) + \" requests remaining\")\nelse:\n    print(\"API calls remaining: \" + str(response[\"requests_left\"]))"
+    }
+  ],
+  "full_solution": "api_key = input(\"Enter your API key: \")\ncity = input(\"Enter city name: \")\nif len(api_key) < 5:\n    print(\"Error: Invalid API key\")\nelse:\n    print(\"Authentication successful\")\nresponse = {\"status\": 200, \"temp\": 18, \"requests_left\": 95}\nprint(\"Status code: \" + str(response[\"status\"]))\nif response[\"status\"] == 200:\n    print(\"Request successful\")\nelif response[\"status\"] == 429:\n    print(\"Error: Rate limit exceeded\")\nelse:\n    print(\"Error: Request failed\")\nprint(\"Temperature in \" + city + \": \" + str(response[\"temp\"]) + \"\u00b0C\")\nif response[\"requests_left\"] < 10:\n    print(\"Warning: Only \" + str(response[\"requests_left\"]) + \" requests remaining\")\nelse:\n    print(\"API calls remaining: \" + str(response[\"requests_left\"]))",
+  "is_generated": false
+}

@@ -1,0 +1,204 @@
+{
+  "id": "level7_capstone_recommender",
+  "level_id": 7,
+  "tier": 3,
+  "name": "Movie Recommendation System",
+  "description": "Build a movie recommendation system that stores movie titles with their genres, lets users search by genre, and displays results sorted alphabetically. This project brings together string methods for text processing, f-strings for formatted output, list comprehensions for filtering data, and sorting methods. You'll create a practical tool that demonstrates how real recommendation systems filter and organize data.",
+  "learning_goals": [
+    "Process and format strings using various string methods",
+    "Use f-strings to create formatted, readable output",
+    "Filter data efficiently with list comprehensions",
+    "Split and join strings to parse structured data",
+    "Sort data alphabetically for better user experience"
+  ],
+  "concepts_used": [
+    "string methods",
+    "f-strings",
+    "list comprehensions",
+    "join/split",
+    "sorting",
+    "lists",
+    "for loops"
+  ],
+  "total_lines": 45,
+  "difficulty_rating": 4,
+  "estimated_minutes": 35,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's build our movie database. Create a variable called movies that contains a list with these 3 strings: 'Inception:Sci-Fi', 'The Godfather:Drama', and 'Toy Story:Animation'",
+      "hint": "Create a list with 3 string elements. Each string has a title, colon, and genre.",
+      "expected_lines": 1,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "movies = ['Inception:Sci-Fi', 'The Godfather:Drama', 'Toy Story:Animation']"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Add 5 more movies to the list: 'The Matrix:Sci-Fi', 'Pulp Fiction:Drama', 'Shrek:Animation', 'Interstellar:Sci-Fi', and 'Forrest Gump:Drama'",
+      "hint": "Use the append() method 5 times, or extend() with a list of the new movies.",
+      "expected_lines": 5,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "movies.append('The Matrix:Sci-Fi')\nmovies.append('Pulp Fiction:Drama')\nmovies.append('Shrek:Animation')\nmovies.append('Interstellar:Sci-Fi')\nmovies.append('Forrest Gump:Drama')"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Use print() to display exactly: Movie Recommendation System. Then on the next line print exactly: ===========================",
+      "hint": "Use two print() statements to create a header with a decorative line.",
+      "expected_lines": 2,
+      "expected_output": "Movie Recommendation System\n===========================",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print('Movie Recommendation System')\nprint('===========================')"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Print exactly: Available genres: Sci-Fi, Drama, Animation. Then on the next line print an empty line using print(). Then use input() with the prompt 'Enter a genre: ' and store the result in a variable called user_genre",
+      "hint": "Use three statements: two print() calls and one input() call.",
+      "expected_lines": 3,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: ",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "print('Available genres: Sci-Fi, Drama, Animation')\nprint()\nuser_genre = input('Enter a genre: ')"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Normalize the user input by using the strip() method to remove whitespace and the title() method to capitalize properly. Store the result back in the user_genre variable (reassign it).",
+      "hint": "Chain the methods: user_genre = user_genre.strip().title()",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: ",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "user_genre = user_genre.strip().title()"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Create a variable called matching_movies that uses a list comprehension to filter movies. For each movie in movies, split the movie by ':' and check if the second part (index 1) equals user_genre. Keep the entire movie string if it matches.",
+      "hint": "Use: [movie for movie in movies if movie.split(':')[1] == user_genre]",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: ",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "matching_movies = [movie for movie in movies if movie.split(':')[1] == user_genre]"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Create a variable called movie_titles that uses a list comprehension to extract just the title from each movie in matching_movies. Split each movie by ':' and take the first part (index 0).",
+      "hint": "Use: [movie.split(':')[0] for movie in matching_movies]",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: ",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "movie_titles = [movie.split(':')[0] for movie in matching_movies]"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Sort the movie_titles list alphabetically using the sort() method.",
+      "hint": "Call the sort() method on the movie_titles list. This modifies the list in place.",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: ",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "movie_titles.sort()"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Print an empty line using print(). Then use an f-string to print: Movies in {user_genre} genre: (using the user_genre variable).",
+      "hint": "Use print() for blank line, then print(f'Movies in {user_genre} genre:')",
+      "expected_lines": 2,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "print()\nprint(f'Movies in {user_genre} genre:')"
+    },
+    {
+      "step_num": 10,
+      "instruction": "Print exactly: -----------------------",
+      "hint": "Use print() with the exact string of dashes.",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "print('-----------------------')"
+    },
+    {
+      "step_num": 11,
+      "instruction": "Create a for loop that iterates through movie_titles. For each movie in the loop, use an f-string to print: - {movie} (with a dash, space, and the movie title).",
+      "hint": "Use: for movie in movie_titles: then print(f'- {movie}')",
+      "expected_lines": 2,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "for movie in movie_titles:\n    print(f'- {movie}')"
+    },
+    {
+      "step_num": 12,
+      "instruction": "Print an empty line using print(). Then create a variable called count that stores the length of movie_titles using the len() function.",
+      "hint": "Use print() for blank line, then count = len(movie_titles)",
+      "expected_lines": 2,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "print()\ncount = len(movie_titles)"
+    },
+    {
+      "step_num": 13,
+      "instruction": "Use an f-string to print: Total recommendations: {count} (using the count variable).",
+      "hint": "Use print(f'Total recommendations: {count}')",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "print(f'Total recommendations: {count}')"
+    },
+    {
+      "step_num": 14,
+      "instruction": "Create a variable called titles_joined that uses the join() method to combine all movie_titles with ', ' (comma and space) as the separator.",
+      "hint": "Use: titles_joined = ', '.join(movie_titles)",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "titles_joined = ', '.join(movie_titles)"
+    },
+    {
+      "step_num": 15,
+      "instruction": "Use an f-string to print: Quick list: {titles_joined} (using the titles_joined variable).",
+      "hint": "Use print(f'Quick list: {titles_joined}')",
+      "expected_lines": 1,
+      "expected_output": "Movie Recommendation System\n===========================\nAvailable genres: Sci-Fi, Drama, Animation\n\nEnter a genre: \nMovies in Sci-Fi genre:\n-----------------------\n- Inception\n- Interstellar\n- The Matrix\n\nTotal recommendations: 3\nQuick list: Inception, Interstellar, The Matrix",
+      "mock_inputs": [
+        "Sci-Fi"
+      ],
+      "starter_code": "",
+      "solution": "print(f'Quick list: {titles_joined}')"
+    }
+  ],
+  "full_solution": "movies = ['Inception:Sci-Fi', 'The Godfather:Drama', 'Toy Story:Animation']\nmovies.append('The Matrix:Sci-Fi')\nmovies.append('Pulp Fiction:Drama')\nmovies.append('Shrek:Animation')\nmovies.append('Interstellar:Sci-Fi')\nmovies.append('Forrest Gump:Drama')\nprint('Movie Recommendation System')\nprint('===========================')\nprint('Available genres: Sci-Fi, Drama, Animation')\nprint()\nuser_genre = input('Enter a genre: ')\nuser_genre = user_genre.strip().title()\nmatching_movies = [movie for movie in movies if movie.split(':')[1] == user_genre]\nmovie_titles = [movie.split(':')[0] for movie in matching_movies]\nmovie_titles.sort()\nprint()\nprint(f'Movies in {user_genre} genre:')\nprint('-----------------------')\nfor movie in movie_titles:\n    print(f'- {movie}')\nprint()\ncount = len(movie_titles)\nprint(f'Total recommendations: {count}')\ntitles_joined = ', '.join(movie_titles)\nprint(f'Quick list: {titles_joined}')",
+  "is_generated": false
+}

@@ -1,0 +1,111 @@
+{
+  "id": "level6_intermediate_generator",
+  "level_id": 6,
+  "tier": 2,
+  "name": "Daily Inspiration Quote Generator",
+  "description": "Build a motivational quote generator that combines random selection with data handling! You'll import the random and json modules to select random quotes from a collection, format them beautifully, and save user favorites. This project teaches you how to work with multiple modules together and handle structured data - essential skills for real-world applications.",
+  "learning_goals": [
+    "Import and use multiple modules in one project",
+    "Use random.choice() to select random items from lists",
+    "Work with json.dumps() to convert data to JSON format",
+    "Combine different modules to create a complete application",
+    "Handle structured data with dictionaries and lists"
+  ],
+  "concepts_used": [
+    "import",
+    "from import",
+    "random module",
+    "json module"
+  ],
+  "total_lines": 26,
+  "difficulty_rating": 3,
+  "estimated_minutes": 18,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by importing the modules we need. Use import to import the random module, then use import to import the json module on the next line.",
+      "hint": "Write two import statements, one for each module: random and json.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "import random\nimport json"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Create a list called quotes containing three motivational quotes as strings: \"Believe in yourself and all that you are.\", \"Every accomplishment starts with the decision to try.\", and \"Success is not final, failure is not fatal.\"",
+      "hint": "Create a list with three string elements. Remember to use double quotes for strings that contain apostrophes.",
+      "expected_lines": 1,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "quotes = [\"Believe in yourself and all that you are.\", \"Every accomplishment starts with the decision to try.\", \"Success is not final, failure is not fatal.\"]"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Create a list called authors containing the corresponding authors as strings: \"Unknown\", \"Unknown\", and \"Winston Churchill\"",
+      "hint": "The authors list should have the same number of elements as the quotes list, in matching order.",
+      "expected_lines": 1,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "authors = [\"Unknown\", \"Unknown\", \"Winston Churchill\"]"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Use print() to display the text \"=== Daily Inspiration Generator ===\", then on the next line use print() to display an empty line.",
+      "hint": "Call print() twice - once with the header text, and once with an empty string or no arguments.",
+      "expected_lines": 2,
+      "expected_output": "=== Daily Inspiration Generator ===\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"=== Daily Inspiration Generator ===\")\nprint()"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Use random.randint() to generate a random index number between 0 and 2 (inclusive), and store it in a variable called index. Then use print() to display the text \"Your quote of the day:\" followed by an empty print() on the next line.",
+      "hint": "random.randint(0, 2) will give you a random number from 0 to 2. Then add two print statements.",
+      "expected_lines": 3,
+      "expected_output": "=== Daily Inspiration Generator ===\n\nYour quote of the day:\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "index = random.randint(0, 2)\nprint(\"Your quote of the day:\")\nprint()"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Use print() to display the quote at the random index position from the quotes list. Then use print() to display the text \"- \" concatenated with the author at the same index position from the authors list.",
+      "hint": "Access lists with quotes[index] and authors[index]. Use + to concatenate \"- \" with the author name.",
+      "expected_lines": 2,
+      "expected_output": "=== Daily Inspiration Generator ===\n\nYour quote of the day:\n\nSuccess is not final, failure is not fatal.\n- Winston Churchill\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(quotes[index])\nprint(\"- \" + authors[index])"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Add an empty print() to create a blank line. Then use input() to ask \"Save this quote as favorite? (yes/no): \" and store the response in a variable called save_choice.",
+      "hint": "Use print() with no arguments, then use input() with the prompt text and assign it to save_choice.",
+      "expected_lines": 2,
+      "expected_output": "=== Daily Inspiration Generator ===\n\nYour quote of the day:\n\nSuccess is not final, failure is not fatal.\n- Winston Churchill\n\nSave this quote as favorite? (yes/no): ",
+      "mock_inputs": [
+        "yes"
+      ],
+      "starter_code": "",
+      "solution": "print()\nsave_choice = input(\"Save this quote as favorite? (yes/no): \")"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Create an if statement that checks if save_choice equals \"yes\". Inside the if block, create a dictionary called favorite with two keys: \"quote\" (set to the selected quote) and \"author\" (set to the selected author). Then create a variable called favorite_json and use json.dumps() to convert the favorite dictionary to a JSON string. Finally, use print() to display the text \"Saved: \" concatenated with favorite_json.",
+      "hint": "The if statement should be: if save_choice == \"yes\": - then create the dictionary, use json.dumps(favorite) to convert it, and print the result.",
+      "expected_lines": 4,
+      "expected_output": "=== Daily Inspiration Generator ===\n\nYour quote of the day:\n\nSuccess is not final, failure is not fatal.\n- Winston Churchill\n\nSave this quote as favorite? (yes/no): Saved: {\"quote\": \"Success is not final, failure is not fatal.\", \"author\": \"Winston Churchill\"}\n",
+      "mock_inputs": [
+        "yes"
+      ],
+      "starter_code": "",
+      "solution": "if save_choice == \"yes\":\n    favorite = {\"quote\": quotes[index], \"author\": authors[index]}\n    favorite_json = json.dumps(favorite)\n    print(\"Saved: \" + favorite_json)"
+    }
+  ],
+  "full_solution": "import random\nimport json\nquotes = [\"Believe in yourself and all that you are.\", \"Every accomplishment starts with the decision to try.\", \"Success is not final, failure is not fatal.\"]\nauthors = [\"Unknown\", \"Unknown\", \"Winston Churchill\"]\nprint(\"=== Daily Inspiration Generator ===\")\nprint()\nindex = random.randint(0, 2)\nprint(\"Your quote of the day:\")\nprint()\nprint(quotes[index])\nprint(\"- \" + authors[index])\nprint()\nsave_choice = input(\"Save this quote as favorite? (yes/no): \")\nif save_choice == \"yes\":\n    favorite = {\"quote\": quotes[index], \"author\": authors[index]}\n    favorite_json = json.dumps(favorite)\n    print(\"Saved: \" + favorite_json)",
+  "is_generated": false
+}

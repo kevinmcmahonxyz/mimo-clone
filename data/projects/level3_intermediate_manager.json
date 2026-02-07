@@ -1,0 +1,111 @@
+{
+  "id": "level3_intermediate_manager",
+  "level_id": 3,
+  "tier": 2,
+  "name": "Music Playlist Manager",
+  "description": "Build a music playlist manager that lets you create a playlist, add songs, remove songs, and display your collection. This project teaches you how to work with lists in Python by creating a practical tool for organizing music. You'll use list creation, adding and removing items, accessing specific songs, and iterating through your playlist.",
+  "learning_goals": [
+    "Create and initialize lists to store data",
+    "Add items to lists using append() and insert()",
+    "Remove items using remove() and pop()",
+    "Access list items using indexing and slicing",
+    "Iterate through lists to display contents"
+  ],
+  "concepts_used": [
+    "list creation",
+    "append method",
+    "insert method",
+    "remove method",
+    "pop method",
+    "list indexing",
+    "list slicing",
+    "for loops with lists"
+  ],
+  "total_lines": 26,
+  "difficulty_rating": 3,
+  "estimated_minutes": 15,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start building our playlist manager! Use print() to display: Playlist Manager\nThen print a line of 20 dashes to make it look nice. Create an empty list called playlist to store our songs.",
+      "hint": "Use print() twice, then create an empty list with square brackets: playlist = []",
+      "expected_lines": 3,
+      "expected_output": "Playlist Manager\n--------------------",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Playlist Manager\")\nprint(\"--------------------\")\nplaylist = []"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now let's add some songs! Use the append() method to add these three songs to the playlist: \"Bohemian Rhapsody\", \"Stairway to Heaven\", and \"Hotel California\". Then print: Added 3 songs to playlist",
+      "hint": "Use playlist.append() three times, once for each song. Remember to use double quotes for the song titles.",
+      "expected_lines": 4,
+      "expected_output": "Playlist Manager\n--------------------\nAdded 3 songs to playlist",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "playlist.append(\"Bohemian Rhapsody\")\nplaylist.append(\"Stairway to Heaven\")\nplaylist.append(\"Hotel California\")\nprint(\"Added 3 songs to playlist\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Let's display the first song in our playlist. Print the text: First song: followed by the first item in the playlist using indexing (remember lists start at index 0).",
+      "hint": "Use playlist[0] to access the first song. You can print multiple things with: print(\"First song:\", playlist[0])",
+      "expected_lines": 1,
+      "expected_output": "Playlist Manager\n--------------------\nAdded 3 songs to playlist\nFirst song: Bohemian Rhapsody",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"First song:\", playlist[0])"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Use the insert() method to add \"Imagine\" at the beginning of the playlist (at index 0). Then print: Inserted song at the beginning",
+      "hint": "The insert() method takes two arguments: insert(index, item). Use playlist.insert(0, \"Imagine\")",
+      "expected_lines": 2,
+      "expected_output": "Playlist Manager\n--------------------\nAdded 3 songs to playlist\nFirst song: Bohemian Rhapsody\nInserted song at the beginning",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "playlist.insert(0, \"Imagine\")\nprint(\"Inserted song at the beginning\")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Now let's display the first 2 songs using slicing. Print: First 2 songs: followed by playlist[0:2]",
+      "hint": "Slicing with [0:2] gets items at index 0 and 1. Use print(\"First 2 songs:\", playlist[0:2])",
+      "expected_lines": 1,
+      "expected_output": "Playlist Manager\n--------------------\nAdded 3 songs to playlist\nFirst song: Bohemian Rhapsody\nInserted song at the beginning\nFirst 2 songs: ['Imagine', 'Bohemian Rhapsody']",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"First 2 songs:\", playlist[0:2])"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Remove \"Hotel California\" from the playlist using the remove() method. Then use pop() to remove the last song from the playlist and store it in a variable called removed_song. Print: Removed: followed by the removed_song variable.",
+      "hint": "Use playlist.remove(\"Hotel California\") and removed_song = playlist.pop(). The pop() method removes and returns the last item.",
+      "expected_lines": 3,
+      "expected_output": "Playlist Manager\n--------------------\nAdded 3 songs to playlist\nFirst song: Bohemian Rhapsody\nInserted song at the beginning\nFirst 2 songs: ['Imagine', 'Bohemian Rhapsody']\nRemoved: Stairway to Heaven",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "playlist.remove(\"Hotel California\")\nremoved_song = playlist.pop()\nprint(\"Removed:\", removed_song)"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Add two more songs to the playlist: \"Smells Like Teen Spirit\" and \"Billie Jean\" using append(). Then print an empty line using print() to add spacing.",
+      "hint": "Use playlist.append() twice with the two new songs, then print() with no arguments creates a blank line.",
+      "expected_lines": 3,
+      "expected_output": "Playlist Manager\n--------------------\nAdded 3 songs to playlist\nFirst song: Bohemian Rhapsody\nInserted song at the beginning\nFirst 2 songs: ['Imagine', 'Bohemian Rhapsody']\nRemoved: Stairway to Heaven\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "playlist.append(\"Smells Like Teen Spirit\")\nplaylist.append(\"Billie Jean\")\nprint()"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Finally, let's display all songs! Print: Final Playlist:\nThen use a for loop to iterate through the playlist. For each song, print the song name with a dash and space before it (like: - Imagine).",
+      "hint": "Use: for song in playlist:\n    print(\"-\", song)\nThis will loop through each song and print it with a dash.",
+      "expected_lines": 3,
+      "expected_output": "Playlist Manager\n--------------------\nAdded 3 songs to playlist\nFirst song: Bohemian Rhapsody\nInserted song at the beginning\nFirst 2 songs: ['Imagine', 'Bohemian Rhapsody']\nRemoved: Stairway to Heaven\n\nFinal Playlist:\n- Imagine\n- Bohemian Rhapsody\n- Smells Like Teen Spirit\n- Billie Jean",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Final Playlist:\")\nfor song in playlist:\n    print(\"-\", song)"
+    }
+  ],
+  "full_solution": "print(\"Playlist Manager\")\nprint(\"--------------------\")\nplaylist = []\nplaylist.append(\"Bohemian Rhapsody\")\nplaylist.append(\"Stairway to Heaven\")\nplaylist.append(\"Hotel California\")\nprint(\"Added 3 songs to playlist\")\nprint(\"First song:\", playlist[0])\nplaylist.insert(0, \"Imagine\")\nprint(\"Inserted song at the beginning\")\nprint(\"First 2 songs:\", playlist[0:2])\nplaylist.remove(\"Hotel California\")\nremoved_song = playlist.pop()\nprint(\"Removed:\", removed_song)\nplaylist.append(\"Smells Like Teen Spirit\")\nplaylist.append(\"Billie Jean\")\nprint()\nprint(\"Final Playlist:\")\nfor song in playlist:\n    print(\"-\", song)",
+  "is_generated": false
+}

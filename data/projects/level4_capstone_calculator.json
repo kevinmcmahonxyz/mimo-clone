@@ -1,0 +1,218 @@
+{
+  "id": "level4_capstone_calculator",
+  "level_id": 4,
+  "tier": 3,
+  "name": "Smart Tip Calculator",
+  "description": "Build a tip calculator that helps split bills at restaurants. You'll create functions to calculate tips, split costs, and format currency. This project uses functions with parameters, return values, default arguments, and scope to make the code reusable and clean.",
+  "learning_goals": [
+    "Define functions with the def keyword",
+    "Use parameters to pass data into functions",
+    "Return values from functions",
+    "Work with default arguments for flexibility",
+    "Understand variable scope in functions"
+  ],
+  "concepts_used": [
+    "def keyword",
+    "parameters",
+    "return values",
+    "default arguments",
+    "variable scope",
+    "input/output",
+    "type conversion",
+    "string formatting"
+  ],
+  "total_lines": 45,
+  "difficulty_rating": 4,
+  "estimated_minutes": 35,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by greeting the user. Use print() to display exactly: Tip Calculator - Split Bills Easily!",
+      "hint": "Remember to use double quotes for strings that contain punctuation.",
+      "expected_lines": 1,
+      "expected_output": "Tip Calculator - Split Bills Easily!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Tip Calculator - Split Bills Easily!\")"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Create a function called calculate_tip that takes two parameters: bill_amount and tip_percentage. Inside the function, calculate the tip by multiplying bill_amount by tip_percentage divided by 100. Return the result.",
+      "hint": "The formula is: bill_amount * (tip_percentage / 100). Use the return keyword to send the value back.",
+      "expected_lines": 3,
+      "expected_output": "Tip Calculator - Split Bills Easily!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def calculate_tip(bill_amount, tip_percentage):\n    tip = bill_amount * (tip_percentage / 100)\n    return tip"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Create another function called calculate_total that takes two parameters: bill_amount and tip. Inside the function, add bill_amount and tip together, then return the sum.",
+      "hint": "Simply return bill_amount + tip from the function.",
+      "expected_lines": 2,
+      "expected_output": "Tip Calculator - Split Bills Easily!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def calculate_total(bill_amount, tip):\n    return bill_amount + tip"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Create a function called format_currency that takes one parameter called amount. Inside the function, return a formatted string that shows the amount with a dollar sign and 2 decimal places. Use f-string formatting: f\"${amount:.2f}\"",
+      "hint": "The :.2f format specifier rounds to 2 decimal places.",
+      "expected_lines": 2,
+      "expected_output": "Tip Calculator - Split Bills Easily!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def format_currency(amount):\n    return f\"${amount:.2f}\""
+    },
+    {
+      "step_num": 5,
+      "instruction": "Create a function called split_amount that takes two parameters: total_amount and number_of_people. The function should divide total_amount by number_of_people and return the result.",
+      "hint": "Use the division operator (/) to split the amount evenly.",
+      "expected_lines": 2,
+      "expected_output": "Tip Calculator - Split Bills Easily!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def split_amount(total_amount, number_of_people):\n    return total_amount / number_of_people"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Now let's use our functions! Add a blank line for spacing, then ask for the bill amount. Use input() with the prompt: Enter bill amount: $ and store the response in a variable called bill. Convert it to a float.",
+      "hint": "Use float(input(\"Enter bill amount: $ \")) and assign it to bill.",
+      "expected_lines": 2,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ ",
+      "mock_inputs": [
+        "85.50"
+      ],
+      "starter_code": "",
+      "solution": "print()\nbill = float(input(\"Enter bill amount: $ \"))"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Ask for the tip percentage. Use input() with the prompt: Enter tip percentage (default 18): and store it in a variable called tip_percent_input. If the user just presses enter (empty string), set a variable called tip_percent to 18, otherwise convert tip_percent_input to a float and store it in tip_percent.",
+      "hint": "Use an if statement: if tip_percent_input == \"\" then tip_percent = 18, else tip_percent = float(tip_percent_input).",
+      "expected_lines": 4,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): ",
+      "mock_inputs": [
+        "85.50",
+        "20"
+      ],
+      "starter_code": "",
+      "solution": "tip_percent_input = input(\"Enter tip percentage (default 18): \")\nif tip_percent_input == \"\":\n    tip_percent = 18\nelse:\n    tip_percent = float(tip_percent_input)"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Ask how many people are splitting the bill. Use input() with the prompt: Number of people splitting: and store it in a variable called people. Convert it to an integer.",
+      "hint": "Use int(input(\"Number of people splitting: \")) to get an integer.",
+      "expected_lines": 1,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: ",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "people = int(input(\"Number of people splitting: \"))"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Call the calculate_tip function with bill and tip_percent as arguments, and store the result in a variable called tip_amount.",
+      "hint": "Write: tip_amount = calculate_tip(bill, tip_percent)",
+      "expected_lines": 1,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: ",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "tip_amount = calculate_tip(bill, tip_percent)"
+    },
+    {
+      "step_num": 10,
+      "instruction": "Call the calculate_total function with bill and tip_amount as arguments, and store the result in a variable called total.",
+      "hint": "Write: total = calculate_total(bill, tip_amount)",
+      "expected_lines": 1,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: ",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "total = calculate_total(bill, tip_amount)"
+    },
+    {
+      "step_num": 11,
+      "instruction": "Call the split_amount function with total and people as arguments, and store the result in a variable called per_person.",
+      "hint": "Write: per_person = split_amount(total, people)",
+      "expected_lines": 1,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: ",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "per_person = split_amount(total, people)"
+    },
+    {
+      "step_num": 12,
+      "instruction": "Add a blank line for spacing, then print the results header. Use print() to display exactly: --- Bill Summary ---",
+      "hint": "Use three dashes before and after Bill Summary.",
+      "expected_lines": 2,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: \n\n--- Bill Summary ---",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "print()\nprint(\"--- Bill Summary ---\")"
+    },
+    {
+      "step_num": 13,
+      "instruction": "Display the bill amount. Use print() with an f-string to show: Bill Amount: followed by the result of calling format_currency(bill).",
+      "hint": "Write: print(f\"Bill Amount: {format_currency(bill)}\")",
+      "expected_lines": 1,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: \n\n--- Bill Summary ---\nBill Amount: $85.50",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "print(f\"Bill Amount: {format_currency(bill)}\")"
+    },
+    {
+      "step_num": 14,
+      "instruction": "Display the tip information. Use print() with an f-string to show: Tip ({tip_percent}%): followed by the result of calling format_currency(tip_amount).",
+      "hint": "Write: print(f\"Tip ({tip_percent}%): {format_currency(tip_amount)}\")",
+      "expected_lines": 1,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: \n\n--- Bill Summary ---\nBill Amount: $85.50\nTip (20.0%): $17.10",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "print(f\"Tip ({tip_percent}%): {format_currency(tip_amount)}\")"
+    },
+    {
+      "step_num": 15,
+      "instruction": "Display the total and per-person amount. Use print() twice. First print: Total: followed by format_currency(total). Then print: Per Person: followed by format_currency(per_person).",
+      "hint": "You need two separate print statements with f-strings.",
+      "expected_lines": 2,
+      "expected_output": "Tip Calculator - Split Bills Easily!\n\nEnter bill amount: $ \nEnter tip percentage (default 18): \nNumber of people splitting: \n\n--- Bill Summary ---\nBill Amount: $85.50\nTip (20.0%): $17.10\nTotal: $102.60\nPer Person: $25.65",
+      "mock_inputs": [
+        "85.50",
+        "20",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "print(f\"Total: {format_currency(total)}\")\nprint(f\"Per Person: {format_currency(per_person)}\")"
+    }
+  ],
+  "full_solution": "print(\"Tip Calculator - Split Bills Easily!\")\ndef calculate_tip(bill_amount, tip_percentage):\n    tip = bill_amount * (tip_percentage / 100)\n    return tip\ndef calculate_total(bill_amount, tip):\n    return bill_amount + tip\ndef format_currency(amount):\n    return f\"${amount:.2f}\"\ndef split_amount(total_amount, number_of_people):\n    return total_amount / number_of_people\nprint()\nbill = float(input(\"Enter bill amount: $ \"))\ntip_percent_input = input(\"Enter tip percentage (default 18): \")\nif tip_percent_input == \"\":\n    tip_percent = 18\nelse:\n    tip_percent = float(tip_percent_input)\npeople = int(input(\"Number of people splitting: \"))\ntip_amount = calculate_tip(bill, tip_percent)\ntotal = calculate_total(bill, tip_amount)\nper_person = split_amount(total, people)\nprint()\nprint(\"--- Bill Summary ---\")\nprint(f\"Bill Amount: {format_currency(bill)}\")\nprint(f\"Tip ({tip_percent}%): {format_currency(tip_amount)}\")\nprint(f\"Total: {format_currency(total)}\")\nprint(f\"Per Person: {format_currency(per_person)}\")",
+  "is_generated": false
+}

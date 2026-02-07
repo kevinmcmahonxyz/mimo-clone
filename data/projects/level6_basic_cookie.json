@@ -1,0 +1,110 @@
+{
+  "id": "level6_basic_cookie",
+  "level_id": 6,
+  "tier": 1,
+  "name": "Fortune Cookie Generator",
+  "description": "Build a digital fortune cookie that generates random fortunes and lucky numbers! You'll learn to import Python modules, use the random module to select random items from lists, and create an interactive program that feels like opening a real fortune cookie.",
+  "learning_goals": [
+    "Import and use the random module",
+    "Use random.choice() to select random items",
+    "Use random.randint() to generate random numbers",
+    "Understand different import styles (import vs from import)",
+    "Build an interactive program with multiple random elements"
+  ],
+  "concepts_used": [
+    "import",
+    "from import",
+    "random module",
+    "lists",
+    "string formatting",
+    "print",
+    "input"
+  ],
+  "total_lines": 18,
+  "difficulty_rating": 2,
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by importing the random module. On the first line, write: import random\nThen use print() to display exactly: Welcome to the Fortune Cookie Generator!",
+      "hint": "Use 'import random' at the top, then print() with the exact welcome message.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to the Fortune Cookie Generator!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "import random\nprint(\"Welcome to the Fortune Cookie Generator!\")"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now let's create a list of fortunes. Create a variable called fortunes that contains a list with these three strings: \"A pleasant surprise is waiting for you.\", \"Your hard work will soon pay off.\", and \"Adventure awaits you soon.\"",
+      "hint": "Use square brackets to create a list: fortunes = [\"first\", \"second\", \"third\"]",
+      "expected_lines": 1,
+      "expected_output": "Welcome to the Fortune Cookie Generator!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "fortunes = [\"A pleasant surprise is waiting for you.\", \"Your hard work will soon pay off.\", \"Adventure awaits you soon.\"]"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Add user interaction! Use input() to ask the user: Press Enter to crack open your fortune cookie...\nStore the result in a variable called user_action.",
+      "hint": "Use input() with the exact prompt text. The variable name should be user_action.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to the Fortune Cookie Generator!\nPress Enter to crack open your fortune cookie...",
+      "mock_inputs": [
+        ""
+      ],
+      "starter_code": "",
+      "solution": "user_action = input(\"Press Enter to crack open your fortune cookie...\")"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Time to pick a random fortune! Use random.choice() to select a random item from the fortunes list. Store the selected fortune in a variable called my_fortune.",
+      "hint": "Use random.choice(fortunes) to pick a random fortune from the list.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to the Fortune Cookie Generator!\nPress Enter to crack open your fortune cookie...",
+      "mock_inputs": [
+        ""
+      ],
+      "starter_code": "",
+      "solution": "my_fortune = random.choice(fortunes)"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Display the fortune to the user! First print an empty line using print(). Then use print() to display exactly: Your fortune: followed by the my_fortune variable. Use string concatenation or an f-string.",
+      "hint": "You can use print(\"Your fortune: \" + my_fortune) or print(f\"Your fortune: {my_fortune}\")",
+      "expected_lines": 2,
+      "expected_output": "Welcome to the Fortune Cookie Generator!\nPress Enter to crack open your fortune cookie...\n\nYour fortune: A pleasant surprise is waiting for you.",
+      "mock_inputs": [
+        ""
+      ],
+      "starter_code": "",
+      "solution": "print()\nprint(\"Your fortune: \" + my_fortune)"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Every fortune cookie needs lucky numbers! Use random.randint() to generate 6 random numbers between 1 and 50. Create a variable called lucky_numbers that contains a list with 6 calls to random.randint(1, 50).",
+      "hint": "Create a list like: lucky_numbers = [random.randint(1, 50), random.randint(1, 50), ...] with 6 total calls.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to the Fortune Cookie Generator!\nPress Enter to crack open your fortune cookie...\n\nYour fortune: A pleasant surprise is waiting for you.",
+      "mock_inputs": [
+        ""
+      ],
+      "starter_code": "",
+      "solution": "lucky_numbers = [random.randint(1, 50), random.randint(1, 50), random.randint(1, 50), random.randint(1, 50), random.randint(1, 50), random.randint(1, 50)]"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Finally, display the lucky numbers! Use print() to display exactly: Lucky numbers: followed by the lucky_numbers list.",
+      "hint": "You can use print(\"Lucky numbers: \" + str(lucky_numbers)) or print(f\"Lucky numbers: {lucky_numbers}\")",
+      "expected_lines": 1,
+      "expected_output": "Welcome to the Fortune Cookie Generator!\nPress Enter to crack open your fortune cookie...\n\nYour fortune: A pleasant surprise is waiting for you.\nLucky numbers: [42, 7, 33, 18, 5, 29]",
+      "mock_inputs": [
+        ""
+      ],
+      "starter_code": "",
+      "solution": "print(\"Lucky numbers: \" + str(lucky_numbers))"
+    }
+  ],
+  "full_solution": "import random\nprint(\"Welcome to the Fortune Cookie Generator!\")\nfortunes = [\"A pleasant surprise is waiting for you.\", \"Your hard work will soon pay off.\", \"Adventure awaits you soon.\"]\nuser_action = input(\"Press Enter to crack open your fortune cookie...\")\nmy_fortune = random.choice(fortunes)\nprint()\nprint(\"Your fortune: \" + my_fortune)\nlucky_numbers = [random.randint(1, 50), random.randint(1, 50), random.randint(1, 50), random.randint(1, 50), random.randint(1, 50), random.randint(1, 50)]\nprint(\"Lucky numbers: \" + str(lucky_numbers))",
+  "is_generated": false
+}

@@ -1,0 +1,105 @@
+{
+  "id": "level2_basic_night",
+  "level_id": 2,
+  "tier": 1,
+  "name": "Movie Night Planner",
+  "description": "Build a movie night planner that helps users decide if they should watch a movie based on their available time and energy level. The program will use if/elif/else statements to make recommendations and a while loop to let users plan multiple movie nights.",
+  "learning_goals": [
+    "Use if/elif/else statements to make decisions",
+    "Compare numbers with comparison operators",
+    "Control program flow with while loops",
+    "Combine conditions with logical operators"
+  ],
+  "concepts_used": [
+    "if statements",
+    "elif",
+    "else",
+    "comparison operators",
+    "logical operators",
+    "while loops",
+    "input",
+    "variables"
+  ],
+  "total_lines": 18,
+  "difficulty_rating": 2,
+  "estimated_minutes": 8,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start our Movie Night Planner! Use print() to display the exact text: Movie Night Planner. Then on the next line, print an empty line using print(). Then create a variable called planning and set it to True.",
+      "hint": "Use print() twice - once with text and once empty. Then assign True to the variable planning.",
+      "expected_lines": 3,
+      "expected_output": "Movie Night Planner\n\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Movie Night Planner\")\nprint()\nplanning = True"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Create a while loop that runs while planning is True. Inside the loop, use input() to ask the user: How many hours do you have? (Store the response in a variable called hours_input). Then convert hours_input to an integer and store it in a variable called hours.",
+      "hint": "Use while planning: to create the loop. Remember to indent the code inside the loop. Use int() to convert the input to a number.",
+      "expected_lines": 3,
+      "expected_output": "Movie Night Planner\n\nHow many hours do you have? ",
+      "mock_inputs": [
+        "2"
+      ],
+      "starter_code": "",
+      "solution": "while planning:\n    hours_input = input(\"How many hours do you have? \")\n    hours = int(hours_input)"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Still inside the while loop, use input() to ask: What is your energy level (1-10)? (Store the response in a variable called energy_input). Then convert energy_input to an integer and store it in a variable called energy.",
+      "hint": "Make sure this code is indented at the same level as the previous input inside the while loop.",
+      "expected_lines": 2,
+      "expected_output": "Movie Night Planner\n\nHow many hours do you have? What is your energy level (1-10)? ",
+      "mock_inputs": [
+        "2",
+        "8"
+      ],
+      "starter_code": "",
+      "solution": "    energy_input = input(\"What is your energy level (1-10)? \")\n    energy = int(energy_input)"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Now add the decision logic! Still inside the while loop, create an if statement that checks if hours is greater than or equal to 2 AND energy is greater than or equal to 7 (use the and operator). If true, use print() to display: Watch an action movie!",
+      "hint": "Use if hours >= 2 and energy >= 7: to check both conditions. Don't forget the colon and indentation.",
+      "expected_lines": 2,
+      "expected_output": "Movie Night Planner\n\nHow many hours do you have? What is your energy level (1-10)? Watch an action movie!\n",
+      "mock_inputs": [
+        "2",
+        "8"
+      ],
+      "starter_code": "",
+      "solution": "    if hours >= 2 and energy >= 7:\n        print(\"Watch an action movie!\")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Add an elif statement that checks if hours is greater than or equal to 2 (no energy check needed). If true, use print() to display: Watch a comedy or drama!. Then add an else statement that prints: Watch a short show instead.",
+      "hint": "elif and else should be at the same indentation level as the if statement. The print statements inside should be indented one more level.",
+      "expected_lines": 4,
+      "expected_output": "Movie Night Planner\n\nHow many hours do you have? What is your energy level (1-10)? Watch a comedy or drama!\n",
+      "mock_inputs": [
+        "2",
+        "4"
+      ],
+      "starter_code": "",
+      "solution": "    elif hours >= 2:\n        print(\"Watch a comedy or drama!\")\n    else:\n        print(\"Watch a short show instead.\")"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Finally, still inside the while loop (at the same indentation as the if statement), use input() to ask: Plan another movie night? (yes/no) (Store the response in a variable called continue_planning). Then create an if statement that checks if continue_planning does NOT equal \"yes\" (use !=). If true, set planning to False.",
+      "hint": "The input and if statement should be indented once (inside the while loop). Use if continue_planning != \"yes\": to check the condition.",
+      "expected_lines": 4,
+      "expected_output": "Movie Night Planner\n\nHow many hours do you have? What is your energy level (1-10)? Watch a comedy or drama!\nPlan another movie night? (yes/no) ",
+      "mock_inputs": [
+        "2",
+        "4",
+        "no"
+      ],
+      "starter_code": "",
+      "solution": "    continue_planning = input(\"Plan another movie night? (yes/no) \")\n    if continue_planning != \"yes\":\n        planning = False"
+    }
+  ],
+  "full_solution": "print(\"Movie Night Planner\")\nprint()\nplanning = True\nwhile planning:\n    hours_input = input(\"How many hours do you have? \")\n    hours = int(hours_input)\n    energy_input = input(\"What is your energy level (1-10)? \")\n    energy = int(energy_input)\n    if hours >= 2 and energy >= 7:\n        print(\"Watch an action movie!\")\n    elif hours >= 2:\n        print(\"Watch a comedy or drama!\")\n    else:\n        print(\"Watch a short show instead.\")\n    continue_planning = input(\"Plan another movie night? (yes/no) \")\n    if continue_planning != \"yes\":\n        planning = False",
+  "is_generated": false
+}

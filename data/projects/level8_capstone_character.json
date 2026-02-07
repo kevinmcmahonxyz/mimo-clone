@@ -1,0 +1,171 @@
+{
+  "id": "level8_capstone_character",
+  "level_id": 8,
+  "tier": 3,
+  "name": "RPG Character System",
+  "description": "Build a role-playing game character system with different classes (Warrior, Mage, Rogue). You'll create a base Character class with common attributes and methods, then use inheritance to create specialized character types with unique abilities. This project demonstrates object-oriented programming by organizing related data and behaviors into classes, using __init__ to set up objects, and inheritance to create variations without code duplication.",
+  "learning_goals": [
+    "Create classes with __init__ methods to initialize object attributes",
+    "Use self to access instance attributes and methods",
+    "Implement methods that modify object state",
+    "Use inheritance to create specialized classes from a base class",
+    "Override methods in child classes to customize behavior",
+    "Create and interact with multiple instances of classes"
+  ],
+  "concepts_used": [
+    "classes",
+    "__init__",
+    "self",
+    "methods",
+    "inheritance",
+    "object instantiation",
+    "method overriding"
+  ],
+  "total_lines": 52,
+  "difficulty_rating": 4,
+  "estimated_minutes": 35,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Create a class called Character. Inside it, define an __init__ method that takes parameters self, name, and health. Store name in self.name and health in self.health.",
+      "hint": "Use def __init__(self, name, health): and assign the parameters to self attributes.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "class Character:\n    def __init__(self, name, health):\n        self.name = name\n        self.health = health"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Inside the Character class, add a method called display_stats that takes only self as a parameter. Use print() to display exactly: Character: {self.name} | Health: {self.health} (using an f-string).",
+      "hint": "Methods inside a class need to be indented at the same level as __init__. Use print(f\"...\") with the attributes.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def display_stats(self):\n        print(f\"Character: {self.name} | Health: {self.health}\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Inside the Character class, add a method called take_damage that takes self and damage as parameters. Subtract damage from self.health, then use print() to display exactly: {self.name} takes {damage} damage! (using an f-string).",
+      "hint": "Use self.health -= damage or self.health = self.health - damage to modify the health attribute.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def take_damage(self, damage):\n        self.health -= damage\n        print(f\"{self.name} takes {damage} damage!\")"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Create a new class called Warrior that inherits from Character. Use the syntax class Warrior(Character): and for now just add pass on the next line.",
+      "hint": "Put the class name in parentheses after Warrior to inherit from it: class Warrior(Character):",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "class Warrior(Character):\n    pass"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Replace the pass in the Warrior class with an __init__ method that takes self and name as parameters. Inside, call the parent class __init__ using super().__init__(name, 150) to set health to 150, then set self.power to 20.",
+      "hint": "super().__init__() calls the parent class constructor. After that line, add self.power = 20.",
+      "expected_lines": 4,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def __init__(self, name):\n        super().__init__(name, 150)\n        self.power = 20"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Inside the Warrior class, add a method called attack that takes only self. Use print() to display exactly: {self.name} swings their sword for {self.power} damage! (using an f-string).",
+      "hint": "This method is similar to display_stats but uses the power attribute.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def attack(self):\n        print(f\"{self.name} swings their sword for {self.power} damage!\")"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Create a new class called Mage that inherits from Character. Define an __init__ method that takes self and name, calls super().__init__(name, 80), then sets self.mana to 100.",
+      "hint": "This is very similar to the Warrior class but with different numbers for health and a mana attribute instead of power.",
+      "expected_lines": 4,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "class Mage(Character):\n    def __init__(self, name):\n        super().__init__(name, 80)\n        self.mana = 100"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Inside the Mage class, add a method called cast_spell that takes only self. Use print() to display exactly: {self.name} casts a fireball using {self.mana} mana! (using an f-string).",
+      "hint": "Add the method at the same indentation level as __init__ inside the Mage class.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def cast_spell(self):\n        print(f\"{self.name} casts a fireball using {self.mana} mana!\")"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Inside the Mage class, override the display_stats method. Define it to take only self, then use print() to display exactly: Character: {self.name} | Health: {self.health} | Mana: {self.mana} (using an f-string).",
+      "hint": "Overriding means creating a method with the same name as in the parent class. It will replace the parent's version for Mage objects.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    def display_stats(self):\n        print(f\"Character: {self.name} | Health: {self.health} | Mana: {self.mana}\")"
+    },
+    {
+      "step_num": 10,
+      "instruction": "Create a Warrior object with the name \"Thorin\" and store it in a variable called warrior. Then create a Mage object with the name \"Gandalf\" and store it in a variable called mage.",
+      "hint": "Use warrior = Warrior(\"Thorin\") and mage = Mage(\"Gandalf\").",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "warrior = Warrior(\"Thorin\")\nmage = Mage(\"Gandalf\")"
+    },
+    {
+      "step_num": 11,
+      "instruction": "Use print() to display exactly: === Battle Begins! ===, then call the display_stats method on warrior and then on mage.",
+      "hint": "Call methods using warrior.display_stats() and mage.display_stats().",
+      "expected_lines": 3,
+      "expected_output": "=== Battle Begins! ===\nCharacter: Thorin | Health: 150\nCharacter: Gandalf | Health: 80 | Mana: 100",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"=== Battle Begins! ===\")\nwarrior.display_stats()\nmage.display_stats()"
+    },
+    {
+      "step_num": 12,
+      "instruction": "Use print() to display exactly: (blank line), then call the attack method on warrior and the cast_spell method on mage.",
+      "hint": "Use print() with no arguments to print a blank line, then warrior.attack() and mage.cast_spell().",
+      "expected_lines": 3,
+      "expected_output": "=== Battle Begins! ===\nCharacter: Thorin | Health: 150\nCharacter: Gandalf | Health: 80 | Mana: 100\n\nThorin swings their sword for 20 damage!\nGandalf casts a fireball using 100 mana!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print()\nwarrior.attack()\nmage.cast_spell()"
+    },
+    {
+      "step_num": 13,
+      "instruction": "Use print() to display exactly: (blank line), then call the take_damage method on warrior with 30 as the argument, and on mage with 25 as the argument.",
+      "hint": "Use warrior.take_damage(30) and mage.take_damage(25).",
+      "expected_lines": 3,
+      "expected_output": "=== Battle Begins! ===\nCharacter: Thorin | Health: 150\nCharacter: Gandalf | Health: 80 | Mana: 100\n\nThorin swings their sword for 20 damage!\nGandalf casts a fireball using 100 mana!\n\nThorin takes 30 damage!\nGandalf takes 25 damage!",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print()\nwarrior.take_damage(30)\nmage.take_damage(25)"
+    },
+    {
+      "step_num": 14,
+      "instruction": "Use print() to display exactly: (blank line), then === After Battle ===, then call display_stats on both warrior and mage.",
+      "hint": "This shows how the health has changed after taking damage.",
+      "expected_lines": 4,
+      "expected_output": "=== Battle Begins! ===\nCharacter: Thorin | Health: 150\nCharacter: Gandalf | Health: 80 | Mana: 100\n\nThorin swings their sword for 20 damage!\nGandalf casts a fireball using 100 mana!\n\nThorin takes 30 damage!\nGandalf takes 25 damage!\n\n=== After Battle ===\nCharacter: Thorin | Health: 120\nCharacter: Gandalf | Health: 55 | Mana: 100",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print()\nprint(\"=== After Battle ===\")\nwarrior.display_stats()\nmage.display_stats()"
+    }
+  ],
+  "full_solution": "class Character:\n    def __init__(self, name, health):\n        self.name = name\n        self.health = health\n    def display_stats(self):\n        print(f\"Character: {self.name} | Health: {self.health}\")\n    def take_damage(self, damage):\n        self.health -= damage\n        print(f\"{self.name} takes {damage} damage!\")\nclass Warrior(Character):\n    pass\n    def __init__(self, name):\n        super().__init__(name, 150)\n        self.power = 20\n    def attack(self):\n        print(f\"{self.name} swings their sword for {self.power} damage!\")\nclass Mage(Character):\n    def __init__(self, name):\n        super().__init__(name, 80)\n        self.mana = 100\n    def cast_spell(self):\n        print(f\"{self.name} casts a fireball using {self.mana} mana!\")\n    def display_stats(self):\n        print(f\"Character: {self.name} | Health: {self.health} | Mana: {self.mana}\")\nwarrior = Warrior(\"Thorin\")\nmage = Mage(\"Gandalf\")\nprint(\"=== Battle Begins! ===\")\nwarrior.display_stats()\nmage.display_stats()\nprint()\nwarrior.attack()\nmage.cast_spell()\nprint()\nwarrior.take_damage(30)\nmage.take_damage(25)\nprint()\nprint(\"=== After Battle ===\")\nwarrior.display_stats()\nmage.display_stats()",
+  "is_generated": false
+}

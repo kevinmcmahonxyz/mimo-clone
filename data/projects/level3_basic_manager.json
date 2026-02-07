@@ -1,0 +1,89 @@
+{
+  "id": "level3_basic_manager",
+  "level_id": 3,
+  "tier": 1,
+  "name": "Music Playlist Manager",
+  "description": "Build a simple music playlist manager that lets you create a playlist, add songs, remove songs, and display your collection. This project teaches you how to work with lists in Python - creating them, adding and removing items, accessing specific songs, and looping through your entire playlist.",
+  "learning_goals": [
+    "Create and initialize lists",
+    "Add items to lists using append",
+    "Remove items from lists using remove",
+    "Access list items using indexing",
+    "Iterate through lists with for loops"
+  ],
+  "concepts_used": [
+    "list creation",
+    "append",
+    "remove",
+    "indexing",
+    "list iteration",
+    "for loops"
+  ],
+  "total_lines": 17,
+  "difficulty_rating": 2,
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start building our playlist manager! First, print the text: My Playlist Manager\nThen create an empty list called playlist to store our songs.",
+      "hint": "Use print() for the title, then create an empty list using square brackets []",
+      "expected_lines": 2,
+      "expected_output": "My Playlist Manager",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"My Playlist Manager\")\nplaylist = []"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now let's add some songs to our playlist. Use the append method to add three songs: \"Bohemian Rhapsody\", \"Stairway to Heaven\", and \"Hotel California\" to the playlist list.",
+      "hint": "Use playlist.append() three times, once for each song title",
+      "expected_lines": 3,
+      "expected_output": "My Playlist Manager",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "playlist.append(\"Bohemian Rhapsody\")\nplaylist.append(\"Stairway to Heaven\")\nplaylist.append(\"Hotel California\")"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Let's display our current playlist! Print the text: Current playlist: followed by the playlist list on the next line.",
+      "hint": "Use two print() statements, one for the label and one for the list variable",
+      "expected_lines": 2,
+      "expected_output": "My Playlist Manager\nCurrent playlist:\n['Bohemian Rhapsody', 'Stairway to Heaven', 'Hotel California']",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Current playlist:\")\nprint(playlist)"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Now let's show the first song in our playlist. Print the text: First song: followed by the first item from the playlist list using indexing.",
+      "hint": "Use index 0 to access the first item: playlist[0]",
+      "expected_lines": 1,
+      "expected_output": "My Playlist Manager\nCurrent playlist:\n['Bohemian Rhapsody', 'Stairway to Heaven', 'Hotel California']\nFirst song: Bohemian Rhapsody",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"First song:\", playlist[0])"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Let's remove a song from our playlist. Use the remove method to delete \"Stairway to Heaven\" from the playlist list. Then print the text: Removed a song",
+      "hint": "Use playlist.remove() with the exact song name in quotes",
+      "expected_lines": 2,
+      "expected_output": "My Playlist Manager\nCurrent playlist:\n['Bohemian Rhapsody', 'Stairway to Heaven', 'Hotel California']\nFirst song: Bohemian Rhapsody\nRemoved a song",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "playlist.remove(\"Stairway to Heaven\")\nprint(\"Removed a song\")"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Finally, let's display all songs in our updated playlist. Print the text: Final playlist: on one line. Then create a for loop that iterates through each song in the playlist list, and print each song with a hyphen and space before it (like: - Bohemian Rhapsody).",
+      "hint": "Use for song in playlist: to loop through the list, then print(\"- \" + song) or print(\"-\", song) for each song",
+      "expected_lines": 3,
+      "expected_output": "My Playlist Manager\nCurrent playlist:\n['Bohemian Rhapsody', 'Stairway to Heaven', 'Hotel California']\nFirst song: Bohemian Rhapsody\nRemoved a song\nFinal playlist:\n- Bohemian Rhapsody\n- Hotel California",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Final playlist:\")\nfor song in playlist:\n    print(\"-\", song)"
+    }
+  ],
+  "full_solution": "print(\"My Playlist Manager\")\nplaylist = []\nplaylist.append(\"Bohemian Rhapsody\")\nplaylist.append(\"Stairway to Heaven\")\nplaylist.append(\"Hotel California\")\nprint(\"Current playlist:\")\nprint(playlist)\nprint(\"First song:\", playlist[0])\nplaylist.remove(\"Stairway to Heaven\")\nprint(\"Removed a song\")\nprint(\"Final playlist:\")\nfor song in playlist:\n    print(\"-\", song)",
+  "is_generated": false
+}

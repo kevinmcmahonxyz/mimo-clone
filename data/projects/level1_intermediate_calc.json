@@ -1,0 +1,92 @@
+{
+  "id": "level1_intermediate_calc",
+  "level_id": 1,
+  "tier": 2,
+  "name": "Simple Calculator",
+  "description": "Build a calculator that takes two numbers from the user and shows the results of addition, subtraction, multiplication, and division. This project combines input(), variables, int() conversion, and string concatenation to create something useful.",
+  "learning_goals": [
+    "Use input() to get numbers from the user",
+    "Convert strings to integers with int()",
+    "Perform basic math operations",
+    "Display formatted results with print()",
+    "Combine multiple concepts in one program"
+  ],
+  "concepts_used": ["print", "input", "variables", "integers", "basic math", "string concatenation"],
+  "total_lines": 12,
+  "difficulty_rating": 2,
+  "estimated_minutes": 15,
+  "is_generated": false,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Start by printing a title for your calculator. Print: === Simple Calculator ===",
+      "hint": "print('=== Simple Calculator ===')",
+      "expected_lines": 1,
+      "expected_output": "=== Simple Calculator ===\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print('=== Simple Calculator ===')"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Ask the user for the first number. Use input() with the prompt 'Enter first number: ' and store it in a variable called num1_str.",
+      "hint": "num1_str = input('Enter first number: ')",
+      "expected_lines": 1,
+      "expected_output": "=== Simple Calculator ===\nEnter first number: ",
+      "mock_inputs": ["10"],
+      "starter_code": "",
+      "solution": "num1_str = input('Enter first number: ')"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Ask for the second number. Use input() with the prompt 'Enter second number: ' and store it in num2_str.",
+      "hint": "Same pattern as the first number",
+      "expected_lines": 1,
+      "expected_output": "=== Simple Calculator ===\nEnter first number: Enter second number: ",
+      "mock_inputs": ["10", "3"],
+      "starter_code": "",
+      "solution": "num2_str = input('Enter second number: ')"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Convert both inputs to integers. Create num1 = int(num1_str) and num2 = int(num2_str) on two separate lines.",
+      "hint": "int() converts a string to a number: num1 = int(num1_str)",
+      "expected_lines": 2,
+      "expected_output": "=== Simple Calculator ===\nEnter first number: Enter second number: ",
+      "mock_inputs": ["10", "3"],
+      "starter_code": "",
+      "solution": "num1 = int(num1_str)\nnum2 = int(num2_str)"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Print a blank line, then show the results header. Print an empty line with print(), then print: Results:",
+      "hint": "print() with no arguments prints a blank line",
+      "expected_lines": 2,
+      "expected_output": "=== Simple Calculator ===\nEnter first number: Enter second number: \nResults:\n",
+      "mock_inputs": ["10", "3"],
+      "starter_code": "",
+      "solution": "print()\nprint('Results:')"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Now display the four math operations. Print each result on its own line using str() to convert numbers back to strings:\n- '10 + 3 = 13'\n- '10 - 3 = 7'\n- '10 * 3 = 30'\n- '10 / 3 = 3.3333333333333335'",
+      "hint": "print(num1_str + ' + ' + num2_str + ' = ' + str(num1 + num2))",
+      "expected_lines": 4,
+      "expected_output": "=== Simple Calculator ===\nEnter first number: Enter second number: \nResults:\n10 + 3 = 13\n10 - 3 = 7\n10 * 3 = 30\n10 / 3 = 3.3333333333333335\n",
+      "mock_inputs": ["10", "3"],
+      "starter_code": "",
+      "solution": "print(num1_str + ' + ' + num2_str + ' = ' + str(num1 + num2))\nprint(num1_str + ' - ' + num2_str + ' = ' + str(num1 - num2))\nprint(num1_str + ' * ' + num2_str + ' = ' + str(num1 * num2))\nprint(num1_str + ' / ' + num2_str + ' = ' + str(num1 / num2))"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Finish with a closing message. Print: Thanks for calculating!",
+      "hint": "One final print() statement",
+      "expected_lines": 1,
+      "expected_output": "=== Simple Calculator ===\nEnter first number: Enter second number: \nResults:\n10 + 3 = 13\n10 - 3 = 7\n10 * 3 = 30\n10 / 3 = 3.3333333333333335\nThanks for calculating!\n",
+      "mock_inputs": ["10", "3"],
+      "starter_code": "",
+      "solution": "print('Thanks for calculating!')"
+    }
+  ],
+  "full_solution": "print('=== Simple Calculator ===')\nnum1_str = input('Enter first number: ')\nnum2_str = input('Enter second number: ')\nnum1 = int(num1_str)\nnum2 = int(num2_str)\nprint()\nprint('Results:')\nprint(num1_str + ' + ' + num2_str + ' = ' + str(num1 + num2))\nprint(num1_str + ' - ' + num2_str + ' = ' + str(num1 - num2))\nprint(num1_str + ' * ' + num2_str + ' = ' + str(num1 * num2))\nprint(num1_str + ' / ' + num2_str + ' = ' + str(num1 / num2))\nprint('Thanks for calculating!')"
+}

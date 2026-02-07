@@ -1,0 +1,244 @@
+{
+  "id": "level2_capstone_system",
+  "level_id": 2,
+  "tier": 3,
+  "name": "Movie Ticket Pricing System",
+  "description": "Build a movie theater ticket pricing system that calculates costs based on age, day of the week, and number of tickets. This capstone project integrates conditionals, loops, and logical operators to create a practical real-world application. You'll handle user input validation, apply different pricing rules, and generate itemized receipts.",
+  "learning_goals": [
+    "Combine if/elif/else statements with logical operators for complex decision making",
+    "Use while loops for input validation and menu systems",
+    "Apply for loops to process multiple items",
+    "Build a complete multi-step application with user interaction",
+    "Practice accumulating values and generating formatted output"
+  ],
+  "concepts_used": [
+    "if statements",
+    "elif statements",
+    "else statements",
+    "comparison operators",
+    "logical operators",
+    "while loops",
+    "for loops",
+    "input validation",
+    "string methods"
+  ],
+  "total_lines": 45,
+  "difficulty_rating": 4,
+  "estimated_minutes": 35,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start our movie ticket system! Use print() to display the exact text: Welcome to CineMax Ticket System",
+      "hint": "Use print() with the exact welcome message in double quotes.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to CineMax Ticket System",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Welcome to CineMax Ticket System\")"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Ask the user to enter the day of the week using input() with the prompt: Enter day of the week: and store their response in a variable called day. Then convert day to lowercase using the .lower() method and store it back in the same variable day.",
+      "hint": "Use input() to get the day, then use day = day.lower() to convert it.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: ",
+      "mock_inputs": [
+        "Friday"
+      ],
+      "starter_code": "",
+      "solution": "day = input(\"Enter day of the week: \")\nday = day.lower()"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Check if the day is either a weekend day. Write an if statement that checks if day is equal to \"saturday\" or day is equal to \"sunday\". If true, print: Weekend pricing applies",
+      "hint": "Use if with the 'or' logical operator: if day == \"saturday\" or day == \"sunday\":",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: ",
+      "mock_inputs": [
+        "Friday"
+      ],
+      "starter_code": "",
+      "solution": "if day == \"saturday\" or day == \"sunday\":\n    print(\"Weekend pricing applies\")"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Add an else clause to handle weekdays. In the else block, print: Weekday pricing applies",
+      "hint": "Add else: at the same indentation level as the if, then indent the print statement.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies",
+      "mock_inputs": [
+        "Friday"
+      ],
+      "starter_code": "",
+      "solution": "else:\n    print(\"Weekday pricing applies\")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Create a variable called total_cost and set it to 0. This will track the total cost of all tickets.",
+      "hint": "Simply assign 0 to a new variable named total_cost.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies",
+      "mock_inputs": [
+        "Friday"
+      ],
+      "starter_code": "",
+      "solution": "total_cost = 0"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Ask how many tickets they want to buy. Use input() with the prompt: How many tickets do you want? and store the result as an integer in a variable called num_tickets.",
+      "hint": "Use int(input()) to get the number and convert it to an integer in one line.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? ",
+      "mock_inputs": [
+        "Friday",
+        "3"
+      ],
+      "starter_code": "",
+      "solution": "num_tickets = int(input(\"How many tickets do you want? \"))"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Create a for loop that iterates from 1 to num_tickets (inclusive). Use range(1, num_tickets + 1) and name the loop variable ticket_num. Inside the loop, print the current ticket number using: print(\"\\nTicket\", ticket_num)",
+      "hint": "Use for ticket_num in range(1, num_tickets + 1): and remember to indent the print statement.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\n\nTicket 2\n\nTicket 3",
+      "mock_inputs": [
+        "Friday",
+        "3"
+      ],
+      "starter_code": "",
+      "solution": "for ticket_num in range(1, num_tickets + 1):\n    print(\"\\nTicket\", ticket_num)"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Inside the for loop (indented at the same level as the print statement), ask for the age using input() with the prompt: Enter age: and store it as an integer in a variable called age.",
+      "hint": "Make sure this line is indented inside the for loop, at the same level as the print statement above it.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: \nTicket 2\nEnter age: \nTicket 3\nEnter age: ",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "    age = int(input(\"Enter age: \"))"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Still inside the for loop, create a variable called price and set it to 12. This is the base ticket price.",
+      "hint": "Indent this at the same level as the age input line. Simply assign 12 to price.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: \nTicket 2\nEnter age: \nTicket 3\nEnter age: ",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "    price = 12"
+    },
+    {
+      "step_num": 10,
+      "instruction": "Inside the for loop, write an if statement to check if age is less than 12. If true, set price to 7.",
+      "hint": "Use if age < 12: then on the next line (with extra indentation) write price = 7",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: \nTicket 2\nEnter age: \nTicket 3\nEnter age: ",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "    if age < 12:\n        price = 7"
+    },
+    {
+      "step_num": 11,
+      "instruction": "Add an elif clause to check if age is greater than or equal to 65. If true, set price to 8.",
+      "hint": "Use elif age >= 65: at the same indentation as the if statement above.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: \nTicket 2\nEnter age: \nTicket 3\nEnter age: ",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "    elif age >= 65:\n        price = 8"
+    },
+    {
+      "step_num": 12,
+      "instruction": "After the age pricing logic (but still inside the for loop), check if it's a weekend. Write an if statement: if day equals \"saturday\" or day equals \"sunday\", then add 3 to price using price = price + 3.",
+      "hint": "This should be at the same indentation level as the first if age check, not inside it.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: \nTicket 2\nEnter age: \nTicket 3\nEnter age: ",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "    if day == \"saturday\" or day == \"sunday\":\n        price = price + 3"
+    },
+    {
+      "step_num": 13,
+      "instruction": "Still inside the for loop, print the ticket price using: print(\"Price: $\" + str(price)) to show the price for the current ticket.",
+      "hint": "Convert price to a string using str() so you can concatenate it with the dollar sign.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "    print(\"Price: $\" + str(price))"
+    },
+    {
+      "step_num": 14,
+      "instruction": "Inside the for loop (after printing the price), add the current ticket price to total_cost using: total_cost = total_cost + price",
+      "hint": "This accumulates all ticket prices into the total_cost variable.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "    total_cost = total_cost + price"
+    },
+    {
+      "step_num": 15,
+      "instruction": "After the for loop ends (at the original indentation level, not inside the loop), print a blank line using print(), then print the total cost using: print(\"Total cost: $\" + str(total_cost))",
+      "hint": "These two print statements should be at the same indentation as the for loop, not inside it.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to CineMax Ticket System\nEnter day of the week: Weekday pricing applies\nHow many tickets do you want? \nTicket 1\nEnter age: Price: $7\n\nTicket 2\nEnter age: Price: $12\n\nTicket 3\nEnter age: Price: $8\n\nTotal cost: $27",
+      "mock_inputs": [
+        "Friday",
+        "3",
+        "8",
+        "35",
+        "65"
+      ],
+      "starter_code": "",
+      "solution": "print()\nprint(\"Total cost: $\" + str(total_cost))"
+    }
+  ],
+  "full_solution": "print(\"Welcome to CineMax Ticket System\")\nday = input(\"Enter day of the week: \")\nday = day.lower()\nif day == \"saturday\" or day == \"sunday\":\n    print(\"Weekend pricing applies\")\nelse:\n    print(\"Weekday pricing applies\")\ntotal_cost = 0\nnum_tickets = int(input(\"How many tickets do you want? \"))\nfor ticket_num in range(1, num_tickets + 1):\n    print(\"\\nTicket\", ticket_num)\n    age = int(input(\"Enter age: \"))\n    price = 12\n    if age < 12:\n        price = 7\n    elif age >= 65:\n        price = 8\n    if day == \"saturday\" or day == \"sunday\":\n        price = price + 3\n    print(\"Price: $\" + str(price))\n    total_cost = total_cost + price\nprint()\nprint(\"Total cost: $\" + str(total_cost))",
+  "is_generated": false
+}

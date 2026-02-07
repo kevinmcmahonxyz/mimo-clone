@@ -1,0 +1,99 @@
+{
+  "id": "level4_basic_calculator",
+  "level_id": 4,
+  "tier": 1,
+  "name": "Smart Tip Calculator",
+  "description": "Build a restaurant tip calculator that uses functions to calculate tips based on service quality. This project teaches you how to create reusable functions with parameters, return values, and default arguments - essential skills for writing clean, maintainable code.",
+  "learning_goals": [
+    "Define functions using the def keyword",
+    "Work with function parameters and return values",
+    "Use default arguments to make functions flexible",
+    "Understand variable scope inside and outside functions"
+  ],
+  "concepts_used": [
+    "def keyword",
+    "parameters",
+    "return values",
+    "default arguments",
+    "variable scope",
+    "functions"
+  ],
+  "total_lines": 18,
+  "difficulty_rating": 3,
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by creating a function to calculate tips. Define a function called calculate_tip that takes two parameters: bill and tip_percent. Inside the function, calculate the tip amount by multiplying bill by tip_percent and dividing by 100. Return the result.",
+      "hint": "Use def calculate_tip(bill, tip_percent): to define the function. The formula is: bill * tip_percent / 100",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def calculate_tip(bill, tip_percent):\n    tip = bill * tip_percent / 100\n    return tip"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now let's create a function with a default argument. Define a function called calculate_total that takes two parameters: bill and tip_percent (with a default value of 15). Inside the function, use the calculate_tip function to get the tip amount, then calculate and return the total (bill + tip).",
+      "hint": "Use tip_percent=15 for the default argument. Call calculate_tip(bill, tip_percent) to reuse your previous function.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def calculate_total(bill, tip_percent=15):\n    tip = calculate_tip(bill, tip_percent)\n    return bill + tip"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Let's add a welcome message and get user input. Use print() to display the exact text: Welcome to Smart Tip Calculator! Then create a variable called bill_amount and use input() with the exact prompt: Enter your bill amount: $ (remember to convert the input to a float).",
+      "hint": "Use float(input(...)) to convert the input string to a decimal number.",
+      "expected_lines": 2,
+      "expected_output": "Welcome to Smart Tip Calculator!\nEnter your bill amount: $ ",
+      "mock_inputs": [
+        "50.00"
+      ],
+      "starter_code": "",
+      "solution": "print(\"Welcome to Smart Tip Calculator!\")\nbill_amount = float(input(\"Enter your bill amount: $ \"))"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Ask the user about their service experience. Create a variable called service and use input() with the exact prompt: How was the service? (excellent/good/okay): ",
+      "hint": "Store the user's response in the service variable as a string.",
+      "expected_lines": 1,
+      "expected_output": "Welcome to Smart Tip Calculator!\nEnter your bill amount: $ How was the service? (excellent/good/okay): ",
+      "mock_inputs": [
+        "50.00",
+        "excellent"
+      ],
+      "starter_code": "",
+      "solution": "service = input(\"How was the service? (excellent/good/okay): \")"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Now let's determine the tip percentage based on service quality. Create a variable called tip_percentage. Use an if-elif-else structure: if service equals \"excellent\", set tip_percentage to 20; elif service equals \"good\", set it to 15; else set it to 10.",
+      "hint": "Use == for comparison. Remember to check for exact string matches.",
+      "expected_lines": 6,
+      "expected_output": "Welcome to Smart Tip Calculator!\nEnter your bill amount: $ How was the service? (excellent/good/okay): ",
+      "mock_inputs": [
+        "50.00",
+        "excellent"
+      ],
+      "starter_code": "",
+      "solution": "if service == \"excellent\":\n    tip_percentage = 20\nelif service == \"good\":\n    tip_percentage = 15\nelse:\n    tip_percentage = 10"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Finally, let's display the results. Create a variable called final_total and assign it the result of calling calculate_total with bill_amount and tip_percentage. Then use print() to display: Tip amount: $ followed by the result of calculate_tip(bill_amount, tip_percentage). On the next line, print: Total to pay: $ followed by final_total.",
+      "hint": "Call your functions with the variables you created. Use print() twice to show both the tip and the total.",
+      "expected_lines": 3,
+      "expected_output": "Welcome to Smart Tip Calculator!\nEnter your bill amount: $ How was the service? (excellent/good/okay): Tip amount: $ 10.0\nTotal to pay: $ 60.0",
+      "mock_inputs": [
+        "50.00",
+        "excellent"
+      ],
+      "starter_code": "",
+      "solution": "final_total = calculate_total(bill_amount, tip_percentage)\nprint(\"Tip amount: $\", calculate_tip(bill_amount, tip_percentage))\nprint(\"Total to pay: $\", final_total)"
+    }
+  ],
+  "full_solution": "def calculate_tip(bill, tip_percent):\n    tip = bill * tip_percent / 100\n    return tip\ndef calculate_total(bill, tip_percent=15):\n    tip = calculate_tip(bill, tip_percent)\n    return bill + tip\nprint(\"Welcome to Smart Tip Calculator!\")\nbill_amount = float(input(\"Enter your bill amount: $ \"))\nservice = input(\"How was the service? (excellent/good/okay): \")\nif service == \"excellent\":\n    tip_percentage = 20\nelif service == \"good\":\n    tip_percentage = 15\nelse:\n    tip_percentage = 10\nfinal_total = calculate_total(bill_amount, tip_percentage)\nprint(\"Tip amount: $\", calculate_tip(bill_amount, tip_percentage))\nprint(\"Total to pay: $\", final_total)",
+  "is_generated": false
+}

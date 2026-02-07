@@ -1,0 +1,88 @@
+{
+  "id": "level5_basic_night",
+  "level_id": 5,
+  "tier": 1,
+  "name": "Movie Night Planner",
+  "description": "Build a movie night planner that helps a group of friends find movies everyone wants to watch. We'll use sets to find common preferences, dictionaries to track movie details, and tuples to store ratings. This practical app demonstrates how these data structures work together to solve real problems.",
+  "learning_goals": [
+    "Use sets to find common elements between collections",
+    "Store structured data in dictionaries with multiple key-value pairs",
+    "Work with tuples to represent fixed data like ratings",
+    "Apply set operations like intersection and union",
+    "Use dictionary methods to access and display data"
+  ],
+  "concepts_used": [
+    "sets",
+    "set operations",
+    "dictionaries",
+    "dict methods",
+    "tuples"
+  ],
+  "total_lines": 18,
+  "difficulty_rating": 3,
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Create three sets representing movie preferences for three friends. Create a set named alice with the values \"Inception\", \"Titanic\", and \"Avatar\". Create a set named bob with \"Avatar\", \"Inception\", and \"Interstellar\". Create a set named charlie with \"Titanic\", \"Avatar\", and \"Inception\".",
+      "hint": "Use curly braces {} to create sets with comma-separated string values.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "alice = {\"Inception\", \"Titanic\", \"Avatar\"}\nbob = {\"Avatar\", \"Inception\", \"Interstellar\"}\ncharlie = {\"Titanic\", \"Avatar\", \"Inception\"}"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Find movies that all three friends want to watch. Create a variable named common_movies and use set intersection to find movies that appear in alice AND bob AND charlie. Then use print() to display the message \"Movies everyone wants to watch:\" followed by another print() to display the common_movies set.",
+      "hint": "Use the & operator or intersection() method between all three sets. Chain the operations: alice & bob & charlie",
+      "expected_lines": 3,
+      "expected_output": "Movies everyone wants to watch:\n{'Inception', 'Avatar'}",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "common_movies = alice & bob & charlie\nprint(\"Movies everyone wants to watch:\")\nprint(common_movies)"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Find all unique movies mentioned by any friend. Create a variable named all_movies and use set union to combine alice, bob, and charlie. Then use print() to display an empty line, followed by print() to display \"All suggested movies:\" and another print() to display the all_movies set.",
+      "hint": "Use the | operator or union() method to combine all three sets: alice | bob | charlie",
+      "expected_lines": 4,
+      "expected_output": "Movies everyone wants to watch:\n{'Inception', 'Avatar'}\n\nAll suggested movies:\n{'Titanic', 'Interstellar', 'Inception', 'Avatar'}",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "all_movies = alice | bob | charlie\nprint()\nprint(\"All suggested movies:\")\nprint(all_movies)"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Create a dictionary to store details about the chosen movie. Create a variable named movie_info as a dictionary with these exact keys and values: \"title\" with value \"Avatar\", \"year\" with value 2009, \"genre\" with value \"Sci-Fi\", and \"available\" with value True.",
+      "hint": "Use curly braces with key: value pairs separated by commas. Strings need quotes, numbers and booleans don't.",
+      "expected_lines": 1,
+      "expected_output": "Movies everyone wants to watch:\n{'Inception', 'Avatar'}\n\nAll suggested movies:\n{'Titanic', 'Interstellar', 'Inception', 'Avatar'}",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "movie_info = {\"title\": \"Avatar\", \"year\": 2009, \"genre\": \"Sci-Fi\", \"available\": True}"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Create a tuple to store the movie rating. Create a variable named rating as a tuple containing the two values: 8.5 and \"out of 10\". Then use print() to display an empty line, followed by print() to display \"Tonight's movie:\" and use print() to display the movie title from the dictionary using movie_info[\"title\"].",
+      "hint": "Create a tuple using parentheses: (value1, value2). Access dictionary values using square brackets with the key name.",
+      "expected_lines": 4,
+      "expected_output": "Movies everyone wants to watch:\n{'Inception', 'Avatar'}\n\nAll suggested movies:\n{'Titanic', 'Interstellar', 'Inception', 'Avatar'}\n\nTonight's movie:\nAvatar",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "rating = (8.5, \"out of 10\")\nprint()\nprint(\"Tonight's movie:\")\nprint(movie_info[\"title\"])"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Display the complete movie details. Use print() to display the genre by accessing movie_info[\"genre\"], followed by print() to display the year in parentheses using movie_info[\"year\"], and finally use print() to display \"Rating:\" followed by the first element of the rating tuple and the second element of the rating tuple, all in one print statement separated by spaces.",
+      "hint": "Access tuple elements with indexing: rating[0] for the first element and rating[1] for the second. You can use comma separation in print() to display multiple values.",
+      "expected_lines": 3,
+      "expected_output": "Movies everyone wants to watch:\n{'Inception', 'Avatar'}\n\nAll suggested movies:\n{'Titanic', 'Interstellar', 'Inception', 'Avatar'}\n\nTonight's movie:\nAvatar\nSci-Fi\n2009\nRating: 8.5 out of 10",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(movie_info[\"genre\"])\nprint(movie_info[\"year\"])\nprint(\"Rating:\", rating[0], rating[1])"
+    }
+  ],
+  "full_solution": "alice = {\"Inception\", \"Titanic\", \"Avatar\"}\nbob = {\"Avatar\", \"Inception\", \"Interstellar\"}\ncharlie = {\"Titanic\", \"Avatar\", \"Inception\"}\ncommon_movies = alice & bob & charlie\nprint(\"Movies everyone wants to watch:\")\nprint(common_movies)\nall_movies = alice | bob | charlie\nprint()\nprint(\"All suggested movies:\")\nprint(all_movies)\nmovie_info = {\"title\": \"Avatar\", \"year\": 2009, \"genre\": \"Sci-Fi\", \"available\": True}\nrating = (8.5, \"out of 10\")\nprint()\nprint(\"Tonight's movie:\")\nprint(movie_info[\"title\"])\nprint(movie_info[\"genre\"])\nprint(movie_info[\"year\"])\nprint(\"Rating:\", rating[0], rating[1])",
+  "is_generated": false
+}

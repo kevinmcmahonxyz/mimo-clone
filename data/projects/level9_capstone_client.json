@@ -1,0 +1,184 @@
+{
+  "id": "level9_capstone_client",
+  "level_id": 9,
+  "tier": 3,
+  "name": "Weather API Client with Rate Limiting",
+  "description": "Build a professional weather data client that handles API authentication, implements rate limiting, manages pagination for historical data, and gracefully handles errors. This project simulates working with real-world REST APIs by fetching weather information for multiple cities while respecting API quotas and handling network issues.",
+  "learning_goals": [
+    "Implement API authentication with headers",
+    "Handle REST API responses and status codes",
+    "Build rate limiting to respect API quotas",
+    "Implement pagination for large datasets",
+    "Create robust error handling for network requests",
+    "Parse and display JSON API responses"
+  ],
+  "concepts_used": [
+    "API authentication",
+    "REST concepts",
+    "error handling",
+    "pagination",
+    "rate limiting",
+    "dictionaries",
+    "lists",
+    "functions",
+    "exception handling",
+    "time management"
+  ],
+  "total_lines": 65,
+  "difficulty_rating": 4,
+  "estimated_minutes": 45,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Import the time module. Then create a dictionary called api_config with three keys: 'api_key' with value 'demo_key_12345', 'base_url' with value 'https://api.weather.com/v1', and 'rate_limit' with value 5 (representing 5 requests per minute).",
+      "hint": "Use import time at the top, then create a dictionary with string keys and appropriate values (strings for URLs/keys, integer for rate limit).",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "import time\napi_config = {'api_key': 'demo_key_12345', 'base_url': 'https://api.weather.com/v1', 'rate_limit': 5}"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Create an empty list called request_times to track when API requests are made. Then create a dictionary called mock_weather_data with two city keys: 'London' should map to a dictionary with 'temp' of 15 and 'condition' of 'Cloudy', and 'Tokyo' should map to a dictionary with 'temp' of 22 and 'condition' of 'Sunny'.",
+      "hint": "request_times will store timestamps. The mock_weather_data dictionary has nested dictionaries as values.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "request_times = []\nmock_weather_data = {'London': {'temp': 15, 'condition': 'Cloudy'}, 'Tokyo': {'temp': 22, 'condition': 'Sunny'}}"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Define a function called check_rate_limit that takes no parameters. Inside the function, on the first line use print() to display the text: Checking rate limit...",
+      "hint": "Use def to define the function, and remember the exact print statement text.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def check_rate_limit():\n    print(\"Checking rate limit...\")"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Inside the check_rate_limit function (indented), get the current time using time.time() and store it in a variable called current_time. Then create a variable called recent_requests and set it to a list comprehension that filters request_times to only include timestamps where current_time minus the timestamp is less than 60 (requests in the last minute).",
+      "hint": "Use list comprehension: [t for t in request_times if current_time - t < 60]",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    current_time = time.time()\n    recent_requests = [t for t in request_times if current_time - t < 60]"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Still inside check_rate_limit, add an if statement that checks if the length of recent_requests is greater than or equal to api_config['rate_limit']. If true, calculate the wait time as 60 minus (current_time minus the first element of recent_requests), print the text: Rate limit reached. Waiting {wait_time:.1f} seconds... (using an f-string with wait_time formatted to 1 decimal place), call time.sleep(wait_time), then clear the request_times list using its clear() method.",
+      "hint": "The condition checks if we've hit the rate limit. If so, calculate how long to wait, print the message, sleep, and reset the list.",
+      "expected_lines": 5,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    if len(recent_requests) >= api_config['rate_limit']:\n        wait_time = 60 - (current_time - recent_requests[0])\n        print(f\"Rate limit reached. Waiting {wait_time:.1f} seconds...\")\n        time.sleep(wait_time)\n        request_times.clear()"
+    },
+    {
+      "step_num": 6,
+      "instruction": "After the if block (still inside check_rate_limit, same indentation as the if), append current_time to the request_times list.",
+      "hint": "Use the append() method to add the timestamp to the list.",
+      "expected_lines": 1,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    request_times.append(current_time)"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Define a function called authenticate that takes one parameter called api_key. Inside the function, create a dictionary called headers with two keys: 'Authorization' with value f\"Bearer {api_key}\" and 'Content-Type' with value 'application/json'. Then return the headers dictionary.",
+      "hint": "Use an f-string for the Bearer token format, then return the dictionary.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def authenticate(api_key):\n    headers = {'Authorization': f\"Bearer {api_key}\", 'Content-Type': 'application/json'}\n    return headers"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Define a function called fetch_weather that takes two parameters: city and headers. On the first line, call check_rate_limit(). On the second line, use print() to display: Fetching weather for {city}... (using an f-string).",
+      "hint": "This function will coordinate rate limiting and make the API request.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def fetch_weather(city, headers):\n    check_rate_limit()\n    print(f\"Fetching weather for {city}...\")"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Inside fetch_weather, add a try block. Inside the try, check if city is in mock_weather_data. If it is, store mock_weather_data[city] in a variable called data and return a dictionary with two keys: 'status' with value 200 and 'data' with value data. If the city is not found, return a dictionary with 'status' of 404 and 'data' of None.",
+      "hint": "Use try:, then if city in mock_weather_data: for the check. Return different dictionaries based on whether the city exists.",
+      "expected_lines": 5,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    try:\n        if city in mock_weather_data:\n            data = mock_weather_data[city]\n            return {'status': 200, 'data': data}\n        return {'status': 404, 'data': None}"
+    },
+    {
+      "step_num": 10,
+      "instruction": "After the if/return statements in the try block (still inside try, same indentation level), add an except Exception block that takes the exception as variable e. Inside the except, return a dictionary with 'status' of 500 and 'data' with value str(e).",
+      "hint": "The except clause handles any errors that occur during the request.",
+      "expected_lines": 2,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    except Exception as e:\n        return {'status': 500, 'data': str(e)}"
+    },
+    {
+      "step_num": 11,
+      "instruction": "Define a function called handle_response that takes one parameter called response. Inside, if response['status'] equals 200, use print() to display: Success! Temperature: {response['data']['temp']}\u00b0C, Condition: {response['data']['condition']} (using an f-string).",
+      "hint": "Access nested dictionary values using multiple square brackets.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def handle_response(response):\n    if response['status'] == 200:\n        print(f\"Success! Temperature: {response['data']['temp']}\u00b0C, Condition: {response['data']['condition']}\")"
+    },
+    {
+      "step_num": 12,
+      "instruction": "Inside handle_response, after the if block, add an elif that checks if response['status'] equals 404. If true, use print() to display: Error 404: City not found. Add another elif that checks if response['status'] equals 500. If true, print: Error 500: Server error - {response['data']} (using an f-string).",
+      "hint": "Use elif for each status code check, with appropriate error messages.",
+      "expected_lines": 4,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "    elif response['status'] == 404:\n        print(\"Error 404: City not found\")\n    elif response['status'] == 500:\n        print(f\"Error 500: Server error - {response['data']}\")"
+    },
+    {
+      "step_num": 13,
+      "instruction": "Define a function called fetch_multiple_cities that takes two parameters: cities (a list) and headers. Inside, use print() to display: --- Fetching weather for multiple cities ---. Then use a for loop to iterate over cities, with each city stored in a variable called city.",
+      "hint": "This function will process multiple cities in sequence.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "def fetch_multiple_cities(cities, headers):\n    print(\"--- Fetching weather for multiple cities ---\")\n    for city in cities:"
+    },
+    {
+      "step_num": 14,
+      "instruction": "Inside the for loop in fetch_multiple_cities (indented), call fetch_weather with city and headers as arguments, and store the result in a variable called response. Then call handle_response with response as the argument. Finally, use print() to display an empty line (just print() with no arguments).",
+      "hint": "Call the two functions we created earlier, then print a blank line for spacing.",
+      "expected_lines": 3,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "        response = fetch_weather(city, headers)\n        handle_response(response)\n        print()"
+    },
+    {
+      "step_num": 15,
+      "instruction": "Outside all functions, use print() to display: === Weather API Client ===. Then create a variable called auth_headers and set it to the result of calling authenticate with api_config['api_key'] as the argument. Create a list called cities with three string elements: 'London', 'Tokyo', and 'Paris'. Finally, call fetch_multiple_cities with cities and auth_headers as arguments.",
+      "hint": "This is the main execution code that runs the program.",
+      "expected_lines": 4,
+      "expected_output": "=== Weather API Client ===\n--- Fetching weather for multiple cities ---\nChecking rate limit...\nFetching weather for London...\nSuccess! Temperature: 15\u00b0C, Condition: Cloudy\n\nChecking rate limit...\nFetching weather for Tokyo...\nSuccess! Temperature: 22\u00b0C, Condition: Sunny\n\nChecking rate limit...\nFetching weather for Paris...\nError 404: City not found\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"=== Weather API Client ===\")\nauth_headers = authenticate(api_config['api_key'])\ncities = ['London', 'Tokyo', 'Paris']\nfetch_multiple_cities(cities, auth_headers)"
+    }
+  ],
+  "full_solution": "import time\napi_config = {'api_key': 'demo_key_12345', 'base_url': 'https://api.weather.com/v1', 'rate_limit': 5}\nrequest_times = []\nmock_weather_data = {'London': {'temp': 15, 'condition': 'Cloudy'}, 'Tokyo': {'temp': 22, 'condition': 'Sunny'}}\ndef check_rate_limit():\n    print(\"Checking rate limit...\")\n    current_time = time.time()\n    recent_requests = [t for t in request_times if current_time - t < 60]\n    if len(recent_requests) >= api_config['rate_limit']:\n        wait_time = 60 - (current_time - recent_requests[0])\n        print(f\"Rate limit reached. Waiting {wait_time:.1f} seconds...\")\n        time.sleep(wait_time)\n        request_times.clear()\n    request_times.append(current_time)\ndef authenticate(api_key):\n    headers = {'Authorization': f\"Bearer {api_key}\", 'Content-Type': 'application/json'}\n    return headers\ndef fetch_weather(city, headers):\n    check_rate_limit()\n    print(f\"Fetching weather for {city}...\")\n    try:\n        if city in mock_weather_data:\n            data = mock_weather_data[city]\n            return {'status': 200, 'data': data}\n        return {'status': 404, 'data': None}\n    except Exception as e:\n        return {'status': 500, 'data': str(e)}\ndef handle_response(response):\n    if response['status'] == 200:\n        print(f\"Success! Temperature: {response['data']['temp']}\u00b0C, Condition: {response['data']['condition']}\")\n    elif response['status'] == 404:\n        print(\"Error 404: City not found\")\n    elif response['status'] == 500:\n        print(f\"Error 500: Server error - {response['data']}\")\ndef fetch_multiple_cities(cities, headers):\n    print(\"--- Fetching weather for multiple cities ---\")\n    for city in cities:\n        response = fetch_weather(city, headers)\n        handle_response(response)\n        print()\nprint(\"=== Weather API Client ===\")\nauth_headers = authenticate(api_config['api_key'])\ncities = ['London', 'Tokyo', 'Paris']\nfetch_multiple_cities(cities, auth_headers)",
+  "is_generated": false
+}

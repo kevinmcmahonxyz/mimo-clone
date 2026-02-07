@@ -1,0 +1,129 @@
+{
+  "id": "level2_intermediate_shop",
+  "level_id": 2,
+  "tier": 2,
+  "name": "Coffee Shop Order System",
+  "description": "Build a coffee shop ordering system that takes customer orders, calculates prices based on size and add-ons, and keeps track of daily sales. This project combines conditionals to handle different drink sizes and options, loops to process multiple orders, and logical operators to validate customer choices.",
+  "learning_goals": [
+    "Use if/elif/else to make decisions based on user input",
+    "Apply comparison and logical operators to validate choices",
+    "Use while loops to process multiple orders",
+    "Combine multiple conditions with logical operators",
+    "Accumulate values across iterations"
+  ],
+  "concepts_used": [
+    "if statements",
+    "elif",
+    "else",
+    "comparison operators",
+    "logical operators",
+    "while loops"
+  ],
+  "total_lines": 28,
+  "difficulty_rating": 3,
+  "estimated_minutes": 15,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Print the exact text: Coffee Shop Order System\nThen print an empty line using print(). Then create a variable called total_sales and set it to 0. This will track our daily sales.",
+      "hint": "Use print() twice, then initialize total_sales = 0",
+      "expected_lines": 3,
+      "expected_output": "Coffee Shop Order System\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print(\"Coffee Shop Order System\")\nprint()\ntotal_sales = 0"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Create a variable called taking_orders and set it to True. Then start a while loop that continues as long as taking_orders is True.",
+      "hint": "Use 'while taking_orders:' to create the loop",
+      "expected_lines": 2,
+      "expected_output": "Coffee Shop Order System\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "taking_orders = True\nwhile taking_orders:"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Inside the while loop, use input() to ask the user: Enter drink size (small/medium/large) or done to finish:\nStore the answer in a variable called size. Make sure to indent this line since it is inside the while loop.",
+      "hint": "Use 4 spaces for indentation inside the while loop",
+      "expected_lines": 1,
+      "expected_output": "Coffee Shop Order System\n",
+      "mock_inputs": [
+        "small"
+      ],
+      "starter_code": "",
+      "solution": "    size = input(\"Enter drink size (small/medium/large) or done to finish: \")"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Still inside the while loop, add an if statement that checks if size equals \"done\". If it does, set taking_orders to False. Then add an elif that checks if size equals \"small\". If true, create a variable called price and set it to 3.",
+      "hint": "Use == for comparison. Remember to indent properly for the if/elif blocks",
+      "expected_lines": 4,
+      "expected_output": "Coffee Shop Order System\n",
+      "mock_inputs": [
+        "small"
+      ],
+      "starter_code": "",
+      "solution": "    if size == \"done\":\n        taking_orders = False\n    elif size == \"small\":\n        price = 3"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Continue the elif chain (at the same indentation level as the previous elif). Add an elif for size equals \"medium\" that sets price to 4, and another elif for size equals \"large\" that sets price to 5.",
+      "hint": "Both elif statements should be at the same indentation as the previous elif",
+      "expected_lines": 4,
+      "expected_output": "Coffee Shop Order System\n",
+      "mock_inputs": [
+        "small"
+      ],
+      "starter_code": "",
+      "solution": "    elif size == \"medium\":\n        price = 4\n    elif size == \"large\":\n        price = 5"
+    },
+    {
+      "step_num": 6,
+      "instruction": "After the elif statements, add an if statement (at the same indentation as the first if) that checks if size is NOT equal to \"done\". Inside this if block, use input() to ask: Add extra shot? (yes/no):\nStore the answer in a variable called extra_shot.",
+      "hint": "Use != to check if size is not equal to \"done\". The if and the input should be indented at the same level as the first if statement",
+      "expected_lines": 2,
+      "expected_output": "Coffee Shop Order System\n",
+      "mock_inputs": [
+        "small",
+        "yes"
+      ],
+      "starter_code": "",
+      "solution": "    if size != \"done\":\n        extra_shot = input(\"Add extra shot? (yes/no): \")"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Inside the if block you just created (indented further than the if size != \"done\" line), add an if statement that checks if extra_shot equals \"yes\". If true, add 1 to price using the += operator.",
+      "hint": "This if statement should be indented more than the previous if, since it is inside that block",
+      "expected_lines": 2,
+      "expected_output": "Coffee Shop Order System\n",
+      "mock_inputs": [
+        "small",
+        "yes"
+      ],
+      "starter_code": "",
+      "solution": "        if extra_shot == \"yes\":\n            price += 1"
+    },
+    {
+      "step_num": 8,
+      "instruction": "At the same indentation as the extra_shot if statement, print the exact text: Order total: $\nfollowed by the price variable (all in one print statement using concatenation or an f-string). Then add price to total_sales using +=. After the entire while loop ends (at the original indentation level, no indent), print: Total sales: $\nfollowed by the total_sales variable.",
+      "hint": "Use f-strings like f\"Order total: ${price}\" or concatenation. The first two lines are indented inside the if size != \"done\" block, the last print is outside the while loop entirely",
+      "expected_lines": 3,
+      "expected_output": "Coffee Shop Order System\n\nOrder total: $4\nOrder total: $5\nOrder total: $4\nTotal sales: $13",
+      "mock_inputs": [
+        "small",
+        "yes",
+        "medium",
+        "yes",
+        "small",
+        "no",
+        "done"
+      ],
+      "starter_code": "",
+      "solution": "        print(f\"Order total: ${price}\")\n        total_sales += price\nprint(f\"Total sales: ${total_sales}\")"
+    }
+  ],
+  "full_solution": "print(\"Coffee Shop Order System\")\nprint()\ntotal_sales = 0\ntaking_orders = True\nwhile taking_orders:\n    size = input(\"Enter drink size (small/medium/large) or done to finish: \")\n    if size == \"done\":\n        taking_orders = False\n    elif size == \"small\":\n        price = 3\n    elif size == \"medium\":\n        price = 4\n    elif size == \"large\":\n        price = 5\n    if size != \"done\":\n        extra_shot = input(\"Add extra shot? (yes/no): \")\n        if extra_shot == \"yes\":\n            price += 1\n        print(f\"Order total: ${price}\")\n        total_sales += price\nprint(f\"Total sales: ${total_sales}\")",
+  "is_generated": false
+}

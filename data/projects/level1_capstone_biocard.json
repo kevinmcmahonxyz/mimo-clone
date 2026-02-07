@@ -1,0 +1,113 @@
+{
+  "id": "level1_capstone_biocard",
+  "level_id": 1,
+  "tier": 3,
+  "name": "Interactive Bio Card",
+  "description": "Build a complete profile card generator that collects personal information and formats it into a styled, multi-line bio card. This capstone project integrates every concept from Level 1 — print(), input(), variables, strings, integers, basic math, and string concatenation — into one cohesive program.",
+  "learning_goals": [
+    "Collect multiple pieces of user information with input()",
+    "Store and organize data in variables",
+    "Convert between strings and integers",
+    "Perform calculations with user data",
+    "Format complex multi-line output",
+    "Combine all Level 1 concepts in a real program"
+  ],
+  "concepts_used": ["print", "input", "variables", "strings", "integers", "basic math", "string concatenation"],
+  "total_lines": 30,
+  "difficulty_rating": 3,
+  "estimated_minutes": 25,
+  "is_generated": false,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Print a welcome banner for the Bio Card Generator. Print these three lines:\n+========================+\n|   BIO CARD GENERATOR   |\n+========================+",
+      "hint": "Use three separate print() statements, one for each line",
+      "expected_lines": 3,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print('+========================+')\nprint('|   BIO CARD GENERATOR   |')\nprint('+========================+')"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Collect the user's basic info. Ask for their name, age, and city using input() with these prompts:\n'Enter your name: '\n'Enter your age: '\n'Enter your city: '\nStore them in variables: name, age_str, city",
+      "hint": "Three input() calls, each stored in a variable: name = input('Enter your name: ')",
+      "expected_lines": 3,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: ",
+      "mock_inputs": ["Alice", "25", "Chicago"],
+      "starter_code": "",
+      "solution": "name = input('Enter your name: ')\nage_str = input('Enter your age: ')\ncity = input('Enter your city: ')"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Collect more details. Ask for their favorite hobby and their job title:\n'Enter your hobby: '\n'Enter your job title: '\nStore them in variables: hobby, job",
+      "hint": "Two more input() calls following the same pattern",
+      "expected_lines": 2,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: Enter your hobby: Enter your job title: ",
+      "mock_inputs": ["Alice", "25", "Chicago", "painting", "developer"],
+      "starter_code": "",
+      "solution": "hobby = input('Enter your hobby: ')\njob = input('Enter your job title: ')"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Convert the age to an integer and calculate some fun facts. Create:\n- age = int(age_str)\n- days_alive = age * 365\n- age_in_months = age * 12",
+      "hint": "int() converts a string to a number. Then multiply: days = age * 365",
+      "expected_lines": 3,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: Enter your hobby: Enter your job title: ",
+      "mock_inputs": ["Alice", "25", "Chicago", "painting", "developer"],
+      "starter_code": "",
+      "solution": "age = int(age_str)\ndays_alive = age * 365\nage_in_months = age * 12"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Print a blank line, then start the bio card with a top border and the name. Print:\n(blank line)\n+------------------------+\n  Name: Alice",
+      "hint": "print() for blank line, print('+---...---+') for border, print('  Name: ' + name)",
+      "expected_lines": 3,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: Enter your hobby: Enter your job title: \n+------------------------+\n  Name: Alice\n",
+      "mock_inputs": ["Alice", "25", "Chicago", "painting", "developer"],
+      "starter_code": "",
+      "solution": "print()\nprint('+------------------------+')\nprint('  Name: ' + name)"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Print the age, city, and job lines of the bio card:\n  Age: 25\n  City: Chicago\n  Job: developer",
+      "hint": "print('  Age: ' + age_str) — use age_str here since print needs strings",
+      "expected_lines": 3,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: Enter your hobby: Enter your job title: \n+------------------------+\n  Name: Alice\n  Age: 25\n  City: Chicago\n  Job: developer\n",
+      "mock_inputs": ["Alice", "25", "Chicago", "painting", "developer"],
+      "starter_code": "",
+      "solution": "print('  Age: ' + age_str)\nprint('  City: ' + city)\nprint('  Job: ' + job)"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Print the hobby line and a separator:\n  Hobby: painting\n  ------------------------",
+      "hint": "print('  Hobby: ' + hobby)",
+      "expected_lines": 2,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: Enter your hobby: Enter your job title: \n+------------------------+\n  Name: Alice\n  Age: 25\n  City: Chicago\n  Job: developer\n  Hobby: painting\n  ------------------------\n",
+      "mock_inputs": ["Alice", "25", "Chicago", "painting", "developer"],
+      "starter_code": "",
+      "solution": "print('  Hobby: ' + hobby)\nprint('  ------------------------')"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Display the fun facts section. Print:\n  Fun Facts:\n  - You've been alive ~9125 days!\n  - That's 300 months!\nUse str() to convert the numbers to strings.",
+      "hint": "print('  - You\\'ve been alive ~' + str(days_alive) + ' days!')",
+      "expected_lines": 3,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: Enter your hobby: Enter your job title: \n+------------------------+\n  Name: Alice\n  Age: 25\n  City: Chicago\n  Job: developer\n  Hobby: painting\n  ------------------------\n  Fun Facts:\n  - You've been alive ~9125 days!\n  - That's 300 months!\n",
+      "mock_inputs": ["Alice", "25", "Chicago", "painting", "developer"],
+      "starter_code": "",
+      "solution": "print('  Fun Facts:')\nprint('  - You\\'ve been alive ~' + str(days_alive) + ' days!')\nprint('  - That\\'s ' + str(age_in_months) + ' months!')"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Close the bio card with a bottom border and a farewell message:\n+------------------------+\n\nBio card for Alice created successfully!",
+      "hint": "print('+---...---+'), then print() for blank line, then the farewell",
+      "expected_lines": 3,
+      "expected_output": "+========================+\n|   BIO CARD GENERATOR   |\n+========================+\nEnter your name: Enter your age: Enter your city: Enter your hobby: Enter your job title: \n+------------------------+\n  Name: Alice\n  Age: 25\n  City: Chicago\n  Job: developer\n  Hobby: painting\n  ------------------------\n  Fun Facts:\n  - You've been alive ~9125 days!\n  - That's 300 months!\n+------------------------+\n\nBio card for Alice created successfully!\n",
+      "mock_inputs": ["Alice", "25", "Chicago", "painting", "developer"],
+      "starter_code": "",
+      "solution": "print('+------------------------+')\nprint()\nprint('Bio card for ' + name + ' created successfully!')"
+    }
+  ],
+  "full_solution": "print('+========================+')\nprint('|   BIO CARD GENERATOR   |')\nprint('+========================+')\nname = input('Enter your name: ')\nage_str = input('Enter your age: ')\ncity = input('Enter your city: ')\nhobby = input('Enter your hobby: ')\njob = input('Enter your job title: ')\nage = int(age_str)\ndays_alive = age * 365\nage_in_months = age * 12\nprint()\nprint('+------------------------+')\nprint('  Name: ' + name)\nprint('  Age: ' + age_str)\nprint('  City: ' + city)\nprint('  Job: ' + job)\nprint('  Hobby: ' + hobby)\nprint('  ------------------------')\nprint('  Fun Facts:')\nprint('  - You\\'ve been alive ~' + str(days_alive) + ' days!')\nprint('  - That\\'s ' + str(age_in_months) + ' months!')\nprint('+------------------------+')\nprint()\nprint('Bio card for ' + name + ' created successfully!')"
+}
