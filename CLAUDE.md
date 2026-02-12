@@ -23,7 +23,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # Run (from project root)
-uvicorn backend.main:app --reload --port 8000
+uvicorn backend.main:app --reload --port 8003
 
 # Reset database (re-seeds from JSON files)
 rm -f data/db/mimo.db
@@ -33,8 +33,17 @@ python -m scripts.generate_seeds                    # Generate all missing
 python -m scripts.generate_seeds --level 1 --tier 2 # Specific level/tier
 python -m scripts.generate_seeds --force             # Regenerate existing
 
-# Run with Docker
+# Run with Docker (foreground mode - stops when terminal closes)
 docker-compose up --build
+
+# Run in background (persistent)
+docker-compose up -d --build
+
+# View logs
+docker-compose logs -f
+
+# Stop containers
+docker-compose down
 ```
 
 ## Important Gotchas
@@ -44,6 +53,69 @@ docker-compose up --build
 - `rm -f data/db/mimo.db` before restart to re-seed from JSON files. Seed functions skip if data already exists.
 - The `docker.containers.run()` API does NOT have a `timeout` parameter
 - Use `docker.from_env()` + `client.images.get()` to check if sandbox image exists, fall back to local subprocess
+- Docker deployment port is configured in `docker-compose.yml` (line 7), not via command-line flags. Current deployment uses port 8003 (host) mapped to 8000 (container).
+- `docker-compose up` runs in **foreground mode** — stops when terminal closes. Use `docker-compose up -d` for **persistent/background** operation.
+- Database persists across container restarts via volume mount (`./data:/app/data`). Use `docker-compose down -v` to delete volumes and reset database.
+- The sandbox container (`sandbox-build`) runs once to build `mimo-sandbox:latest` image, then exits. This is normal behavior — only the `app` container should stay running.
+- **Temp files for sandbox execution**: Must be created in `/app/data/tmp` (mounted volume) so Docker daemon can access them. Files in container's `/tmp` are not accessible to Docker for volume mounts.
+- **Host path mapping**: Sandbox execution requires `MIMO_HOST_PROJECT_ROOT` env var to convert container paths to host paths for Docker volume mounts.
+
+## Docker Deployment
+
+The application runs via Docker Compose with a two-container architecture:
+
+### Container Architecture
+- **app container**: Runs FastAPI backend + serves frontend static files (Python 3.12-slim)
+- **sandbox-build container**: Builds `mimo-sandbox:latest` image for isolated Python code execution, then exits
+
+### Port Configuration
+- **Deployed configuration**: `8003:8000` (host port 8003 → container port 8000)
+- Port mapping is in `docker-compose.yml` line 7
+- To change port: edit docker-compose.yml, then rebuild with `docker-compose up --build`
+
+### Deployment Modes
+
+**Foreground mode (development, non-persistent):**
+```bash
+docker-compose up --build
+```
+- Runs in current terminal
+- Stops when terminal closes or Ctrl+C pressed
+- Useful for development with live log output
+
+**Background mode (persistent):**
+```bash
+docker-compose up -d --build
+```
+- Runs detached in background
+- Survives terminal closure
+- View logs with `docker-compose logs -f`
+
+### Container Management
+```bash
+# View running containers
+docker ps
+
+# View logs (follow mode)
+docker-compose logs -f
+
+# Stop containers (keeps data)
+docker-compose down
+
+# Stop and remove volumes (deletes database)
+docker-compose down -v
+
+# Restart containers
+docker-compose restart
+
+# Rebuild containers
+docker-compose up --build
+```
+
+### Persistence
+- **Database**: Persists via volume mount (`./data:/app/data`)
+- **Docker images**: `mimo-clone-app` and `mimo-sandbox:latest` remain after containers stop
+- **For production**: Consider systemd service to auto-start on system boot
 
 ## Architecture
 
@@ -78,6 +150,12 @@ docker-compose up --build
 ### Code Execution
 The sandbox (`Dockerfile.sandbox`) runs user Python code in isolation (no network, memory/CPU limits). For development without Docker, execution falls back to local `subprocess`. The `input()` function is mocked by wrapping user code with a shim that reads from a predefined list of values. All code is executed with `random.seed(42)` prepended for deterministic output — this ensures projects using the `random` module produce consistent results during generation, validation, and user execution.
 
+**Critical Implementation Details:**
+- Temp files are created in `/app/data/tmp` (mounted volume) so Docker daemon can access them for volume mounts
+- Container paths are converted to host paths using `MIMO_HOST_PROJECT_ROOT` environment variable
+- Temp files get `chmod 0o644` to ensure sandbox user can read them
+- No ENTRYPOINT in `Dockerfile.sandbox` - full command specified in executor
+
 ### Project Generation Streaming
 The `POST /generate/project` endpoint returns a `StreamingResponse` with `text/event-stream` (SSE). The frontend reads the stream with `fetch()` + `ReadableStream` (not `EventSource`, since it's a POST). Status events are sent at each stage: generating → validating → quality_check → repairing → claude_repair → saving → done/error.
 
@@ -109,17 +187,25 @@ Output matching: exact → whitespace-normalized → float-tolerant. Graduated f
 
 ## 9 Learning Levels
 
+**NOTE**: Concepts listed are from validated Mimo curriculum screenshots. Each lesson also includes a detailed `generation_context` field in `data/lessons.json` for project generation guidance.
+
 | Level | Name | Concepts | Prerequisite |
 |-------|------|----------|-------------|
-| 1 | Intro to Python | print, variables, input, strings, integers, basic math | None |
+| 1 | Intro to Python | print, variables, input, strings, integers, floats, booleans, comparisons, f-strings, type conversion | None |
 | 2 | Flow Control | if/elif/else, comparison/logical operators, while/for loops | Level 1 |
 | 3 | Lists | creation, indexing, slicing, append/insert, remove/pop, iteration | Level 2 |
 | 4 | Functions | def, parameters, return, default arguments, scope | Level 3 |
 | 5 | Tuples, Dicts & Sets | tuples, dictionaries, dict methods, sets, set operations | Level 4 |
-| 6 | Modules & APIs | import, from import, random, json (no network in sandbox) | Level 5 |
+| 6 | Modules & APIs | import, from import, try/except, random module, json module (no actual network in sandbox) | Level 5 |
 | 7 | Strings & List Operations | string methods, f-strings, list comprehensions, join/split, sorting | Level 6 |
 | 8 | OOP | classes, __init__, self, methods, inheritance | Level 7 |
 | 9 | Working with APIs | API auth, REST concepts, try/except, pagination (simulated) | Level 8 |
+
+**Level 6 Curriculum Detail** (from Mimo):
+- Lessons 1-2: Modules (import basics)
+- Lessons 3-5: Errors & Exceptions (try/except/raise)
+- Lessons 6-7: Communicating with APIs, Introduction to Requests
+- Lessons 8-9: Star Wars API project (guided)
 
 ---
 
@@ -132,7 +218,9 @@ When generating projects dynamically via Claude API, these issues are handled in
 3. **Apostrophe in single quotes**: `print('Let's go!')` → SyntaxError. Prompt instructs Claude to use double quotes. Auto-repair swaps single→double quotes programmatically.
 4. **Vague instructions**: "print a welcome message" without exact text. Prompt now requires exact text for every print/input and exact variable names. Claude repair rewrites vague instructions when detected.
 5. **Malformed JSON on long projects**: Capstone projects (8-15 steps) frequently cause unterminated strings. Reducing step count and using `max_tokens=3000` helps. The generate script retries on failure.
-6. **Validation & repair pipeline**: All generated projects go through quality checks (step execution, output matching, instruction specificity, mock_inputs coverage). On failure, a two-phase repair runs: (1) programmatic auto-fix for expected_output mismatches, apostrophe issues, and mock_inputs backfill, then (2) up to 2 Claude repair attempts for issues needing language understanding (vague instructions, code errors). Only if all repair passes fail does the user see a 422.
+6. **Random seed mismatch**: Claude cannot accurately predict `random.seed(42)` output, causing validation failures on projects using random module. Fixed by ALWAYS running `auto_fix_project()` before first quality check to re-execute all code with seed(42) and update `expected_output` values to match actual seeded output.
+7. **Validation & repair pipeline**: All generated projects go through quality checks (step execution, output matching, instruction specificity, mock_inputs coverage). Auto-fix runs FIRST (expected_output regeneration, apostrophe fixes, mock_inputs backfill), then validation. On remaining errors, up to 2 Claude repair attempts run for issues needing language understanding (vague instructions, code errors). Only if all repair passes fail does the user see a 422.
+8. **Curriculum alignment**: Each lesson now has a `generation_context` field providing detailed guidance on appropriate project types, concept progression, and tier-specific requirements. This ensures generated projects match the actual Mimo curriculum and use concepts students have learned.
 
 ### Model Routing
 

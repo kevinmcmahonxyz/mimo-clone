@@ -108,6 +108,7 @@ def _fix_mock_inputs(steps: list[dict]):
 
 def _fix_expected_outputs(steps: list[dict]):
     """Re-execute accumulated code at each step and replace expected_output."""
+    import sys
     accumulated_code = ""
     for step in steps:
         if accumulated_code:
@@ -119,4 +120,10 @@ def _fix_expected_outputs(steps: list[dict]):
         result = execute_code(accumulated_code, mock_inputs)
 
         if result["success"]:
-            step["expected_output"] = result.get("output", "")
+            old_output = step.get("expected_output", "")
+            new_output = result.get("output", "")
+            if old_output != new_output:
+                print(f"[DEBUG] Step {step['step_num']}: Updated expected_output", file=sys.stderr)
+                print(f"  Old: {repr(old_output[:80])}", file=sys.stderr)
+                print(f"  New: {repr(new_output[:80])}", file=sys.stderr)
+            step["expected_output"] = new_output

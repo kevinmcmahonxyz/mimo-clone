@@ -4,13 +4,14 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "8003:8000"
     volumes:
       - ./data:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - MIMO_CLAUDE_API_KEY=${MIMO_CLAUDE_API_KEY:-}
       - MIMO_DEBUG=${MIMO_DEBUG:-false}
+      - MIMO_HOST_PROJECT_ROOT=${PWD}
     depends_on:
       sandbox-build:
         condition: service_completed_successfully

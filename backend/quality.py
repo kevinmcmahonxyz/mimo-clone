@@ -93,6 +93,11 @@ def validate_project_quality(project_data: dict) -> list[str]:
         if expected:
             actual = result.get("output", "")
             if normalize(actual) != normalize(expected):
+                import sys
+                print(f"[DEBUG] Validation mismatch at step {step['step_num']}", file=sys.stderr)
+                print(f"  Expected (norm): {repr(normalize(expected)[:100])}", file=sys.stderr)
+                print(f"  Actual (norm):   {repr(normalize(actual)[:100])}", file=sys.stderr)
+                print(f"  Accumulated code:\n{accumulated_code[:200]}", file=sys.stderr)
                 errors.append(
                     f"Step {step['step_num']}: output mismatch. "
                     f"Expected: {repr(expected[:100])} Got: {repr(actual[:100])}"

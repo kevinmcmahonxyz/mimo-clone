@@ -47,6 +47,7 @@ def gen_project(req: GenerateProjectRequest):
                 return
 
             concepts = json.loads(lesson.concepts)
+            generation_context = lesson.generation_context or ""
 
             # --- Stage: generating ---
             yield _sse("generating", "Generating project with Claude...")
@@ -55,6 +56,7 @@ def gen_project(req: GenerateProjectRequest):
                 level_id=req.level_id,
                 tier=req.tier,
                 concepts=concepts,
+                generation_context=generation_context,
                 theme=req.theme,
                 avoid_concepts=req.avoid_concepts,
             )
@@ -83,6 +85,10 @@ def gen_project(req: GenerateProjectRequest):
 
             # --- Stage: quality_check ---
             yield _sse("quality_check", "Running quality checks...")
+
+            # ALWAYS run auto-fix first to ensure expected_output values are correct
+            # (especially for projects using random module with seed)
+            project_data, _ = auto_fix_project(project_data, [])
 
             quality_errors = validate_project_quality(project_data)
             if quality_errors:

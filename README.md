@@ -11,8 +11,8 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # Run
-uvicorn backend.main:app --reload --port 8000
-# Open http://localhost:8000
+uvicorn backend.main:app --reload --port 8003
+# Open http://localhost:8003
 ```
 
 ## Features
@@ -67,15 +67,17 @@ Without Docker, code execution falls back to local `subprocess` (suitable for de
 
 ## Learning Levels
 
-1. **Intro to Python** — print, variables, input, strings, integers
-2. **Flow Control** — if/else, loops, comparisons
-3. **Lists** — creation, indexing, slicing, methods
-4. **Functions** — def, parameters, return, scope
-5. **Tuples, Dicts & Sets** — data structures
-6. **Modules & APIs** — import, random, json
-7. **Strings & List Operations** — f-strings, comprehensions
-8. **OOP** — classes, init, methods, inheritance
-9. **Working with APIs** — auth, REST, error handling
+Curriculum aligned with [Mimo](https://mimo.org) mobile app progression.
+
+1. **Intro to Python** — print, variables, input, strings, integers, floats, booleans, comparisons, f-strings, type conversion
+2. **Flow Control** — if/else/elif, comparison/logical operators, while/for loops
+3. **Lists** — creation, indexing, slicing, append/insert, remove/pop, iteration
+4. **Functions** — def, parameters, return, default arguments, scope
+5. **Tuples, Dicts & Sets** — tuples, dictionaries, dict methods, sets, set operations
+6. **Modules & APIs** — import, from import, try/except, random module, json module
+7. **Strings & List Operations** — string methods, f-strings, list comprehensions, join/split, sorting
+8. **OOP** — classes, __init__, self, methods, inheritance
+9. **Working with APIs** — API auth, REST concepts, error handling, pagination (simulated)
 
 ## Generating Seed Projects
 

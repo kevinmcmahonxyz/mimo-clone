@@ -47,18 +47,28 @@ def execute_code(code: str, mock_inputs: list[str] | None = None) -> dict:
     except (docker.errors.DockerException, docker.errors.ImageNotFound):
         return _execute_locally(wrapped_code)
 
-    # Write code to a temp file
+    # Write code to a temp file in /app/data (mounted volume) so Docker can access it
+    os.makedirs("/app/data/tmp", exist_ok=True)
     with tempfile.NamedTemporaryFile(
-        mode="w", suffix=".py", delete=False, dir="/tmp"
+        mode="w", suffix=".py", delete=False, dir="/app/data/tmp"
     ) as f:
         f.write(wrapped_code)
         code_path = f.name
 
+    # Make the file readable by the sandbox user
+    os.chmod(code_path, 0o644)
+
+    # Convert container path to host path for Docker volume mount
+    # /app/data inside container maps to <host_project_root>/data on host
+    # Docker requires absolute paths for volume mounts
+    host_data_dir = os.path.join(settings.host_project_root, "data")
+    host_path = code_path.replace("/app/data", host_data_dir)
+
     try:
         result = client.containers.run(
             settings.sandbox_image,
-            command=["python", "/code/script.py"],
-            volumes={code_path: {"bind": "/code/script.py", "mode": "ro"}},
+            command=["python", "-u", "/code/script.py"],
+            volumes={host_path: {"bind": "/code/script.py", "mode": "ro"}},
             network_disabled=True,
             mem_limit=settings.sandbox_memory_limit,
             cpu_period=settings.sandbox_cpu_period,
@@ -84,8 +94,12 @@ def _execute_locally(code: str) -> dict:
     """Fallback execution without Docker (for development)."""
     import subprocess
 
+    # Create tmp directory if it doesn't exist
+    tmp_dir = os.path.join(os.getcwd(), "data", "tmp")
+    os.makedirs(tmp_dir, exist_ok=True)
+
     with tempfile.NamedTemporaryFile(
-        mode="w", suffix=".py", delete=False, dir="/tmp"
+        mode="w", suffix=".py", delete=False, dir=tmp_dir
     ) as f:
         f.write(code)
         code_path = f.name

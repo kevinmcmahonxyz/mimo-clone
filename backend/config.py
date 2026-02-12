@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     sandbox_cpu_period: int = 100000
     sandbox_cpu_quota: int = 50000
     data_dir: Path = Path("data")
+    host_project_root: str = "/app"  # Project root on host (for Docker volume mounts)
     debug: bool = False
 
     model_config = {"env_prefix": "MIMO_", "env_file": ".env"}

@@ -13,6 +13,7 @@ class Lesson(SQLModel, table=True):
     id: int = Field(primary_key=True)
     name: str
     description: str
+    generation_context: Optional[str] = None
     concepts: str  # JSON list
     examples: str  # JSON list
     prerequisite_id: Optional[int] = None
@@ -85,6 +86,7 @@ def seed_lessons():
                 id=item["id"],
                 name=item["name"],
                 description=item["description"],
+                generation_context=item.get("generation_context"),
                 concepts=json.dumps(item["concepts"]),
                 examples=json.dumps(item["examples"]),
                 prerequisite_id=item.get("prerequisite_id"),
