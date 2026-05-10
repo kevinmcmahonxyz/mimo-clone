@@ -130,3 +130,24 @@ def mark_complete(
 
     session.commit()
     return {"status": "ok"}
+
+
+@router.delete("/progress/{project_id}")
+def reset_project_progress(
+    project_id: str,
+    user_id: str = Query("default"),
+    session: Session = Depends(get_session),
+):
+    """Reset all progress for a specific project (allows restarting the project)."""
+    progress_records = session.exec(
+        select(Progress).where(
+            Progress.project_id == project_id,
+            Progress.user_id == user_id,
+        )
+    ).all()
+
+    for p in progress_records:
+        session.delete(p)
+
+    session.commit()
+    return {"status": "ok", "deleted_count": len(progress_records)}

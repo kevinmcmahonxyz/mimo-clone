@@ -77,6 +77,13 @@ const api = {
     });
   },
 
+  resetProgress(projectId) {
+    return fetch(`${API_BASE}/progress/${projectId}`, { method: 'DELETE' }).then(res => {
+      if (!res.ok) throw new Error(`DELETE /progress/${projectId}: ${res.status}`);
+      return res.json();
+    });
+  },
+
   // Generation
   async generateProject(levelId, tier, theme = null, onStatus = null) {
     const res = await fetch(`${API_BASE}/generate/project`, {

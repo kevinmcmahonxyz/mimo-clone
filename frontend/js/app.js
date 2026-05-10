@@ -176,8 +176,13 @@ function renderProject() {
 
   main.innerHTML = `
     <div class="instruction-panel">
-      <div class="project-title">${proj.name}</div>
-      <div class="project-desc">${proj.description}</div>
+      <div class="project-header">
+        <div>
+          <div class="project-title">${proj.name}</div>
+          <div class="project-desc">${proj.description}</div>
+        </div>
+        <button class="btn btn-reset" onclick="restartProject()" title="Restart this project from step 1">⟲ Restart</button>
+      </div>
       <div class="step-header">
         <span class="step-badge">STEP ${step.step_num}</span>
         <span class="step-progress">${step.step_num} / ${proj.steps.length}</span>
@@ -205,7 +210,8 @@ function renderProject() {
         <div class="action-buttons">
           <button class="btn btn-reset" onclick="resetStep()">Clear</button>
           <button class="btn btn-run" id="btn-run" onclick="runCode()">▶ Run</button>
-          <button class="btn btn-next" id="btn-next" onclick="nextStep()">Next →</button>
+          <button class="btn btn-nav" id="btn-prev" onclick="previousStep()" ${state.currentStep === 0 ? 'disabled' : ''}>← Prev</button>
+          <button class="btn btn-nav" id="btn-next" onclick="nextStep()" ${state.currentStep >= proj.steps.length - 1 ? 'disabled' : ''}>Next →</button>
         </div>
       </div>
       <div class="output-content" id="output-content">
@@ -305,7 +311,6 @@ async function runCode() {
     if (result.match) {
       state.stepCompleted = true;
       markStepComplete(state.currentProject.id, step.step_num, code);
-      document.getElementById('btn-next').classList.add('visible');
 
       // Auto-advance if last step
       if (state.currentStep >= state.currentProject.steps.length - 1) {
@@ -324,19 +329,51 @@ async function runCode() {
 
 function nextStep() {
   if (state.currentStep >= state.currentProject.steps.length - 1) {
-    showProjectComplete();
+    return; // Already at last step
+  }
+
+  state.currentStep++;
+  state.accumulatedCode = buildAccumulatedCode();
+  state.stepCompleted = false;
+  renderProject();
+}
+
+function previousStep() {
+  if (state.currentStep <= 0) {
+    return; // Already at first step
+  }
+
+  state.currentStep--;
+  state.accumulatedCode = buildAccumulatedCode();
+  state.stepCompleted = false;
+  renderProject();
+}
+
+async function restartProject() {
+  if (!state.currentProject) return;
+
+  if (!confirm('Are you sure you want to restart this project? All progress will be reset.')) {
     return;
   }
 
-  // Add current code to accumulated
-  const code = document.getElementById('code-input').value;
-  state.accumulatedCode = state.accumulatedCode
-    ? state.accumulatedCode + '\n' + code
-    : code;
+  try {
+    // Reset progress on server
+    await api.resetProgress(state.currentProject.id);
 
-  state.currentStep++;
-  state.stepCompleted = false;
-  renderProject();
+    // Reset local state
+    if (state.progress[state.currentProject.id]) {
+      delete state.progress[state.currentProject.id];
+    }
+    saveProgressToStorage();
+
+    // Reset to step 1
+    state.currentStep = 0;
+    state.accumulatedCode = '';
+    state.stepCompleted = false;
+    renderProject();
+  } catch (e) {
+    alert('Failed to restart project: ' + e.message);
+  }
 }
 
 function resetStep() {
@@ -347,7 +384,6 @@ function resetStep() {
   output.className = 'output-content';
   const feedback = document.getElementById('feedback');
   feedback.style.display = 'none';
-  document.getElementById('btn-next').classList.remove('visible');
   state.stepCompleted = false;
 }
 

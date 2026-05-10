@@ -245,6 +245,14 @@ body {
   overflow-y: auto;
 }
 
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
 .project-title {
   font-size: 14px;
   color: var(--accent);
@@ -254,7 +262,7 @@ body {
 .project-desc {
   font-size: 11px;
   color: var(--text-muted);
-  margin-bottom: 12px;
+  margin-bottom: 0;
   line-height: 1.5;
 }
 
@@ -465,16 +473,20 @@ body {
   background: rgba(255, 170, 0, 0.1);
 }
 
-.btn-next {
-  background: var(--success);
-  color: var(--bg-primary);
-  border-color: var(--success);
-  font-weight: 700;
-  display: none;
+.btn-nav {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border);
 }
 
-.btn-next.visible {
-  display: inline-block;
+.btn-nav:hover:not(:disabled) {
+  background: rgba(51, 255, 51, 0.1);
+  border-color: var(--accent);
+}
+
+.btn-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .btn-reset {

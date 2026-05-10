@@ -11,19 +11,19 @@
   {
     "id": 2,
     "name": "Flow Control",
-    "description": "Make decisions and repeat actions in your code",
-    "generation_context": "This level introduces control flow: making decisions with conditionals and repeating actions with loops. Projects should involve branching logic (different outcomes based on conditions) and iteration (processing multiple items or repeating until a condition is met). Good projects include: decision-making apps (eligibility checkers, recommendation systems), counting/accumulation programs (score trackers, inventory counters), and menu-driven systems. Focus on practical scenarios where programs need to adapt behavior based on input and perform repetitive tasks efficiently.",
-    "concepts": ["if statements", "else/elif", "comparison operators", "logical operators", "while loops", "for loops"],
-    "examples": ["if age >= 18:", "else: print('no')", "==, !=, <, >, <=, >=", "and, or, not", "while count < 10:", "for i in range(5):"],
+    "description": "Code conditionals and loops to build smart programs",
+    "generation_context": "This level teaches control flow through two major sections: conditionals (lessons 1-8) and loops (lessons 9-18). The Rock, Paper, Scissors project splits into Part 1 (conditionals) and Part 2 (adding replay loop). Projects should demonstrate decision-making with branching logic and repetition through loops. Good tier 1 projects use simple if/elif/else for decision-making. Tier 2 adds logical operators, nested conditions, and basic while loops with counters. Tier 3 integrates both while and for loops, uses break/continue for control, includes nested loops, and creates menu-driven systems with replay functionality. Focus on practical scenarios: eligibility checkers, game logic, score trackers, menu systems, counting/accumulation tasks, and interactive programs that loop until user exits.",
+    "concepts": ["if statements", "elif", "else", "comparison operators", "logical operators", "nested if", "shorthand operators", "while loops", "for loops", "range()", "break", "continue", "nested loops"],
+    "examples": ["if age >= 18:", "elif age >= 13:", "else:", "==, !=, <, >, <=, >=", "and, or, not", "if x > 0 and y > 0:", "count += 1", "while running:", "for i in range(5):", "for i in range(1, 10, 2):", "break", "continue"],
     "prerequisite_id": 1
   },
   {
     "id": 3,
     "name": "Lists",
     "description": "Work with collections of data",
-    "generation_context": "This level introduces lists for managing collections of related data. Projects should involve building, modifying, and processing lists dynamically. Good projects include: to-do list managers, inventory systems, contact lists, shopping carts, playlist builders, or score trackers. Focus on practical scenarios where you need to store multiple items, add/remove entries, access specific positions, and iterate through collections. Projects should demonstrate why lists are essential for real-world data management.",
-    "concepts": ["list creation", "indexing", "slicing", "append/insert", "remove/pop", "list iteration"],
-    "examples": ["fruits = ['apple', 'banana']", "first = fruits[0]", "some = fruits[1:3]", "fruits.append('cherry')", "fruits.pop()", "for fruit in fruits:"],
+    "generation_context": "This level introduces lists for managing collections of related data. The Mimo curriculum progresses through: basic list operations (creation, indexing, slicing - lessons 1-3), looping and membership testing (lessons 5-6), data analysis operations (min/max, sorting, summing - lessons 9-11), and list manipulation (concatenation, counting - lessons 13-14). The ToDo List project splits into Part 1 (creating structure and adding tasks) and Part 2 (interactive menu with deletion). Projects should involve building, modifying, and processing lists dynamically. Good projects include: to-do list managers, inventory systems, contact lists, shopping carts, playlist builders, or score trackers. Focus on practical scenarios where you need to store multiple items, add/remove entries, access specific positions/ranges with slicing, iterate through collections, and convert lists to formatted strings. Tier 1 focuses on basic list operations and simple iteration. Tier 2 adds data analysis (min/max, sum, sort) and membership testing. Tier 3 integrates all list operations in a complete interactive program.",
+    "concepts": ["list creation", "indexing", "slicing", "append", "insert", "remove", "pop", "index", "for loops", "membership testing (in)", "min/max", "sort", "sum", "list concatenation (+)", "len", "join"],
+    "examples": ["fruits = ['apple', 'banana']", "first = fruits[0]", "some = fruits[1:3]", "fruits.append('cherry')", "fruits.insert(0, 'grape')", "fruits.remove('apple')", "fruits.pop()", "pos = fruits.index('apple')", "for fruit in fruits:", "if 'apple' in fruits:", "max(numbers)", "numbers.sort()", "sum(numbers)", "list1 + list2", "len(fruits)", "', '.join(fruits)"],
     "prerequisite_id": 2
   },
   {
@@ -48,9 +48,9 @@
     "id": 6,
     "name": "Modules & APIs",
     "description": "Use external code and connect to the world",
-    "generation_context": "This level teaches using Python's module system and introduces API concepts. The curriculum progresses: basic imports (lessons 1-2), error handling with try/except (lessons 3-5), and API/request patterns (lessons 6-9). Projects should incorporate multiple modules working together with proper error handling. Good tier 2-3 projects simulate API workflows: parsing JSON data strings (like API responses), handling missing/invalid data gracefully, combining random data generation with JSON processing. Focus on building programs that feel like they're working with external data sources, even though actual network requests aren't possible in the sandbox. Use json.loads() to parse data, try/except to handle errors, and demonstrate real-world data processing patterns.",
-    "concepts": ["import", "from import", "random module", "json module", "requests basics"],
-    "examples": ["import math", "from math import sqrt", "random.randint(1, 10)", "json.loads(data)", "requests.get(url)"],
+    "generation_context": "This level teaches using Python's module system and introduces API concepts. The curriculum progresses: basic imports and aliases (lessons 1-2), comprehensive error handling with try/except/else/finally and raise (lessons 3-5), and API/request patterns with the requests module (lessons 6-9). Projects should incorporate multiple modules working together with proper error handling. Students learn import syntax (import, from...import, import...as), use modules like random, json, math as examples, and work with exception types (ValueError, KeyError, TypeError, IndexError, FileNotFoundError, ZeroDivisionError, and more). Good tier 2-3 projects simulate API workflows: using requests.get() syntax, parsing response.json() data, handling response.status_code, dealing with missing/invalid data gracefully with specific exception types. Focus on building programs that feel like they're working with external data sources. NOTE: Network is disabled in sandbox, so simulate API responses with predefined data structures or JSON strings.",
+    "concepts": ["import", "from import", "import as (aliases)", "try", "except", "else", "finally", "raise", "exception types (ValueError, KeyError, TypeError, IndexError, ZeroDivisionError, FileNotFoundError)", "random module", "json module", "math module", "requests module", "response.json()", "response.status_code"],
+    "examples": ["import math", "from math import sqrt", "import random as rnd", "random.randint(1, 10)", "json.loads(data)", "json.dumps(obj)", "try:", "except ValueError:", "except KeyError as e:", "else:", "finally:", "raise ValueError('msg')", "requests.get(url)", "response.json()", "response.status_code"],
     "prerequisite_id": 5
   },
   {

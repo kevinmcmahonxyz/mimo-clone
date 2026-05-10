@@ -1,0 +1,305 @@
+{
+  "id": "level6_capstone_stocks",
+  "level_id": 6,
+  "tier": 3,
+  "name": "Stock Price Tracker",
+  "description": "Build a stock price tracker that demonstrates working with JSON data from APIs. Parse JSON responses, handle errors for invalid stock symbols and missing data, calculate price changes, and display formatted results. This project simulates real API workflows using json module and comprehensive error handling.",
+  "learning_goals": [
+    "Import modules using different syntax (import, from...import, import...as)",
+    "Parse JSON data strings like API responses",
+    "Handle multiple exception types (ValueError, KeyError, TypeError)",
+    "Use raise to validate user input",
+    "Work with nested dictionary data structures",
+    "Calculate and format financial data",
+    "Use try/except/finally for robust error handling"
+  ],
+  "concepts_used": [
+    "import",
+    "from import",
+    "import as",
+    "json.loads()",
+    "json.dumps()",
+    "try",
+    "except",
+    "finally",
+    "raise",
+    "ValueError",
+    "KeyError"
+  ],
+  "total_lines": 42,
+  "difficulty_rating": 5,
+  "estimated_minutes": 40,
+  "steps": [
+    {
+      "step_num": 1,
+      "instruction": "Let's start by importing the modules we'll need. Import the json module using: import json",
+      "hint": "Use the import statement followed by the module name",
+      "expected_lines": 1,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "import json"
+    },
+    {
+      "step_num": 2,
+      "instruction": "Now import the randint function from the random module using: from random import randint",
+      "hint": "Use from module_name import function_name syntax",
+      "expected_lines": 1,
+      "expected_output": "",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "from random import randint"
+    },
+    {
+      "step_num": 3,
+      "instruction": "Print a welcome message: Stock Price Tracker",
+      "hint": "Use print() with the exact message",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\n",
+      "mock_inputs": [],
+      "starter_code": "",
+      "solution": "print('Stock Price Tracker')"
+    },
+    {
+      "step_num": 4,
+      "instruction": "Ask the user for a stock symbol. Use input() with the prompt 'Enter stock symbol (AAPL, GOOGL, TSLA): ' and store the result in a variable called symbol. Then convert it to uppercase using .upper() method and store it back in symbol.",
+      "hint": "Get input, then use symbol = symbol.upper() to convert to uppercase",
+      "expected_lines": 2,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): ",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "symbol = input('Enter stock symbol (AAPL, GOOGL, TSLA): ')\nsymbol = symbol.upper()"
+    },
+    {
+      "step_num": 5,
+      "instruction": "Create the API endpoint URL. Create a variable called url and set it to: https://api.stocks.example.com/v1/data",
+      "hint": "Store the URL string in a variable",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): ",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "url = 'https://api.stocks.example.com/v1/data'"
+    },
+    {
+      "step_num": 6,
+      "instruction": "Normally we would use: response = requests.get(url) to fetch data from the API. Since network is disabled in the sandbox, we'll simulate what the API would return. Create a variable called response_text and set it to this exact JSON string: '{\"status\": 200, \"stocks\": {\"AAPL\": {\"price\": 150.25, \"change\": 2.5, \"volume\": 50000000}, \"GOOGL\": {\"price\": 95.75, \"change\": -1.2, \"volume\": 30000000}, \"TSLA\": {\"price\": 242.5, \"change\": 5.8, \"volume\": 80000000}}}'",
+      "hint": "This simulates what response.text would contain after requests.get(url)",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): ",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "response_text = '{\"status\": 200, \"stocks\": {\"AAPL\": {\"price\": 150.25, \"change\": 2.5, \"volume\": 50000000}, \"GOOGL\": {\"price\": 95.75, \"change\": -1.2, \"volume\": 30000000}, \"TSLA\": {\"price\": 242.5, \"change\": 5.8, \"volume\": 80000000}}}'"
+    },
+    {
+      "step_num": 7,
+      "instruction": "Simulate the HTTP status code. In a real API response, we would check response.status_code. Create a variable called status_code and set it to 200",
+      "hint": "status_code = 200",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): ",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "status_code = 200"
+    },
+    {
+      "step_num": 8,
+      "instruction": "Check the status code before parsing. Write an if statement that checks if status_code is not equal to 200. Inside the if block, use raise ValueError() with the message 'API request failed'",
+      "hint": "Use if status_code != 200: then raise ValueError('message')",
+      "expected_lines": 2,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): ",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "if status_code != 200:\n    raise ValueError('API request failed')"
+    },
+    {
+      "step_num": 9,
+      "instruction": "Write a complete try/except/finally block to parse the JSON response. Start with try:, then on the next line (indented) use json.loads(response_text) and store the result in a variable called data. On the next line (not indented), add except ValueError:, then on the next line (indented) use raise ValueError() with the message 'Invalid JSON response'. On the next line (not indented), add finally:, then on the next line (indented) use print() to display 'Response parsed'",
+      "hint": "Complete try/except/finally: try: data = json.loads(response_text) except ValueError: raise ValueError('message') finally: print('message')",
+      "expected_lines": 6,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "try:\n    data = json.loads(response_text)\nexcept ValueError:\n    raise ValueError('Invalid JSON response')\nfinally:\n    print('Response parsed')"
+    },
+    {
+      "step_num": 10,
+      "instruction": "Extract the stocks data from the parsed response. Create a variable called stocks and set it to data['stocks']",
+      "hint": "Access the 'stocks' key from the data dictionary",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "stocks = data['stocks']"
+    },
+    {
+      "step_num": 11,
+      "instruction": "Validate that the stock symbol exists. Write an if statement that checks if symbol is not in stocks. Inside the if block, use raise KeyError() with the message 'Stock symbol not found'",
+      "hint": "Use if symbol not in stocks: then raise KeyError('message')",
+      "expected_lines": 2,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "if symbol not in stocks:\n    raise KeyError('Stock symbol not found')"
+    },
+    {
+      "step_num": 12,
+      "instruction": "Get the stock information. Create a variable called stock_data and set it to stocks[symbol]",
+      "hint": "Access the stock data using the symbol as the key",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "stock_data = stocks[symbol]"
+    },
+    {
+      "step_num": 13,
+      "instruction": "Write a complete try/except block to safely extract the price. Start with try:, then create a variable called price and set it to stock_data['price']. On the next line (not indented), add except KeyError:, then create a variable called price and set it to 0.0",
+      "hint": "Complete try/except: try: price = stock_data['price'] except KeyError: price = 0.0",
+      "expected_lines": 4,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "try:\n    price = stock_data['price']\nexcept KeyError:\n    price = 0.0"
+    },
+    {
+      "step_num": 14,
+      "instruction": "Extract the price change and volume. Create a variable called change and set it to stock_data['change']. On the next line, create a variable called volume and set it to stock_data['volume'].",
+      "hint": "Access the 'change' and 'volume' keys from stock_data dictionary",
+      "expected_lines": 2,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "change = stock_data['change']\nvolume = stock_data['volume']"
+    },
+    {
+      "step_num": 15,
+      "instruction": "Calculate the percentage change. Create a variable called percent_change and calculate it as: (change / (price - change)) * 100. Then round the result to 2 decimal places using round(percent_change, 2) and store it back in percent_change.",
+      "hint": "percent_change = (change / (price - change)) * 100, then round it",
+      "expected_lines": 2,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "percent_change = (change / (price - change)) * 100\npercent_change = round(percent_change, 2)"
+    },
+    {
+      "step_num": 16,
+      "instruction": "Format the volume for display. Create a variable called volume_millions and calculate it as: volume / 1000000. Then round it to 1 decimal place using round(volume_millions, 1) and store it back in volume_millions.",
+      "hint": "Divide by 1000000 to convert to millions, then round to 1 decimal",
+      "expected_lines": 2,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "volume_millions = volume / 1000000\nvolume_millions = round(volume_millions, 1)"
+    },
+    {
+      "step_num": 17,
+      "instruction": "Display a separator line. Use print() to display a line of 40 dashes: ----------------------------------------",
+      "hint": "Use print('----------------------------------------')",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n----------------------------------------\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "print('----------------------------------------')"
+    },
+    {
+      "step_num": 18,
+      "instruction": "Display the stock symbol. Use print() with an f-string to display: Stock: AAPL (use the symbol variable in the f-string).",
+      "hint": "Use f'Stock: {symbol}'",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n----------------------------------------\nStock: AAPL\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "print(f'Stock: {symbol}')"
+    },
+    {
+      "step_num": 19,
+      "instruction": "Display the current price. Use print() with an f-string to display: Current Price: $150.25 (use the price variable).",
+      "hint": "Use f'Current Price: ${price}'",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n----------------------------------------\nStock: AAPL\nCurrent Price: $150.25\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "print(f'Current Price: ${price}')"
+    },
+    {
+      "step_num": 20,
+      "instruction": "Display the price change. Use print() with an f-string to display: Change: $2.5 (use the change variable).",
+      "hint": "Use f'Change: ${change}'",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n----------------------------------------\nStock: AAPL\nCurrent Price: $150.25\nChange: $2.5\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "print(f'Change: ${change}')"
+    },
+    {
+      "step_num": 21,
+      "instruction": "Display the percentage change. Use print() with an f-string to display: Percent Change: 1.69% (use the percent_change variable).",
+      "hint": "Use f'Percent Change: {percent_change}%'",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n----------------------------------------\nStock: AAPL\nCurrent Price: $150.25\nChange: $2.5\nPercent Change: 1.69%\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "print(f'Percent Change: {percent_change}%')"
+    },
+    {
+      "step_num": 22,
+      "instruction": "Display the trading volume. Use print() with an f-string to display: Volume: 50.0M shares (use the volume_millions variable).",
+      "hint": "Use f'Volume: {volume_millions}M shares'",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n----------------------------------------\nStock: AAPL\nCurrent Price: $150.25\nChange: $2.5\nPercent Change: 1.69%\nVolume: 50.0M shares\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "print(f'Volume: {volume_millions}M shares')"
+    },
+    {
+      "step_num": 23,
+      "instruction": "Display another separator line. Use print() to display a line of 40 dashes: ----------------------------------------",
+      "hint": "Use print('----------------------------------------')",
+      "expected_lines": 1,
+      "expected_output": "Stock Price Tracker\nEnter stock symbol (AAPL, GOOGL, TSLA): Response parsed\n----------------------------------------\nStock: AAPL\nCurrent Price: $150.25\nChange: $2.5\nPercent Change: 1.69%\nVolume: 50.0M shares\n----------------------------------------\n",
+      "mock_inputs": [
+        "aapl"
+      ],
+      "starter_code": "",
+      "solution": "print('----------------------------------------')"
+    }
+  ],
+  "full_solution": "import json\nfrom random import randint\nprint('Stock Price Tracker')\nsymbol = input('Enter stock symbol (AAPL, GOOGL, TSLA): ')\nsymbol = symbol.upper()\nurl = 'https://api.stocks.example.com/v1/data'\nresponse_text = '{\"status\": 200, \"stocks\": {\"AAPL\": {\"price\": 150.25, \"change\": 2.5, \"volume\": 50000000}, \"GOOGL\": {\"price\": 95.75, \"change\": -1.2, \"volume\": 30000000}, \"TSLA\": {\"price\": 242.5, \"change\": 5.8, \"volume\": 80000000}}}'\nstatus_code = 200\nif status_code != 200:\n    raise ValueError('API request failed')\ntry:\n    data = json.loads(response_text)\nexcept ValueError:\n    raise ValueError('Invalid JSON response')\nfinally:\n    print('Response parsed')\nstocks = data['stocks']\nif symbol not in stocks:\n    raise KeyError('Stock symbol not found')\nstock_data = stocks[symbol]\ntry:\n    price = stock_data['price']\nexcept KeyError:\n    price = 0.0\nchange = stock_data['change']\nvolume = stock_data['volume']\npercent_change = (change / (price - change)) * 100\npercent_change = round(percent_change, 2)\nvolume_millions = volume / 1000000\nvolume_millions = round(volume_millions, 1)\nprint('----------------------------------------')\nprint(f'Stock: {symbol}')\nprint(f'Current Price: ${price}')\nprint(f'Change: ${change}')\nprint(f'Percent Change: {percent_change}%')\nprint(f'Volume: {volume_millions}M shares')\nprint('----------------------------------------')"
+}

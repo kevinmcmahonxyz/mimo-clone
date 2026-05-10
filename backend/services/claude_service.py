@@ -52,23 +52,62 @@ def generate_project(
             tier_requirements = "\n- MUST use: Variables (multiple), print(), input() with conversions, f-strings, comparisons (multiple types), type() function or explicit type awareness, booleans"
             tier_requirements += "\n- Should include: Multiple data types (str, int, float, bool), type conversions, formatted output, user interaction"
             tier_requirements += "\n- Focus on: Building a complete interactive program using all Level 1 concepts"
-    elif level_id == 6:
-        # Level 6 Mimo progression: Modules (01-02) → Errors/Exceptions (03-05) → APIs/Requests (06-09)
+    elif level_id == 2:
+        # Level 2 Mimo progression: Conditionals (01-07) → Rock Paper Scissors Part 1 (08) → Loops (09-17) → Rock Paper Scissors Part 2 (18)
         if tier == 1:
-            # Basic: Lessons 01-02 (Modules basics)
-            tier_requirements = "\n- MUST use: import statement (import random, import json, or import math), 1-2 module functions"
-            tier_requirements += "\n- Focus on: Understanding what modules are and basic import syntax"
+            # Basic: Conditionals focus (lessons 1-8)
+            tier_requirements = "\n- MUST use: if/elif/else statements, comparison operators (==, !=, <, >, <=, >=), at least 2-3 conditional branches"
+            tier_requirements += "\n- MAY use: Simple while or for loop if appropriate, but conditionals are the focus"
+            tier_requirements += "\n- Focus on: Decision-making logic with multiple outcomes based on user input or conditions"
         elif tier == 2:
-            # Intermediate: Lessons 01-05 (Modules + Error Handling)
-            tier_requirements = "\n- MUST use: import AND from...import syntax, try/except for error handling"
-            tier_requirements += "\n- Should use: Multiple modules (e.g., random + json), handle potential errors gracefully"
-            tier_requirements += "\n- Focus on: Combining modules with error handling for robust programs"
+            # Intermediate: Conditionals + Basic Loops (lessons 1-13)
+            tier_requirements = "\n- MUST use: if/elif/else with logical operators (and/or/not), nested if statements OR nested loops, while loops with counter/accumulator patterns, shorthand operators (+=, -=)"
+            tier_requirements += "\n- Should demonstrate: Combining conditions, loop control with counters, break or continue statements"
+            tier_requirements += "\n- Focus on: Programs that make complex decisions AND repeat actions (score trackers, menu systems, counting tasks)"
         elif tier == 3:
-            # Capstone: All lessons (Modules + Exceptions + simulated API workflow)
-            tier_requirements = "\n- MUST use: import and from...import, try/except with specific exception types, simulated API-style data workflow"
-            tier_requirements += "\n- Should include: Working with JSON data (parse responses), error handling for missing data/invalid input, multiple modules working together"
-            tier_requirements += "\n- Focus on: Complete workflow like fetching/parsing data, handling errors, processing results (simulate API pattern even without actual requests)"
-            tier_requirements += "\n- NOTE: Do NOT use requests.get() as network is disabled in sandbox. Simulate API data with JSON strings or dictionaries."
+            # Capstone: Full level (all lessons 1-18)
+            tier_requirements = "\n- MUST use: Complex nested conditionals, logical operators, BOTH while and for loops, break/continue, shorthand operators, range() with parameters"
+            tier_requirements += "\n- Should include: Menu-driven system with loop-until-exit pattern, nested loops or nested conditionals, accumulation/counting across multiple iterations"
+            tier_requirements += "\n- Focus on: Complete interactive programs like games with replay, menu systems, or multi-step processes that combine all flow control concepts"
+    elif level_id == 3:
+        # Level 3 Mimo progression: Basic list ops (01-03) → Looping/Membership (05-06) → ToDo Part 1 (08) → Data analysis (09-11) → Joining/Counting (13-14) → ToDo Part 2 (16)
+        if tier == 1:
+            # Basic: Core list operations (lessons 1-8 focus)
+            tier_requirements = "\n- MUST use: List creation, indexing, slicing, at least 2 of: append/insert/remove/pop, for loop to iterate over list"
+            tier_requirements += "\n- Focus on: Building and modifying lists, accessing elements by position, simple list iteration"
+            tier_requirements += "\n- Keep it simple: 3-4 list operations combined in a practical scenario"
+        elif tier == 2:
+            # Intermediate: List operations + data analysis (lessons 1-13)
+            tier_requirements = "\n- MUST use: List creation/modification, slicing, for loops, membership testing with 'in', at least one of: min()/max()/sum(), .sort() or list concatenation with +, .join() to format list output"
+            tier_requirements += "\n- MAY use: .index() to find element positions"
+            tier_requirements += "\n- Should demonstrate: Processing list data, finding information in lists, combining multiple lists or sorting data, displaying formatted list output"
+            tier_requirements += "\n- Focus on: Programs that build lists AND analyze or process the data (e.g., finding highest/lowest, totaling values, organizing data)"
+        elif tier == 3:
+            # Capstone: Full level (all lessons 1-16)
+            tier_requirements = "\n- MUST use: List creation, multiple modification methods (append/insert/remove/pop), slicing, for loops, membership testing with 'in', data analysis (at least 2 of: min/max/sum/sort), len(), list concatenation, .join() for formatted output"
+            tier_requirements += "\n- Should include: Interactive menu system with loop-until-exit pattern, dynamic list building based on user input, list operations combined with conditionals, formatted list display"
+            tier_requirements += "\n- Focus on: Complete interactive programs like ToDo lists, inventory managers, or data processors that combine all list operations in a cohesive application"
+    elif level_id == 6:
+        # Level 6 Mimo progression: Modules & Aliases (01-02) → Exceptions (03-05) → APIs/Requests (06-09)
+        if tier == 1:
+            # Basic: Lessons 01-02 (Modules basics, import syntax, aliases)
+            tier_requirements = "\n- MUST use: import statement (import random, import json, or import math), 1-2 module functions"
+            tier_requirements += "\n- MAY use: from...import syntax or import...as aliases"
+            tier_requirements += "\n- Focus on: Understanding what modules are, basic import syntax, and how to call module functions"
+        elif tier == 2:
+            # Intermediate: Lessons 01-05 (Modules + Basic Error Handling)
+            tier_requirements = "\n- MUST use: import AND from...import syntax, ONE complete try/except block (4 lines: try, operation, except Type, handle)"
+            tier_requirements += "\n- MAY use: import...as aliases, multiple modules (e.g., random + json)"
+            tier_requirements += "\n- The try/except block MUST be in a single step, not split across steps"
+            tier_requirements += "\n- Focus on: Using modules effectively with basic error handling for common errors (ValueError for int() conversion, KeyError for dict access, etc.)"
+            tier_requirements += "\n- Keep it simple: demonstrate the concept without overly complex exception handling"
+        elif tier == 3:
+            # Capstone: All lessons (Modules + Exceptions + simulated API workflow with requests)
+            tier_requirements = "\n- MUST use: import, from...import, and import...as; try/except/else/finally with multiple specific exception types; simulated requests.get() workflow with response object pattern"
+            tier_requirements += "\n- MUST use: raise to handle invalid input/data; json.loads() or response.json() pattern to parse data; exception handling for missing keys, invalid values, etc."
+            tier_requirements += "\n- Should include: Simulate API response as dict with .json() method or use json.loads() on JSON string; check response.status_code pattern; handle KeyError/ValueError/TypeError for missing/invalid data; multiple modules working together (random for simulation, json for parsing, etc.)"
+            tier_requirements += "\n- Focus on: Complete API workflow simulation - make simulated request, check status, parse JSON response, handle errors gracefully, process results"
+            tier_requirements += "\n- NOTE: Network is disabled in sandbox. Simulate API responses with predefined dicts or JSON strings. Show requests.get() pattern but use mock data."
 
     context_section = f"\n\nLEVEL CONTEXT:\n{generation_context}" if generation_context else ""
 
@@ -106,6 +145,11 @@ Level 1 (Intro to Python):
 - Tier 2: Calculator with multiple operations, temperature/unit converter, simple quiz with score
 - Tier 3: Complete profile/bio card generator, interactive story with user choices, budget planner with multiple inputs
 
+Level 2 (Flow Control):
+- Tier 1: Eligibility checker (age/height requirements), grade classifier, ticket pricing based on age
+- Tier 2: Score tracker with running total, number guessing game with attempts counter, menu-driven calculator with loop
+- Tier 3: Complete games (rock/paper/scissors with replay, trivia quiz with score tracking), vending machine simulator, multi-round tournament system
+
 Level 6 (Modules & APIs):
 - Tier 1 (Modules basics): Simple module usage - dice roller with random, temperature converter with math, simple data formatter with json
 - Tier 2 (Modules + Errors): Apps with error handling - calculator that handles division by zero, file reader with try/except, data validator that catches bad input
@@ -125,6 +169,7 @@ Requirements:
 11. Each step's mock_inputs must contain exactly the right number of entries for ALL input() calls in the accumulated code up to and including that step. For example, if step 1 has one input() and step 2 adds another, step 2's mock_inputs must have 2 entries (one for step 1's input, one for step 2's).
 12. Never use vague words like "appropriate", "suitable", or "relevant" in instructions — always specify the exact value, text, or variable name.
 13. CRITICAL: All code is executed with "import random; random.seed(42)" prepended automatically. When creating expected_output values for projects using the random module, you MUST calculate what random.seed(42) would produce. For example, with seed(42): random.randint(0, 2) returns 0, random.choice(['a','b','c']) returns 'a'. Simulate this seed to get accurate expected_output.
+14. CRITICAL: When using try/except blocks, you MUST complete the entire try/except structure within a single step OR use consecutive steps where the try block and its corresponding except block are completed before any other code is added. NEVER add a try: line in one step and then add unrelated code in the next step before completing the except: block. BAD: Step 5 adds "try:\n    data = json.loads(x)", Step 6 adds "print(data)". GOOD: Step 5 adds "try:\n    data = json.loads(x)\nexcept ValueError:\n    print('Invalid JSON')".
 
 CRITICAL RULES:
 - The "solution" field for each step MUST contain ONLY the new code the user writes in that step — NOT the full accumulated program. For example if step 1 solution is "print('Hello')" and step 2 adds a variable, step 2 solution should be "name = input('Name: ')" NOT "print('Hello')\\nname = input('Name: ')".
@@ -151,6 +196,26 @@ Step 3:
   mock_inputs: ["Alice", "25"]
 
 Notice: each step's solution is ONLY the new code, expected_output is cumulative, and mock_inputs grows as more input() calls accumulate.
+
+CRITICAL EXAMPLE - try/except blocks MUST be complete:
+
+BAD - Don't do this (incomplete try/except):
+Step 4:
+  solution: "try:\\n    data = json.loads(user_input)"
+Step 5:
+  solution: "print(data['name'])"  # ERROR! Python expects 'except:' after try:
+
+GOOD - Complete try/except in one step:
+Step 4:
+  solution: "try:\\n    data = json.loads(user_input)\\nexcept ValueError:\\n    print('Invalid JSON')"
+Step 5:
+  solution: "print(data['name'])"  # Now this works because try/except is complete
+
+ALSO GOOD - Use try/except for the operation that needs it, not for unrelated code:
+Step 4:
+  solution: "try:\\n    age = int(user_input)\\nexcept ValueError:\\n    age = 0"
+Step 5:
+  solution: "print(f'Age: {age}')"  # This code doesn't need to be in the try block
 
 Return ONLY valid JSON with this exact structure (no markdown, no explanation):
 {{
@@ -180,10 +245,12 @@ Return ONLY valid JSON with this exact structure (no markdown, no explanation):
 }}"""
 
     model = _model_for_tier(tier)
+    # Increase max_tokens for capstone projects (tier 3) to avoid truncation
+    max_tokens = 6000 if tier >= 3 else 4096
     client = Anthropic(api_key=settings.claude_api_key)
     response = client.messages.create(
         model=model,
-        max_tokens=4096,
+        max_tokens=max_tokens,
         messages=[{"role": "user", "content": prompt}],
     )
 
@@ -194,7 +261,15 @@ Return ONLY valid JSON with this exact structure (no markdown, no explanation):
         if text.endswith("```"):
             text = text[:-3]
 
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as e:
+        import sys
+        print(f"[ERROR] JSON decode failed: {e}", file=sys.stderr)
+        print(f"[ERROR] Response length: {len(text)} chars", file=sys.stderr)
+        print(f"[ERROR] Last 500 chars: {text[-500:]}", file=sys.stderr)
+        # Return None so caller can handle retry
+        return None
 
 
 def repair_project(project_data: dict, errors: list[str]) -> dict | None:
@@ -223,6 +298,7 @@ Rules for fixes:
 - If there's an apostrophe in a single-quoted string, change the outer quotes to double quotes.
 - If mock_inputs count is wrong, provide the correct number of mock inputs for all input() calls in the accumulated code up to that step.
 - If there's an output mismatch, update expected_output to match what the accumulated code actually produces. Remember: all code runs with "import random; random.seed(42)" prepended, so random module output is deterministic.
+- If there's an execution failure with SyntaxError about "expected 'except'", it means a try: block was started but not completed before other code was added. Fix by moving the try/except block into a single step OR restructuring so the except: block completes before any other code.
 - If there's an execution failure, fix the code in the solution field.
 - Each step's "solution" must contain ONLY the new code for that step (not cumulative).
 - The "expected_output" for each step must be the COMPLETE output of running ALL accumulated code up to that step.
